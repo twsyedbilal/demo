@@ -16,13 +16,12 @@ import com.techweaversys.service.UserService;
 public class WelcomeController {
 	
 	//change 
-	//this is welcome controller 
 	@Autowired
 	private UserService userService;
 	
 	@GetMapping(value = "/")
 	public String Welcome() {		
-		return "Welcome to Finance Application";
+		return "Welcome to AL Rizwan Application";
 	}
 	
 	/*@GetMapping(value = "/mail")

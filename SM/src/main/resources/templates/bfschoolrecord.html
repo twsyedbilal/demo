@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>  <title>BF according school record</title>	
+<style type="text/css">
+	@media print{
+  		.page{
+  			min-height:315px;
+  			/* margin-bottom:40px; */
+  		}
+  	}
+div {
+  width: 90px;
+  height: 130px;
+  padding: 0px;
+  border: 1px solid black;
+  margin-top: 15px;
+  margin-left: 70px;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="bf.css"/>
+  </head>
+  <body>
+    <img th:src="@{${bonafideheader}}" title="" class="" style="width: 100%; height: 100%; "></img>
+	<pre>
+	<p style="	margin-top: -50px;"><h3>  Outward No.ARES/Bonafide /	/	/2018</h3></p>
+	<p style="margin-top: -70px;margin-left: 500px;"><h3> Date: </h3></p>
+<!-- 	<p th:text="${date};"></p> -->
+	</pre>
+	<table>
+	<div><td></td></div></table>
+	<p>
+	<h1 style="margin-top: -50px;margin-bottom: 150px;margin-left: 250px;"> Bona Fide Certificate</h1></p>
+	<p class="endpoint">
+	<h3 style="padding-left: 1px;	margin-left: 15px;">It is certified that Master/Miss:_______________________________________ </h3></p>
+	<p style="margin-left:1px"><h3>S/o./ D/o.___________________________________________is the student of our 
+	<br>AL-RIZWAN ENGLISH SCHOOL.He/She is studying in_____________
+	class.</br><p>His/Her date of Birth is__/__/____(______________________________________<br></br></p>
+	___________________________________). according to our school record.</h3></p>
+
+</body>
+</html>

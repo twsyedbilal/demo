@@ -203,16 +203,10 @@ public class AdmissionServiceImpl implements AdmissionService {
 		//
 		List<Document> document = new ArrayList<>();
 		if (admission.getDocument() != null) {
-			for (DocumentDto doc : admission.getDocument()) {
+			for (DocumentDto doc : admission.getDocument()) { 
 				Document du = new Document();
-				if (doc.getId() != null) {
+				if (doc.getId() != null) { 
 					du = documentBucketRepository.getOne(doc.getId());
-					du.setFileName(doc.getFileName());
-					du.setFileType(doc.getFileName());
-					du.setName(doc.getName());
-					du.setPath(doc.getPath());
-					du.setStore(doc.getStore());
-					du.setUrl(doc.getUrl());
 				}
 				document.add(du);
 			}

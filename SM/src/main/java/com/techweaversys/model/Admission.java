@@ -167,11 +167,6 @@ public class Admission extends AbstractPersistable {
 	@JsonIgnore
 	private List<Document> document;
 
-//	@ManyToOne(mappedBy="d", fetch=FetchType.EAGER)
-//	private Admission admission;
-
-
-
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "sm_class_master_id")
 	private ClassEntity classOffered;
