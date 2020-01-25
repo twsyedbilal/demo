@@ -10,5 +10,15 @@ public interface ExportService {
 
 	byte[] downloadPdfIdCardBack(Long id, HttpServletResponse response);
 
+	byte[] downloadPdfBfByBirth(Long id, HttpServletResponse response);
+
+	byte[] downloadPdfBfByJr(Long id, HttpServletResponse response);
+
+	byte[] downloadPdfBfByScience(Long id, HttpServletResponse response);
+
+	byte[] downloadPdfBfBySchoolRecord(Long id, HttpServletResponse response);
+
+	byte[] downloadPdfBfBySchoolWas(Long id, HttpServletResponse response);
+
 
 }

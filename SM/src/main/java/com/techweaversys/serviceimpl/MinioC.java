@@ -28,7 +28,7 @@ import io.minio.errors.RegionConflictException;
 @Service
 public class MinioC {
 
-	private MinioClient s3client;
+	private MinioClient minioclients;
 
 	@Value("${spring.minio.url}")
 	private String endpointUrl;
@@ -43,8 +43,8 @@ public class MinioC {
 	private void initializeAmazon() throws InvalidEndpointException, InvalidPortException {
 		// AWSCredentials credentials = new BasicAWSCredentials(this.accessKey,
 		// this.secretKey);
-		// this.s3client = new AmazonS3Client(credentials);
-		this.s3client = new MinioClient(endpointUrl, accessKey, secretKey);
+		// this.minioclients = new Amazonminioclients(credentials);
+		this.minioclients = new MinioClient(endpointUrl, accessKey, secretKey);
 
 	}
 
@@ -70,6 +70,17 @@ public class MinioC {
 		return convFile;
 	}
 
+	/*
+	 * private String generateFullFileName(MultipartFile multiPart) {
+	 * 
+	 * return "?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-" +
+	 * "Credential=minioadmin%2F20200122%2F%2Fs3%2Faws4_" + "request&X-Amz-Date="+
+	 * new Date().getDate() + new Date().getTimezoneOffset()
+	 * +"&X-Amz-Expires=432000&X-Amz-\r\n" +
+	 * "SignedHeaders=host&X-Amz-\"Signature=1839d4fdf27191a122bc0e5e16d89307f74e3058572972d3ec3d76e6b6f219c0";
+	 * }
+	 */
+	
 	private String generateFileName(MultipartFile multiPart) {
 		return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
 	}
@@ -79,10 +90,10 @@ public class MinioC {
 			throws RegionConflictException {
 		try {
 
-			if (!s3client.bucketExists(bucketName)) {
-				s3client.makeBucket("alrizwancloud");
+			if (!minioclients.bucketExists(bucketName)) {
+				minioclients.makeBucket("alrizwancloud");
 			}
-			s3client.putObject(bucketName, file.getOriginalFilename(), file.getInputStream(),
+			minioclients.putObject(bucketName, file.getOriginalFilename(), file.getInputStream(),
 					file.getContentType());
 			System.out.println("uploaded into miniocloud");
 		} catch (InvalidKeyException | InvalidBucketNameException | NoSuchAlgorithmException | NoResponseException
@@ -95,7 +106,7 @@ public class MinioC {
 	public Boolean deleteFileFromS3Bucket(String fileUrl) {
 		try {
 			String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-			s3client.deleteBucketLifeCycle(fileName);
+			minioclients.deleteBucketLifeCycle(fileName);
 			return true;
 		} catch (Throwable e) {
 			e.printStackTrace();
