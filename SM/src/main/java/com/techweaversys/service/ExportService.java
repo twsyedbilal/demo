@@ -14,11 +14,12 @@ public interface ExportService {
 
 	byte[] downloadPdfBfByJr(Long id, HttpServletResponse response);
 
-	byte[] downloadPdfBfByScience(Long id, HttpServletResponse response);
+	byte[] downloadPdfBfByAddScience(Long id, HttpServletResponse response);
 
 	byte[] downloadPdfBfBySchoolRecord(Long id, HttpServletResponse response);
 
 	byte[] downloadPdfBfBySchoolWas(Long id, HttpServletResponse response);
 
+	byte[] downloadPdfBfByScience(Long id, HttpServletResponse response);
 
 }

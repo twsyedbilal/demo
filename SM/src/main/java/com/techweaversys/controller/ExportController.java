@@ -50,11 +50,11 @@ public class ExportController {
 	}
 	
 	//3
-	@GetMapping("bonafidescience/pdf/{id}")
+	@GetMapping("bonafideaddscience/pdf/{id}")
 	@ResponseBody
-	public byte[] downloadPdfBfByScience(@PathVariable("id") Long id, HttpServletResponse response)
+	public byte[] downloadPdfBfByAddScience(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException {
-		return exportService.downloadPdfBfByScience(id, response);
+		return exportService.downloadPdfBfByAddScience(id, response);
 	}
 	
 	//4
@@ -73,6 +73,14 @@ public class ExportController {
 		return exportService.downloadPdfBfBySchoolRecord(id, response);
 	}
 
+	//6
+	@GetMapping("bonafidescience/pdf/{id}")
+	@ResponseBody
+	public byte[] downloadPdfBfByScience(@PathVariable("id") Long id, HttpServletResponse response)
+			throws DocumentException {
+		return exportService.downloadPdfBfByScience(id, response);
+	}
+
 	//7
 	@GetMapping("bonafidepast/pdf/{id}")
 	@ResponseBody
@@ -80,5 +88,4 @@ public class ExportController {
 			throws DocumentException {
 		return exportService.downloadPdfBfBySchoolWas(id, response);
 	}
-
 }

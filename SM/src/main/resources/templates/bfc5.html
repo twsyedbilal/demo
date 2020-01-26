@@ -2,21 +2,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>  <title>BF according school record</title>	
-<style>
+<style type="text/css">
+	@media print{
+  		.page{
+  			min-height:315px;
+  			/* margin-bottom:40px; */
+  		}
+  	}
+.maintain {
+color: black;
+width: 100%;
+max-width: 700px;
+min-width: 500px;
+}
+
 </style>
-<link rel="stylesheet" type="text/css" href="bf.css">
+<link rel="stylesheet" type="text/css" href="bf.css"/>
   </head>
   <body>
-	<img style="width:650px" src="E:\alRizwanPrints\Design\bonofide\bfheaderSchool.png"></img>
-	<pre>
-	<b><p style="	margin-top: -50px;"><h3>  Outward No.ARES/Bonafide /	/	/2019/20</p>
-	<p style="margin-top: -70px;margin-left: 500px;">Date:</p> </h3></b>
+    <img th:src="@{${bonafideheader}}" title="" class="" style="width: 100%; height: 100%;" ></img>
+    
+    <pre>
+	<p style="	margin-top: -50px;"><h3>  Outward No.ARES/Bonafide /	/	/2019/20</h3></p>
+	<p style="margin-top: -70px;margin-left: 500px;"><h3> Date: </h3></p>
+	<p style="margin-top: -73px;margin-left: 560px;"><h3 th:text="${date}"></h3></p> 
 	</pre>
 
-	<h1 style="margin-top: 110px;margin-bottom: 150px;margin-left: 150px;"> Bona Fide Certificate</h1></p>
-	<p>	<h3 style="padding-left: 1px;	margin-left: 15px;">It is certified that Master/Miss:_______________________________________ </h3></p>
-	<p style="margin-left:1px"><h3>S/o./ D/o.___________________________________________is the student of our 
-	<br>AL-RIZWAN ENGLISH SCHOOL.He/She is studying in Std.______________<br>for the academic year________
-	Admission No.____________His/Her Birth date <br>recorded in the General Register of the school is___/___/____________________<br>according to our school record.</br></p>
-	<p style="margin-left:35px;"><br><br>Hence this is certificate</h3><h3></p></h3><br>
+	<h1 style="margin-top: 110px;margin-bottom: 150px;margin-left: 150px;"> Bona Fide Certificate</h1>
+
+	<p class="maintain" ><h2 style="color: black; padding-left: 5px; margin-left: 35px;" >
+	  			It is certified that Master/Miss: <a style="color: black" th:text="${name}"/> 
+	S/o./ D/o. <a style="color: black" th:text="${fatherName}"/> is the student of our 
+	AL-RIZWAN ENGLISH SCHOOL. He/She is studying in Std.	<a style="color: black" th:text="${className}"/> for the academic year <a style="color: black" th:text="${academicyear}"/> 
+	Admission No.  <a style="color: black" th:text="${addNo}"/>His/Her Birth date <a style="color: black" th:text="${birthdate}"/> recorded in the General Register of the school is 
+	___/___/____________________according to our school record.</h2></p>
+	<br><br></br></br>
+	<center><p style="margin-left:55px;"><h2>Hence this is certificate</h2></p></center>
+</body>
 </html>

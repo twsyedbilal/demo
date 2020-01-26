@@ -1,27 +1,54 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head>  <title>BF for Science</title>	
-<style>
+<head>  <title>BF according school record</title>	
+<style type="text/css">
+	@media print{
+  		.page{
+  			min-height:315px;
+  			/* margin-bottom:40px; */
+  		}
+  	}
 div {
   width: 90px;
   height: 130px;
   padding: 0px;
-  border: 1px solid black;
-  margin-top: 15px;
-  margin-left: 90px;
+  margin-top: 150px;
+  margin-left: 70px;
 }
+.maintain {
+color: black;
+width: 100%;
+max-width: 700px;
+min-width: 500px;
+}
+
 </style>
-<link rel="stylesheet" type="text/css" href="bf.css">
+<link rel="stylesheet" type="text/css" href="bf.css"/>
   </head>
   <body>
-	<img style="width:650px" src="E:\alRizwanPrints\Design\bonofide/science.png"></img>
-	<p style="margin-top: -5px;margin-left: 400px;"><b> Date:</p></b>
-	<table><div><td></td></div></table>
-	<h1 style="margin-top: -50px;margin-bottom: 150px;margin-left: 220px;"> Bona Fide Certificate</h1></p>
-	<p><h3 style="padding-left: 1px;	margin-left: 15px;">It is certified that Master/Miss:_________________________________________ </h3></p>
-	<p style="margin-left:1px"><h3>S/o./ D/o.__________________________________________________________is the <br>student of our 
-	<b>AL-RIZWAN ENGLISH JUNIOR COLLEGE NANDED<b>.He/She is <br>studying in__________________________class.
-	for the academic year___________<br>His/Her date of Birth is__/__/____(________________________________________<br>
-	______________________________________________________). according to our<br>College register record.</h3><h3></p></h3><br>
+
+    <img th:src="@{${bonafideheader}}" title="" class="" style="width: 100%; height: 100%;" ></img>
+
+	<p style="margin-top: -10px;margin-left: 500px;"><h3> Date: </h3></p>
+	<p style="margin-top: -40px;margin-left: 560px;"><h3 th:text="${date}"></h3></p> 
+	
+	<table>
+	<div>paste here
+	<img th:src="@{${path}}" style="width: 130%; height: 100%;  margin-top:-250px;"></img>
+	</div></table>
+
+	<p><h1 style="margin-top: -160px;margin-bottom: 150px;margin-left: 250px;" > Bona Fide Certificate</h1></p>
+
+	<p class="maintain" ><h2 style="color: black; padding-left: 5px; margin-left: 35px;" >      
+	 It is certified that Master/Miss: <a style="color: black" th:text="${name}"/>
+	S/o./ D/o. <a style="color: black" th:text="${fatherName}"/> is the student of our 
+	AL-RIZWAN ENGLISH JUNIOR COLLEGE NANDED. He/She is studying in 
+	<a style="color: black" th:text="${className}"/> class. 
+	for the academic year <a style="color: black" th:text="${academicyear}"/> 
+	His/Her date of Birth is <a style="color: black" th:text="${birthdate}"/> ( 
+	<a style="color: black" th:text="${birthinwords}"/> ) 
+	according to our College register record.
+	</h2></p>
+</body>	
 </html>
