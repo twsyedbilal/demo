@@ -25,7 +25,7 @@ public class SchoolType extends AbstractPersistable {
 	private String code;
 
 	public SchoolType() {
-		super();
+		super(); 
 	}
 
 	public SchoolType(String schoolTypeName, String code) {

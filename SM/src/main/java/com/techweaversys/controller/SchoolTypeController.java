@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techweaversys.dto.SchoolSpaceDto;
 import com.techweaversys.dto.SchoolTypeDto;
+import com.techweaversys.dto.SchoolTypeSpecDto;
 import com.techweaversys.service.SchoolTypeService;
 
 @RestController
@@ -42,13 +44,11 @@ public class SchoolTypeController {
 
 	}
 
-	/*
-	 * @PostMapping(value = "findAllwithpage") public ResponseEntity<?>
-	 * findAllwithpage(@RequestBody SchoolTypeSpaceDto dto) { return
-	 * schooltypeservice.findAllwithpage(dto);
-	 * 
-	 * }
-	 */	
+	@PostMapping(value = "findAllwithpage")
+	public ResponseEntity<?> findAllwithpage(@RequestBody SchoolTypeSpecDto dto) {
+		return schooltypeservice.findAllwithpage(dto);
+
+	}
 
 	
 }

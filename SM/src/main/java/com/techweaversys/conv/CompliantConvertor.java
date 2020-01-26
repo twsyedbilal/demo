@@ -1,16 +1,19 @@
 package com.techweaversys.conv;
 
+import com.google.common.base.Function;
 import com.techweaversys.dto.CompliantDto;
 import com.techweaversys.model.Compliant;
 
-public class CompliantConvertor implements com.google.common.base.Function<Compliant, CompliantDto> {
+
+public class CompliantConvertor implements Function<Compliant, CompliantDto> {
+
+
 
 	@Override
-	public CompliantDto apply(Compliant c) {
+	public CompliantDto apply(Compliant b) {
 		CompliantDto cd=new CompliantDto();
-		cd.setName(c.getName());
-		cd.setCode(c.getCode());
-		cd.setId(c.getId());
+		cd.setRemark(b.getRemark());
+		cd.setId(b.getId());
 		return cd;
 	}
 

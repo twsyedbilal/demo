@@ -3,11 +3,11 @@ package com.techweaversys.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.techweaversys.model.Attendance;
-
+import com.techweaversys.model.CompliantTypes;
 
 @Repository
-public interface AttendanceRepository extends JpaRepository<Attendance, Long>, JpaSpecificationExecutor<Attendance> {
+public interface CompliantTypesRepositry  extends JpaRepository<CompliantTypes, Long> ,JpaSpecificationExecutor<CompliantTypes>{
 
 }

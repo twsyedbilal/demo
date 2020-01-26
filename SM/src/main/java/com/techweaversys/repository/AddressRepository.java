@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.techweaversys.model.Address;
 
 @Repository
-@Transactional
 public interface AddressRepository extends JpaRepository<Address, Long>, JpaSpecificationExecutor<Address> {
 
 }

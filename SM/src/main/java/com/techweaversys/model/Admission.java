@@ -40,8 +40,7 @@ public class Admission extends AbstractPersistable {
 	public Admission(String studentRegNo, String year, Calendar date, String studentsName, Calendar dateOfBirth,
 			String dateOfBirthInWords, String gender, Long income, String contactNo) {
 		super();
-		this.studentRegNo = studentRegNo;
-		this.year = year;
+		this.studentRegNo = this.year = year;
 		this.date = date;
 		this.studentsName = studentsName;
 		this.dateOfBirth = dateOfBirth;
@@ -90,6 +89,7 @@ public class Admission extends AbstractPersistable {
 		this.motherTongue = motherTongue;
 		this.nationality = nationality;
 		this.society = society;
+
 	}
 
 	@Column(name = "student_reg_no", nullable = false)
@@ -152,18 +152,12 @@ public class Admission extends AbstractPersistable {
 	private String identityByMarkOrAadharNo;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(
-			name = "sm_admission_sm_address", 
-			joinColumns = @JoinColumn(name = "sm_admission_id"), 
-			inverseJoinColumns = @JoinColumn(name = "sm_address_id")
-			  )
+	@JoinTable(name = "sm_admission_sm_address", joinColumns = @JoinColumn(name = "sm_admission_id"), inverseJoinColumns = @JoinColumn(name = "sm_address_id"))
 	@JsonIgnore
 	private List<Address> address;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "sm_admission_sm_document", 
-	joinColumns = @JoinColumn(name = "sm_admission_id"),
-	inverseJoinColumns = @JoinColumn(name = "sm_document_id"))
+	@JoinTable(name = "sm_admission_sm_document", joinColumns = @JoinColumn(name = "sm_admission_id"), inverseJoinColumns = @JoinColumn(name = "sm_document_id"))
 	@JsonIgnore
 	private List<Document> document;
 
@@ -210,7 +204,7 @@ public class Admission extends AbstractPersistable {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "sm_society_id")
 	private SocietyEntity society;
-	
+
 	public List<Document> getDocument() {
 		return document;
 	}
@@ -671,6 +665,7 @@ public class Admission extends AbstractPersistable {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Admission [studentRegNo=" + studentRegNo + ", uidNo=" + uidNo + ", idNo=" + idNo + ", year=" + year
@@ -685,5 +680,4 @@ public class Admission extends AbstractPersistable {
 				+ nationality + ", society=" + society + "]";
 	}
 
-	
 }

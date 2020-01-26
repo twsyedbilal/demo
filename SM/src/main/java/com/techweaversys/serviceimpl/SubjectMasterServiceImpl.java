@@ -1,16 +1,23 @@
 package com.techweaversys.serviceimpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techweaversys.conv.SubjectConvertor;
+import com.techweaversys.dto.PageDto;
 import com.techweaversys.dto.SubjectMasterDto;
 import com.techweaversys.dto.SubjectMasterSpaceDto;
+import com.techweaversys.generics.AppConstants;
 import com.techweaversys.generics.Code;
 import com.techweaversys.generics.Messages;
 import com.techweaversys.generics.Response;
@@ -19,6 +26,7 @@ import com.techweaversys.model.SubjectMaster;
 import com.techweaversys.repository.ClassRepository;
 import com.techweaversys.repository.SubjectMasterRepository;
 import com.techweaversys.service.SubjectMasterService;
+import com.techweaversys.spec.SubjectMasterSpace;
 
 @Service
 @Transactional
@@ -83,17 +91,13 @@ public class SubjectMasterServiceImpl implements SubjectMasterService {
 
 	@Override
 	public ResponseEntity<?> findAllwithpage(SubjectMasterSpaceDto dto) {
-		/*
-		 * logger.info("showing list of report " + dto); PageRequest pageable =
-		 * PageRequest.of(dto.getPage(), dto.getSize(), Direction.DESC,
-		 * AppConstants.MODIFIED); Page<SubjectMaster> af =
-		 * subjectMasterRepository.findAll( new SubjectMasterSpace(dto.getSubjectCode(),
-		 * dto.getSubjectName(), dto.getSemester()), pageable); List<SubjectMasterDto>
-		 * list = af.stream().map(new SubjectConvertor()).collect(Collectors.toList());
-		 * PageDto pageDto = new PageDto(list, af.getTotalElements());
-		 */
-		return Response.build(Code.OK);
-
-
+		logger.info("Showing list of subject", dto);
+		PageRequest pg = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
+		//Page<SubjectMaster> nationality = subjectMasterRepository.findAll(new SubjectMasterSpace(dto.getSemester(), dto.getSubjectCode(),dto.getSubjectName()), pg);
+		//List<SubjectMasterDto> list = nationality.stream().map( new SubjectConvertor() ).collect( Collectors.toList() );
+		//PageDto pageDto = new PageDto(list, nationality.getTotalElements());
+		return Response.build(Code.OK, null);
 	}
+
+	
 }

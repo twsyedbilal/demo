@@ -88,4 +88,24 @@ public class ExportController {
 			throws DocumentException {
 		return exportService.downloadPdfBfBySchoolWas(id, response);
 	}
+	
+	@GetMapping("primarytc/pdf/{id}")
+	@ResponseBody
+	public byte[] downloadPdfPrimaryTc(@PathVariable("id") Long id, HttpServletResponse response)
+			throws DocumentException, IOException {
+		return exportService.downloadPdfPrimaryTc(id, response);
+	}
+	@GetMapping("highschooltc/pdf/{id}")
+	@ResponseBody
+	public byte[] downloadPdfHighSchoolTc(@PathVariable("id") Long id, HttpServletResponse response)
+			throws DocumentException, IOException {
+		return exportService.downloadPdfHighSchoolTc(id, response);
+	}
+	@GetMapping("jrcollegetc/pdf/{id}")
+	@ResponseBody
+	public byte[] downloadPdfJrCollegeTc(@PathVariable("id") Long id, HttpServletResponse response)
+			throws DocumentException, IOException {
+		return exportService.downloadPdfJrCollegeTc(id, response);
+	}
+
 }

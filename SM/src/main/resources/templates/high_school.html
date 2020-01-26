@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+<style>
+.stu_name {
+	text-align: left;
+	margin-left: 2%
+}
+
+.dis {
+	text-decoration: underline;
+}
+
+.school {
+	text-align: center;
+	font-weight: bold;
+	font-size: 23px;
+}
+
+.s_name {
+	font-size: none;
+}
+
+.certified {
+	font-size: 12px;
+}
+
+.uidse_no {
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.school_leave {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.p5 {
+	text-decoration: underline;
+}
+
+.list {
+	font-size: 14px;
+	line-height: 2.0;
+	font-family: Roboto, 'Segoe UI', Tahoma, sans-serifbody;
+}
+
+.date_of_I {
+	text-align: right;
+	padding-left: 48%
+}
+
+.s_id {
+	text-align: left;
+}
+
+.date {
+	text-align: right;
+}
+
+.div1 {
+	text-align: center;
+	margin-top: 4px;
+	margin-top: 0px;
+	margin-top: 4px;
+	margin-top: 4px;
+}
+
+.srn {
+	line-height: 190%;
+}
+
+.orignal {
+	text-align: center;
+	margin-top: 8px;
+	margin-bottom: 10px;
+	margin-right: 10%;
+	text-align: center;
+	margin-left: 10px;
+	border: 2px solid black;
+	font-family: Verdana;
+	font-size: 11px;
+	padding: 0px 3px 1px 3px;
+	font-weight: bold;
+}
+
+.note {
+	text-align: left;
+	font-size: 13px;
+	margin-left: 8px;
+	margin-top: 8px;
+}
+
+.address {
+	text-align: center;
+}
+
+.sidno {
+	line-height: 0.1;
+	line-height: 1.9;
+	font-size: 14px;
+	font-family: 'Montserrat', sans-serif;
+	margin-left: 8%
+}
+
+.uidno {
+	line-height: 0.7;
+	line-height: 1.9;
+	font-size: 14px;
+	margin-left: 8% font-family: 'Montserrat', sans-serif;
+}
+
+.phone {
+	text-align: center;
+}
+
+.hr {
+	height: -4px;
+}
+
+}
+.border {
+	height: auto;
+	border: 2px solid black;
+	weigth: auto;
+}
+
+.al-rizwan {
+	text-align: center;
+	font-weight: bold;
+	font-size: 55px;
+}
+</style>
+<title>Primary TC</title>
+</head>
+<body class="border">
+
+	<div style='border: 2px solid black; overflow: hidden; display: block'>
+
+
+		<span class="orignal"> ORIGINAL </span> <span> <strong>
+				Muslim Youth Welfare Association, Nanded (Reg. No. F-8341)</strong>
+		</span>
+
+		<div class="al-rizwan">AL-RIZWAN</div>
+
+		<div class="school">ENGLISH HIGH SCHOOL</div>
+
+		<div class="address">Chaitaniya Nagar, Shiv Road, Gani Colony,
+			Nanded. (Maharashtra) India.</div>
+
+		<div class="phone">Ph. No. 02462-266294 Email :
+			alrizwan11@gmail.com</div>
+
+
+
+		<h class="mother">TC.NO.: <span style='margin-left: 0%'
+			th:text="${none}"></span></h>
+
+		<h style='margin-left: 46%'>General Admission Reg. No. <span
+			style='margin-left: 1%' th:text="${mothersName}"></span></h>
+
+
+		<p1 class="srn"> <span style="text-align: none; margin-left: 2%">School
+			Recognisition NO.:<strong><span th:text="${m1}"></span></strong>
+		</span> <span style="text-align: right; margin-left: 5%"> Medium:<strong>English
+		</strong></span> </p1>
+		<hr class="hr">
+		</hr>
+		<div class="uidse_no">UDISE No. : 27151702101</div>
+		<hr></hr>
+		<div class="school_leave">
+			<strong><u>SCHOOL LEAVING CERTIFICATE</u></strong>
+		</div>
+
+		<div style='float: left; text-align: left'>
+			<ol class="list">
+				<li class="pupil">Name of pupil: <span style='margin-left: 14%'
+					th:text="${studentsName}"></span>
+				</li>
+				<li class="f ather">Father's : Name <span
+					style='margin-left: 14%' th:text="${fathersName}"></span>
+				</li>
+
+				<li class="mother">Mother’s Name <span style='margin-left: 14%'
+					th:text="${mothersName}"></span>Religion : <span
+					style='margin-left: 14%' th:text="${religion}"></span></li>
+
+
+				<li class="father">Caste and sub-caste only in the case of
+					pupils belonging to Backward Classes and category among <br></br>Backward
+					Classes (e.g., S.C./S.T.etc.) <span style='margin-left: 14%'
+					th:text="${casteName}"></span>
+				</li>
+
+				<li class="dob">Place of birth<span style='margin-left: 14%'
+					th:text="${idNo}"></span> Taluka : <span style='margin-left: 14%'
+					th:text="${idNo}"></span> District <span style='margin-left: 14%'
+					th:text="${idNo}"></span><br></br> State <span
+					style='margin-left: 14%' th:text="${idNo}"></span> Country <span
+					style='margin-left: 14%' th:text="${countryName}"></span>
+					Nationality : <span style='margin-left: 14%'
+					th:text="${nationality}"></span></li>
+				<li class="date_of_birth">Date of birth, month and year
+					according to the Christian era in words <span
+					style='margin-left: 14%' th:text="${dateofbirthinwords}"></span>
+				</li>
+
+				<li class="pupil">Class Which Studying <span
+					style='margin-left: 14%' th:text="${idNo}"></span></li>
+
+
+				<li class="admission_date">Date of Admission in the present
+					Class <span style='margin-left: 14%' th:text="${dateofadmission}"></span>
+				</li>
+
+				<li class="first_admission_date">First Admission with date and
+					Class <span style='margin-left: 14%' th:text="${idNo}"></span>
+				</li>
+				<li class="last_school_attended">Last school attended <span
+					style='margin-left: 14%' th:text="${idNo}"></span></li>
+
+
+				<li class="progress">Progress <span style='margin-left: 14%'
+					th:text="${idNo}"></span> Conduct <span style='margin-left: 14%'
+					th:text="${idNo}"></span></li>
+				<li class="date_of_leave">Date of leaving the school <span
+					style='margin-left: 14%' th:text="${idNo}"></span></li>
+
+				<li class="reason">Reason of leaving the school <span
+					style='margin-left: 14%' th:text="${idNo}"></span></li>
+				<li class="mother_tongue">Mother Tongue : <span
+					style='margin-left: 14%' th:text="${mother_tongue}"></span>Attendance
+					<span style='margin-left: 14%' th:text="${idNo}"></span></li>
+				<li class="remarks">Remarks <span style='margin-left: 14%'
+					th:text="${idNo}"></span>
+				</li>
+				<div class="certified">Certified that above information is in
+					accordance with the school register and no correction in above
+					entries.</div>
+
+			</ol>
+
+			<p5> <span style="text-align: left; margin-left: 14%">Clerk</span>
+			<span style="text-align: right; padding-left: 48%"> Principal
+			</span> </p5>
+			<div class="note">
+				Note : No change in any entry in this certificate shall be made
+				except by trie authority issuing it and any infringement<br></br> of
+				this requirement is liable to involve the imposition of penalty such
+				as that of rustication.
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

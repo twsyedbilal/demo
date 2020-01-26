@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techweaversys.dto.BookSpaceDto;
 import com.techweaversys.dto.MotherTongueDto;
+import com.techweaversys.dto.MotherTongueSpaceDto;
 import com.techweaversys.service.MotherTongueService;
 
 @RestController
@@ -40,4 +42,9 @@ public class MotherTongueController {
              return motherTongueService.findAllData();
 
      }
+     @PostMapping(value = "findAllwithpage")
+		public ResponseEntity<?> findAllwithpage(@RequestBody MotherTongueSpaceDto dto) {
+			return motherTongueService.findAllwithpage(dto);
+
+		}
 }

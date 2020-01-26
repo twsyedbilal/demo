@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,11 +21,17 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import com.lowagie.text.DocumentException;
 import com.techweaversys.model.Address;
 import com.techweaversys.model.Admission;
+import com.techweaversys.model.Caste;
+import com.techweaversys.model.Country;
 import com.techweaversys.model.Document;
+import com.techweaversys.model.MotherTongueEntity;
+import com.techweaversys.model.NationalityEntity;
+import com.techweaversys.model.Religion;
 import com.techweaversys.repository.AddressRepository;
 import com.techweaversys.repository.AdmissionRepository;
 import com.techweaversys.repository.DocumentRepository;
 import com.techweaversys.service.ExportService;
+import com.techweaversys.utility.Constants;
 
 @Service
 @Transactional
@@ -681,4 +686,218 @@ public class ExportServiceImpl implements ExportService {
 		}
 		return bos.toByteArray();
 	}
+	
+	@Override
+	public byte[] downloadPdfPrimaryTc(Long id, HttpServletResponse response) {
+		Admission admission = admissionRepository.getOne(id);
+
+		String s = admission.getStudentsName();
+		String m = admission.getMothersName();
+		String f = admission.getFathersName();
+		String studentid = admission.getIdNo();
+		Caste caste = admission.getCaste();
+		String idno = admission.getIdNo();
+		Religion religion = admission.getReligion();
+		String placeofbirth = admission.getPlaceOfBirth();
+		NationalityEntity nationality = admission.getNationality();
+		String dateofbirthinwords = admission.getDateOfBirthInWords();
+		Class<? extends Admission> classs = admission.getClass();
+		String rgno = admission.getStudentRegNo();
+		Long uidno = admission.getUidNo();
+
+		Calendar dateofadmission = admission.getDate();
+		MotherTongueEntity mother_tongue = admission.getMotherTongue();
+
+		Country country = new Country();
+		String c = country.getCountryName();
+
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		Context context = new Context();
+		context.setVariable("studentRegNo", rgno);
+		context.setVariable("studentsName", s);
+		context.setVariable("mothersName", m);
+		context.setVariable("fathersName", m);
+		context.setVariable("fathersName", m);
+		context.setVariable("casteName", caste);
+		context.setVariable("idNo", idno);
+		context.setVariable("religion", religion);
+		context.setVariable("nationality", nationality);
+		context.setVariable("dateOfBirthInWords", dateofbirthinwords);
+		context.setVariable("name", mother_tongue);
+		context.setVariable("uidNo", uidno);
+		context.setVariable("countryName", c);
+
+		context.setVariable("date", dateofadmission);
+
+		context.setVariable("fathersName", m);
+		context.setVariable("casteName", caste);
+		context.setVariable("idNo", idno);
+
+		String html = templateEngine.process("primary_school_tc", context);
+		String htmll = templateEngine.process("high_school", context);
+
+		ITextRenderer renderer = new ITextRenderer();
+
+		renderer.setDocumentFromString(html);
+		renderer.layout();
+
+		try {
+			renderer.createPDF(bos, false);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		renderer.finishPDF();
+		response.setContentType("application/pdf");
+		// response.setHeader("Content-Disposition", "attachment; filename=" +
+		// "SaleOrder_" + sqt.getOrderno() + ".pdf");
+		try {
+			response.getOutputStream().flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bos.toByteArray();
+	}
+
+	@Override
+	public byte[] downloadPdfHighSchoolTc(Long id, HttpServletResponse response) {
+		Admission admission = admissionRepository.getOne(id);
+
+		String s = admission.getStudentsName();
+		String m = admission.getMothersName();
+		String f = admission.getFathersName();
+		String studentid = admission.getIdNo();
+		Caste caste = admission.getCaste();
+		String idno = admission.getIdNo();
+		Religion religion = admission.getReligion();
+		String placeofbirth = admission.getPlaceOfBirth();
+		NationalityEntity nationality = admission.getNationality();
+		String dateofbirthinwords = admission.getDateOfBirthInWords();
+		Class<? extends Admission> classs = admission.getClass();
+		String rgno = admission.getStudentRegNo();
+		Long uidno = admission.getUidNo();
+
+		Calendar dateofadmission = admission.getDate();
+		MotherTongueEntity mother_tongue = admission.getMotherTongue();
+
+		Country country = new Country();
+		String c = country.getCountryName();
+
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		Context context = new Context();
+		context.setVariable("studentRegNo", rgno);
+		context.setVariable("studentsName", s);
+		context.setVariable("mothersName", m);
+		context.setVariable("fathersName", m);
+		context.setVariable("fathersName", m);
+		context.setVariable("casteName", caste);
+		context.setVariable("idNo", idno);
+		context.setVariable("religion", religion);
+		context.setVariable("nationality", nationality);
+		context.setVariable("dateOfBirthInWords", dateofbirthinwords);
+		context.setVariable("name", mother_tongue);
+		context.setVariable("uidNo", uidno);
+		context.setVariable("countryName", c);
+
+		context.setVariable("date", dateofadmission);
+
+		context.setVariable("fathersName", m);
+		context.setVariable("casteName", caste);
+		context.setVariable("idNo", idno);
+		context.setVariable("m1",Constants.tchighschoolM);
+
+		String html = templateEngine.process("high_school", context);
+
+		ITextRenderer renderer = new ITextRenderer();
+
+		renderer.setDocumentFromString(html);
+		renderer.layout();
+
+		try {
+			renderer.createPDF(bos, false);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		renderer.finishPDF();
+		response.setContentType("application/pdf");
+		// response.setHeader("Content-Disposition", "attachment; filename=" +
+		// "SaleOrder_" + sqt.getOrderno() + ".pdf");
+		try {
+			response.getOutputStream().flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bos.toByteArray();
+	}
+
+	@Override
+	public byte[] downloadPdfJrCollegeTc(Long id, HttpServletResponse response) {
+		Admission admission = admissionRepository.getOne(id);
+
+		String s = admission.getStudentsName();
+		String m = admission.getMothersName();
+		String f = admission.getFathersName();
+		String studentid = admission.getIdNo();
+		Caste caste = admission.getCaste();
+		String idno = admission.getIdNo();
+		Religion religion = admission.getReligion();
+		String placeofbirth = admission.getPlaceOfBirth();
+		NationalityEntity nationality = admission.getNationality();
+		String dateofbirthinwords = admission.getDateOfBirthInWords();
+		Class<? extends Admission> classs = admission.getClass();
+		String rgno = admission.getStudentRegNo();
+		Long uidno = admission.getUidNo();
+
+		Calendar dateofadmission = admission.getDate();
+		MotherTongueEntity mother_tongue = admission.getMotherTongue();
+
+		Country country = new Country();
+		String c = country.getCountryName();
+
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		Context context = new Context();
+		context.setVariable("studentRegNo", rgno);
+		context.setVariable("studentsName", s);
+		context.setVariable("mothersName", m);
+		context.setVariable("fathersName", m);
+		context.setVariable("fathersName", m);
+		context.setVariable("casteName", caste);
+		context.setVariable("idNo", idno);
+		context.setVariable("religion", religion);
+		context.setVariable("nationality", nationality);
+		context.setVariable("dateOfBirthInWords", dateofbirthinwords);
+		context.setVariable("name", mother_tongue);
+		context.setVariable("uidNo", uidno);
+		context.setVariable("countryName", c);
+
+		context.setVariable("date", dateofadmission);
+
+		context.setVariable("fathersName", m);
+		context.setVariable("casteName", caste);
+		context.setVariable("idNo", idno);
+		
+		String html = templateEngine.process("jr_college_tc", context);
+
+		ITextRenderer renderer = new ITextRenderer();
+
+		renderer.setDocumentFromString(html);
+		renderer.layout();
+
+		try {
+			renderer.createPDF(bos, false);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		renderer.finishPDF();
+		response.setContentType("application/pdf");
+		// response.setHeader("Content-Disposition", "attachment; filename=" +
+		// "SaleOrder_" + sqt.getOrderno() + ".pdf");
+		try {
+			response.getOutputStream().flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bos.toByteArray();
+	}
+
+
 }

@@ -33,7 +33,7 @@ import com.techweaversys.repository.ClassRepository;
 import com.techweaversys.repository.SubjectMasterRepository;
 import com.techweaversys.repository.UserRepository;
 import com.techweaversys.service.AttendanceService;
-import com.techweaversys.spec.AttendanceSpace;
+import com.techweaversys.spec.AttendanceSpec;
 
 @Service
 @Transactional
@@ -128,7 +128,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		logger.info("Showing list of attendance", dto);
 		PageRequest pg = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
 		Page<Attendance> attendance = attendanceRepository
-				.findAll(new AttendanceSpace(dto.getAbsent(), dto.getPresent(), dto.getReason(), dto.getTypes()), pg);
+				.findAll(new AttendanceSpec(dto.getAbsent(), dto.getPresent(), dto.getReason(), dto.getTypes()), pg);
 		List<AttendanceDto> list = attendance.stream().map(new AttendanceConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, attendance.getTotalElements());
 		return Response.build(Code.OK, pageDto);

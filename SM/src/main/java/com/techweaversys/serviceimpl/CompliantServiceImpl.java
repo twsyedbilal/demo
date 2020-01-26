@@ -1,9 +1,8 @@
 package com.techweaversys.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,53 +12,102 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.techweaversys.conv.CompliantConvertor;
 import com.techweaversys.dto.CompliantDto;
-import com.techweaversys.dto.CompliantspaceDto;
+import com.techweaversys.dto.CompliantSpceDto;
 import com.techweaversys.dto.PageDto;
 import com.techweaversys.generics.AppConstants;
 import com.techweaversys.generics.Code;
 import com.techweaversys.generics.Messages;
 import com.techweaversys.generics.Response;
+import com.techweaversys.model.Admission;
 import com.techweaversys.model.Compliant;
-import com.techweaversys.repository.CompliantRepositry;
+import com.techweaversys.model.CompliantTypes;
+import com.techweaversys.model.Document;
+import com.techweaversys.repository.AdmissionRepository;
+import com.techweaversys.repository.CompliantRepository;
+import com.techweaversys.repository.CompliantTypesRepositry;
+import com.techweaversys.repository.DocumentRepository;
 import com.techweaversys.service.CompliantService;
-import com.techweaversys.spec.CompliantSpace;
+import com.techweaversys.spec.ComplianteSpce;
 
 @Service
 @Transactional
 public class CompliantServiceImpl implements CompliantService {
 
-	private Logger logger = (Logger) LoggerFactory.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
+
 	@Autowired
-	private CompliantRepositry compliantRepositry;
+	private CompliantRepository compliantRepository;
+
+	@Autowired
+	private AdmissionRepository admissionRepository;
+
+	@Autowired
+	private CompliantTypesRepositry compliantTypeRepositry;
+
+	@Autowired
+	private DocumentRepository documentBucketRepository;
 
 	@Override
 	public ResponseEntity<?> createData(CompliantDto compliantDto) {
 		logger.info("Creating List Of Compliant..." + compliantDto);
 		Compliant ct = new Compliant();
 		if (compliantDto.getId() != null) {
-			ct = compliantRepositry.getOne(compliantDto.getId());
+			ct = compliantRepository.getOne(compliantDto.getId());
 
 		}
 
-		ct.setName(compliantDto.getName());
-		ct.setCode(compliantDto.getCode());
-		compliantRepositry.save(ct);
+		// save data with admission
+		if (compliantDto.getAdmission() != null) {
+			if (compliantDto.getAdmission().getId() != null) {
+				Admission sc = admissionRepository.getOne(compliantDto.getAdmission().getId());
+				ct.setAdmission(sc);
+			}
+		}
+
+		// save data with compliantType
+		if (compliantDto.getCompliantdto() != null) {
+			if (compliantDto.getCompliantdto().getId() != null) {
+				CompliantTypes sc = compliantTypeRepositry.getOne(compliantDto.getCompliantdto().getId());
+				ct.setCompliant(sc);
+			}
+		}
+		List<Document> document = new ArrayList<>();
+		if (compliantDto.getDocument() != null) {
+			for (Document doc : compliantDto.getDocument()) {
+				Document du = new Document();
+				if (doc.getId() != null) {
+					du = documentBucketRepository.getOne(doc.getId());
+					du.setFileName(doc.getFileName());
+					du.setFileType(doc.getFileName());
+					du.setName(doc.getName());
+					du.setPath(doc.getPath());
+					du.setStore(doc.getStore());
+					du.setUrl(doc.getUrl());
+				}
+
+				document.add(du);
+			}
+			ct.setDocument(document);
+		}
+		ct.setRemark(compliantDto.getRemark());
+		compliantRepository.save(ct);
 
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);
 	}
 
 	@Override
 	public ResponseEntity<?> findAllData() {
-		List<Compliant> bb = compliantRepositry.findAll();
+		List<Compliant> bb = compliantRepository.findAll();
 		return Response.build(Code.OK, bb);
 	}
 
 	@Override
 	public ResponseEntity<?> getDataById(Long id) {
-		Compliant ct = compliantRepositry.getOne(id);
+		Compliant ct = compliantRepository.getOne(id);
 		return Response.build(Code.OK, ct);
 	}
 
@@ -67,18 +115,18 @@ public class CompliantServiceImpl implements CompliantService {
 	public ResponseEntity<?> DeletById(Long id) {
 		Compliant ct = new Compliant();
 		if (id != null) {
-			ct = compliantRepositry.getOne(id);
-			ct = compliantRepositry.save(ct);
+			ct = compliantRepository.getOne(id);
+			ct = compliantRepository.save(ct);
 		}
 		return Response.build(Code.OK, Messages.DELETED);
 	}
 
 	@Override
-	public ResponseEntity<?> findAllwithpage(CompliantspaceDto dto) {
+	public ResponseEntity<?> findAllwithpage(CompliantSpceDto dto) {
 
 		logger.info("Showing list of Compliant " + dto);
 		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
-		Page<Compliant> c = compliantRepositry.findAll(new CompliantSpace(dto.getCode(), dto.getName()), bb);
+		Page<Compliant> c = compliantRepository.findAll(new ComplianteSpce(dto.getRemark()), bb);
 		List<CompliantDto> list = c.stream().map(new CompliantConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, c.getTotalElements());
 		return Response.build(Code.OK, pageDto);

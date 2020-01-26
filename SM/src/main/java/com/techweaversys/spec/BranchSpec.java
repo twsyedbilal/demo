@@ -12,8 +12,6 @@ import com.techweaversys.model.BranchEntity;
 
 public class BranchSpec implements Specification<BranchEntity> {
 
-	private static final long serialVersionUID = 1L;
-
 	private String branchName;
 	private String branchCode;
 

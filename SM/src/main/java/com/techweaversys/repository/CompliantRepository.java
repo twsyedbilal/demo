@@ -4,10 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
-import com.techweaversys.model.Attendance;
-
+import com.techweaversys.model.Compliant;
 
 @Repository
-public interface AttendanceRepository extends JpaRepository<Attendance, Long>, JpaSpecificationExecutor<Attendance> {
+public interface CompliantRepository extends JpaRepository<Compliant, Long>, JpaSpecificationExecutor<Compliant> {
 
 }

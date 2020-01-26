@@ -9,43 +9,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techweaversys.dto.CompliantTypeDto;
-import com.techweaversys.dto.CompliantTypeSpaceDto;
-import com.techweaversys.service.CompliantTypeService;
+import com.techweaversys.dto.CompliantTypeDtobject;
+import com.techweaversys.dto.CompliantTypespceDto;
+import com.techweaversys.service.CompliantTypeServicee;
 
 @RestController
-@RequestMapping("/rest/api/compliant/type/")
+@RequestMapping("/rest/api/compliant/type")
 public class CompliantTypeController {
 
 	@Autowired
-	private CompliantTypeService compliantTypeService;
+	private CompliantTypeServicee compliantTypeServicee;
 
 	@PostMapping(value = "create")
-	public ResponseEntity<?> createData(@RequestBody CompliantTypeDto compliantDto) {
-		return compliantTypeService.createData(compliantDto);
+	public ResponseEntity<?> createData(@RequestBody CompliantTypeDtobject compliantDto) {
+		return compliantTypeServicee.createData(compliantDto);
 
 	}
 
 	@GetMapping(value = "findall")
 	public ResponseEntity<?> findAllData() {
-		return compliantTypeService.findAllData();
+		return compliantTypeServicee.findAllData();
 	}
 
 	@GetMapping(value = "getbyid/{id}")
 	public ResponseEntity<?> getDataById(@PathVariable Long id) {
-		return compliantTypeService.getDataById(id);
+		return compliantTypeServicee.getDataById(id);
 
 	}
 
 	@GetMapping(value = "deletebyid/{id}")
 	public ResponseEntity<?> DeletById(@PathVariable Long id) {
-		return compliantTypeService.DeletById(id);
+		return compliantTypeServicee.DeletById(id);
 
 	}
 
 	@PostMapping(value = "findAllwithpage")
-	public ResponseEntity<?> findAllwithpage(@RequestBody CompliantTypeSpaceDto dto) {
-		return compliantTypeService.findAllwithpage(dto);
+	public ResponseEntity<?> findAllwithpage(@RequestBody CompliantTypespceDto dto) {
+		return compliantTypeServicee.findAllwithpage(dto);
 
 	}
+
 }

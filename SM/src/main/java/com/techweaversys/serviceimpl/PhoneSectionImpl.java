@@ -27,7 +27,7 @@ import com.techweaversys.model.PhoneSection;
 import com.techweaversys.repository.AdmissionRepository;
 import com.techweaversys.repository.PhoneSectionRepositrory;
 import com.techweaversys.service.PhoneSectionService;
-import com.techweaversys.spec.PhoneSectionSpace;
+import com.techweaversys.spec.PhoneSectionSpec;
 
 import ch.qos.logback.classic.Logger;
 
@@ -101,7 +101,7 @@ public class PhoneSectionImpl implements PhoneSectionService {
 		PageRequest bb = PageRequest.of(phoneSectionSpaceDto.getPage() - 1, phoneSectionSpaceDto.getSize(),
 				Direction.DESC, AppConstants.MODIFIED);
 		Page<PhoneSection> classs = psr.findAll(
-				new PhoneSectionSpace(phoneSectionSpaceDto.getRemark(), phoneSectionSpaceDto.getRemainingBalance()),
+				new PhoneSectionSpec(phoneSectionSpaceDto.getRemark(), phoneSectionSpaceDto.getRemainingBalance()),
 				bb);
 		List<PhoneSectionDto> list = classs.stream().map(new PhonesectionConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, classs.getTotalElements());

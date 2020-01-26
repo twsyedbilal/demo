@@ -78,7 +78,7 @@ public class BranchSerivceImpl implements BranchService {
 
 	@Override
 	public ResponseEntity<?> findAllwithpage(BranchSpacedto dto) {
-		logger.info("showing list of users", dto);
+		logger.info("Showing list of branch", dto);
 		PageRequest pg = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
 		Page<BranchEntity> branchs = BranchRepository.findAll(new BranchSpec(dto.getBranchName(), dto.getBranchCode()), pg);
 		List<BranchDto> list = branchs.stream().map( new BranchDtoConvertor() ).collect( Collectors.toList() );

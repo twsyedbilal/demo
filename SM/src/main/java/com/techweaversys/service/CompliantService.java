@@ -3,7 +3,7 @@ package com.techweaversys.service;
 import org.springframework.http.ResponseEntity;
 
 import com.techweaversys.dto.CompliantDto;
-import com.techweaversys.dto.CompliantspaceDto;
+import com.techweaversys.dto.CompliantSpceDto;
 
 public interface CompliantService {
 
@@ -15,6 +15,5 @@ public interface CompliantService {
 
 	ResponseEntity<?> DeletById(Long id);
 
-	ResponseEntity<?> findAllwithpage(CompliantspaceDto dto);
-
+	ResponseEntity<?> findAllwithpage(CompliantSpceDto dto);
 }

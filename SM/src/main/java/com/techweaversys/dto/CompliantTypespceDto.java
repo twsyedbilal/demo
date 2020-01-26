@@ -1,6 +1,6 @@
 package com.techweaversys.dto;
 
-public class CompliantspaceDto {
+public class CompliantTypespceDto {
 
 	private Long id;
 	private String name;
@@ -8,11 +8,11 @@ public class CompliantspaceDto {
 	private Integer page;
 	private Integer size;
 
-	public CompliantspaceDto() {
+	public CompliantTypespceDto() {
 		super();
 	}
 
-	public CompliantspaceDto(Long id, String name, String code, Integer page, Integer size) {
+	public CompliantTypespceDto(Long id, String name, String code, Integer page, Integer size) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -81,7 +81,7 @@ public class CompliantspaceDto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CompliantspaceDto other = (CompliantspaceDto) obj;
+		CompliantTypespceDto other = (CompliantTypespceDto) obj;
 		if (code == null) {
 			if (other.code != null)
 				return false;

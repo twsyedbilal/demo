@@ -3,6 +3,7 @@ package com.techweaversys.service;
 import org.springframework.http.ResponseEntity;
 
 import com.techweaversys.dto.NationalityDto;
+import com.techweaversys.dto.NationalitySpaceDto;
 
 public interface NationalityService {
 
@@ -13,6 +14,8 @@ public interface NationalityService {
 	ResponseEntity<?> DeletById(Long id);
 
 	ResponseEntity<?> getById(Long id);
+
+	ResponseEntity<?> findAllwithpage(NationalitySpaceDto dto);
 
 
 }

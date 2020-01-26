@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techweaversys.dto.CompliantDto;
-import com.techweaversys.dto.CompliantspaceDto;
+import com.techweaversys.dto.CompliantSpceDto;
 import com.techweaversys.service.CompliantService;
 
 @RestController
-@RequestMapping("/rest/api/compliant")
+@RequestMapping("/rest/api/compliant/")
 public class CompliantController {
 
 	@Autowired
@@ -44,9 +44,8 @@ public class CompliantController {
 	}
 
 	@PostMapping(value = "findAllwithpage")
-	public ResponseEntity<?> findAllwithpage(@RequestBody CompliantspaceDto dto) {
+	public ResponseEntity<?> findAllwithpage(@RequestBody CompliantSpceDto dto) {
 		return compliantService.findAllwithpage(dto);
 
 	}
-
 }

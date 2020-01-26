@@ -21,5 +21,12 @@ public interface ExportService {
 	byte[] downloadPdfBfBySchoolWas(Long id, HttpServletResponse response);
 
 	byte[] downloadPdfBfByScience(Long id, HttpServletResponse response);
+	
+	byte[] downloadPdfPrimaryTc(Long id, HttpServletResponse response);
+
+	byte[] downloadPdfHighSchoolTc(Long id, HttpServletResponse response);
+
+	byte[] downloadPdfJrCollegeTc(Long id, HttpServletResponse response);
+
 
 }

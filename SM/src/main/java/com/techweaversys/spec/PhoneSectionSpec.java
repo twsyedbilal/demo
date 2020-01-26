@@ -15,7 +15,7 @@ import com.techweaversys.model.Admission;
 import com.techweaversys.model.ClassEntity;
 import com.techweaversys.model.PhoneSection;
 
-public class PhoneSectionSpace implements Specification<PhoneSection> {
+public class PhoneSectionSpec implements Specification<PhoneSection> {
 
 	/**
 	 * gk khan
@@ -28,7 +28,7 @@ public class PhoneSectionSpace implements Specification<PhoneSection> {
 	private String studentName;
 	private String uidNo;
 	private String idNo;
-	public PhoneSectionSpace(String remark, Double remainingBalance) {
+	public PhoneSectionSpec(String remark, Double remainingBalance) {
 		super();
 		this.remark = remark;
 		this.remainingBalance = remainingBalance;

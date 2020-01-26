@@ -10,7 +10,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.techweaversys.model.Attendance;
 
-public class AttendanceSpace implements Specification<Attendance> {
+public class AttendanceSpec implements Specification<Attendance> {
 
 	private static final long serialVersionUID = -7190766605922946715L;
 
@@ -19,7 +19,7 @@ public class AttendanceSpace implements Specification<Attendance> {
 	private String reason;
 	private String types;
 
-	public AttendanceSpace() {
+	public AttendanceSpec() {
 		super();
 	}
 
@@ -39,7 +39,7 @@ public class AttendanceSpace implements Specification<Attendance> {
 		this.absent = absent;
 	}
 
-	public AttendanceSpace(boolean present, boolean absent, String reason, String types) {
+	public AttendanceSpec(boolean present, boolean absent, String reason, String types) {
 		super();
 		this.present = present;
 		this.absent = absent;

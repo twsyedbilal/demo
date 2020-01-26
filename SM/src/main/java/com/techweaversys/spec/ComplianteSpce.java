@@ -8,9 +8,9 @@ import javax.persistence.criteria.Root;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
-import com.techweaversys.model.CompliantType;
+import com.techweaversys.model.Compliant;
 
-public class CompliantTypeSpace implements Specification<CompliantType> {
+public class ComplianteSpce implements Specification<Compliant> {
 
 	/**
 	 * 
@@ -19,7 +19,7 @@ public class CompliantTypeSpace implements Specification<CompliantType> {
 
 	private String remark;
 
-	public CompliantTypeSpace(String remark) {
+	public ComplianteSpce(String remark) {
 		super();
 		this.remark = remark;
 	}
@@ -33,7 +33,7 @@ public class CompliantTypeSpace implements Specification<CompliantType> {
 	}
 
 	@Override
-	public Predicate toPredicate(Root<CompliantType> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+	public Predicate toPredicate(Root<Compliant> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
 		Predicate con = cb.conjunction();
 

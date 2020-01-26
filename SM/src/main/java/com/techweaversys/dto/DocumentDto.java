@@ -14,8 +14,9 @@ public class DocumentDto {
 	private String store;
 	private String url;
 	private byte[] doc;
-	private Admission admission;
-
+	/*private Admission admission;
+	private Compliant compliant;
+*/
 	public DocumentDto() {
 		super();
 	}
@@ -31,9 +32,9 @@ public class DocumentDto {
 		this.store = store;
 		this.url = url;
 		this.doc = doc;
-		this.admission = admission;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -165,8 +166,8 @@ public class DocumentDto {
 	@Override
 	public String toString() {
 		return "DocumentDto [id=" + id + ", fileName=" + fileName + ", fileType=" + fileType + ", name=" + name
-				+ ", path=" + path + ", store=" + store + ", url=" + url + ", doc=" + Arrays.toString(doc)
-				+ ", admission=" + admission + "]";
+				+ ", path=" + path + ", store=" + store + ", url=" + url + ", doc=" + Arrays.toString(doc) + "]";
 	}
 
+	
 }

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techweaversys.dto.MotherTongueSpaceDto;
 import com.techweaversys.dto.NationalityDto;
+import com.techweaversys.dto.NationalitySpaceDto;
 import com.techweaversys.service.NationalityService;
 
 @RestController
@@ -40,5 +42,9 @@ public class NationalityController {
 		return nationalityService.findAllData();
 
 	}
+	 @PostMapping(value = "findAllwithpage")
+		public ResponseEntity<?> findAllwithpage(@RequestBody NationalitySpaceDto dto) {
+			return nationalityService.findAllwithpage(dto);
 
+		}
 }
