@@ -107,5 +107,12 @@ public class ExportController {
 			throws DocumentException, IOException {
 		return exportService.downloadPdfJrCollegeTc(id, response);
 	}
+	
+	@GetMapping("nilgamutara/pdf/{id}")
+	@ResponseBody
+	public byte[] downloadPdfNilgamutara(@PathVariable("id") Long id, HttpServletResponse response)
+			throws DocumentException, IOException {
+		return exportService.downloadPdfNilgamutara(id, response);
 
+}
 }

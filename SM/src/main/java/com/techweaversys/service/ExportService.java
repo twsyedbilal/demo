@@ -28,5 +28,7 @@ public interface ExportService {
 
 	byte[] downloadPdfJrCollegeTc(Long id, HttpServletResponse response);
 
+	byte[] downloadPdfNilgamutara(Long id, HttpServletResponse response);
+
 
 }

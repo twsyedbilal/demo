@@ -4,45 +4,54 @@
 
 <head>
 
-<style>
-.stu_name {
-	text-align: left;
-	margin-left: 2%
-}
-
-.dis {
-	text-decoration: underline;
-}
-
-.school {
-	text-align: center;
-	font-weight: bold;
-	font-size: 23px;
-}
-
-.s_name {
-	font-size: none;
-}
-
-.certified {
-	font-size: 12px;
-}
-
+<style type="text/css">
+	@media print{
+  		.page{
+  			min-height:315px;
+  			/* margin-bottom:40px; */
+  		}
+  	}
 .uidse_no {
 	text-align: center;
 	font-size: 18px;
 	font-weight: bold;
 }
 
-.school_leave {
+.udise {
 	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
+	
+	
 }
 
-.p5 {
-	text-decoration: underline;
+.tcno {
+	margin-left: 4px;
 }
+
+.regd_no {
+	font-size: 16px;
+	margin-left: 55px;
+}
+
+.jr {
+	margin-left: 6px;
+}
+
+.r {
+	font-size: 13px;
+	margin-left: 4px;
+}
+
+.note {
+	font-size: 13px;
+	margin-left: 4px;
+}
+
+.pre {
+	font-size: 14px;
+	line-height: 2.0;
+	font-family: Roboto, 'Segoe UI', Tahoma, sans-serifbody;
+}
+
 
 .list {
 	font-size: 14px;
@@ -50,29 +59,10 @@
 	font-family: Roboto, 'Segoe UI', Tahoma, sans-serifbody;
 }
 
-.date_of_I {
-	text-align: right;
-	padding-left: 48%
-}
-
-.s_id {
-	text-align: left;
-}
-
-.date {
-	text-align: right;
-}
-
-.div1 {
+.school_leave {
 	text-align: center;
-	margin-top: 4px;
-	margin-top: 0px;
-	margin-top: 4px;
-	margin-top: 4px;
-}
-
-.srn {
-	line-height: 190%;
+	font-size: 20px;
+	font-family: 'Abel', sans-serif;
 }
 
 .orignal {
@@ -89,38 +79,12 @@
 	font-weight: bold;
 }
 
-.note {
-	text-align: left;
-	font-size: 13px;
-	margin-left: 8px;
-	margin-top: 8px;
-}
-
 .address {
 	text-align: center;
 }
 
-.sidno {
-	line-height: 0.1;
-	line-height: 1.9;
-	font-size: 14px;
-	font-family: 'Montserrat', sans-serif;
-	margin-left: 8%
-}
-
-.uidno {
-	line-height: 0.7;
-	line-height: 1.9;
-	font-size: 14px;
-	margin-left: 8% font-family: 'Montserrat', sans-serif;
-}
-
 .phone {
 	text-align: center;
-}
-
-.hr {
-	height: -4px;
 }
 
 }
@@ -128,6 +92,12 @@
 	height: auto;
 	border: 2px solid black;
 	weigth: auto;
+}
+
+.school {
+	text-align: center;
+	font-weight: bold;
+	font-size: 23px;
 }
 
 .al-rizwan {
@@ -142,14 +112,13 @@
 
 	<div style='border: 2px solid black; overflow: hidden; display: block'>
 
-
 		<span class="orignal"> ORIGINAL </span> <span> <strong>
 				Muslim Youth Welfare Association, Nanded (Reg. No. F-8341)</strong>
 		</span>
 
 		<div class="al-rizwan">AL-RIZWAN</div>
 
-		<div class="school">ENGLISH HIGH SCHOOL</div>
+		<div class="school">SELF FINANCED</div>
 
 		<div class="address">Chaitaniya Nagar, Shiv Road, Gani Colony,
 			Nanded. (Maharashtra) India.</div>
@@ -158,26 +127,22 @@
 			alrizwan11@gmail.com</div>
 
 
-
-<h class="mother">TC.NO.: <span style='margin-left: 0%'
+		<h class="tcno">TC.NO.: <span style='margin-left: 0%'
 			th:text="${none}"></span></h>
 
-		<h style='margin-left: 30%'>General Admission Reg. No. <span
-			style='margin-left: 0%'' th:text="${mothersName}"></span></h>
-
-		<h class="srn"> <span style="text-align: none; margin-left: 10%">School
-			Recognisition NO.:<strong> VLS/1004/421 2004-PS-3</strong>
-		</span> <span style="text-align: right; margin-left: 5%"> Medium:<strong>English
-		</strong></span> </h>
+		<h style='margin-left: 49%'>General Admission Reg. No. <span
+			style='margin-left: 0%' th:text="${studentRegNo}"></span></h>
+		<p class="jr">
+			School Recognistion No. : <strong>VLS/1004/421 2004-PS-3</strong> <b class="regd_no"> Medium :<strong>English</strong> 
+			</b>
+		</p><center>
 		<hr class="hr">
 		</hr>
-		<div class="uidse_no">UDISE No. : 27151702101</div>
-
-		<hr></hr>
+		<h class="udise"> <strong>UDISE No. : 27151702101</strong> </h>
+		<hr></hr></center>
 		<div class="school_leave">
-			<strong><u>SCHOOL LEAVING CERTIFICATE</u></strong>
+			<strong><u> SCHOOL LEAVING CERTIFICATE</u></strong><br></br>
 		</div>
-
 		<div style='float: left; text-align: left'>
 			<ol class="list">
 				<li class="pupil">Name of pupil: <span style='margin-left: 14%'
@@ -189,23 +154,24 @@
 
 				<li class="mother">Mother’s Name <span style='margin-left: 14%'
 					th:text="${mothersName}"></span>Religion : <span
-					style='margin-left: 14%' th:text="${religion}"></span></li>
-
-
-				<li class="father">Caste and sub-caste only in the case of
+					style='margin-left: 100%' th:text="${religion}"></span></li>
+			
+								<li class="caste">Caste and sub-caste only in the case of
 					pupils belonging to Backward Classes and category among <br></br>Backward
 					Classes (e.g., S.C./S.T.etc.) <span style='margin-left: 14%'
 					th:text="${casteName}"></span>
 				</li>
 
 				<li class="dob">Place of birth<span style='margin-left: 14%'
-					th:text="${idNo}"></span> Taluka : <span style='margin-left: 14%'
-					th:text="${idNo}"></span> District <span style='margin-left: 14%'
-					th:text="${idNo}"></span><br></br> State <span
-					style='margin-left: 14%' th:text="${idNo}"></span> Country <span
-					style='margin-left: 14%' th:text="${countryName}"></span>
+					th:text="${placeOfBirth}"></span> Taluka : <span style='margin-left: 14%'
+					th:text="${none}"></span> District <span style='margin-left: 14%'
+					th:text="${city}"></span><br></br> State <span
+					style='margin-left: 14%' th:text="${state}"></span> Country <span
+					style='margin-left: 14%' th:text="${country}"></span>
 					Nationality : <span style='margin-left: 14%'
 					th:text="${nationality}"></span></li>
+					
+					
 				<li class="date_of_birth">Date of birth, month and year
 					according to the Christian era in words <span
 					style='margin-left: 14%' th:text="${dateofbirthinwords}"></span>
@@ -229,16 +195,24 @@
 				<li class="progress">Progress <span style='margin-left: 14%'
 					th:text="${idNo}"></span> Conduct <span style='margin-left: 14%'
 					th:text="${idNo}"></span></li>
+					
+					
 				<li class="date_of_leave">Date of leaving the school <span
 					style='margin-left: 14%' th:text="${idNo}"></span></li>
 
 				<li class="reason">Reason of leaving the school <span
 					style='margin-left: 14%' th:text="${idNo}"></span></li>
+					
+					
 				<li class="mother_tongue">Mother Tongue : <span
-					style='margin-left: 14%' th:text="${mother_tongue}"></span>Attendance
-					<span style='margin-left: 14%' th:text="${idNo}"></span></li>
+					style='margin-left: 14%' th:text="${mother_tongue}">
+					
+					</span>Attendance
+					<span style='margin-left: 14%' th:text="${none}"></span></li>
+					
+					
 				<li class="remarks">Remarks <span style='margin-left: 14%'
-					th:text="${idNo}"></span>
+					th:text="${remark}"></span>
 				</li>
 				<div class="certified">Certified that above information is in
 					accordance with the school register and no correction in above
@@ -246,18 +220,17 @@
 
 			</ol>
 
-			<p5> <span style="text-align: left; margin-left: 14%">Clerk</span>
-			<span style="text-align: right; padding-left: 48%"> Principal
-			</span> </p5>
-			<div class="note">
-				Note : No change in any entry in this certificate shall be made
-				except by trie authority issuing it and any infringement<br></br> of
-				this requirement is liable to involve the imposition of penalty such
-				as that of rustication.
-			</div>
+			<p5> <span
+				style="text-align: left; margin-left: 14%; margin-bottom: 15%">Clerk</span>
+			<span
+				style="text-align: right; padding-left: 48%; margin-bottom: 15%">
+				Principal </span> </p5>
+			<div class="note">Note : No change in any entry in this
+				certificate shall be made except by trie authority issuing it and
+				any infringement of this</div>
+			<h class="r"> requirement is liable to involve the imposition of
+			penalty such as that of rustication.</h>
 		</div>
 	</div>
-
-
 </body>
 </html>

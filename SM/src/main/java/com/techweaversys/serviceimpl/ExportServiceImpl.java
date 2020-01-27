@@ -22,11 +22,14 @@ import com.lowagie.text.DocumentException;
 import com.techweaversys.model.Address;
 import com.techweaversys.model.Admission;
 import com.techweaversys.model.Caste;
+import com.techweaversys.model.City;
+import com.techweaversys.model.Compliant;
 import com.techweaversys.model.Country;
 import com.techweaversys.model.Document;
 import com.techweaversys.model.MotherTongueEntity;
 import com.techweaversys.model.NationalityEntity;
 import com.techweaversys.model.Religion;
+import com.techweaversys.model.State;
 import com.techweaversys.repository.AddressRepository;
 import com.techweaversys.repository.AdmissionRepository;
 import com.techweaversys.repository.DocumentRepository;
@@ -704,7 +707,7 @@ public class ExportServiceImpl implements ExportService {
 		Class<? extends Admission> classs = admission.getClass();
 		String rgno = admission.getStudentRegNo();
 		Long uidno = admission.getUidNo();
-
+		 String placeofbirths=admission.getPlaceOfBirth();
 		Calendar dateofadmission = admission.getDate();
 		MotherTongueEntity mother_tongue = admission.getMotherTongue();
 
@@ -713,6 +716,7 @@ public class ExportServiceImpl implements ExportService {
 
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		Context context = new Context();
+		context.setVariable("placeOfBirth", placeofbirths);
 		context.setVariable("studentRegNo", rgno);
 		context.setVariable("studentsName", s);
 		context.setVariable("mothersName", m);
@@ -803,7 +807,7 @@ public class ExportServiceImpl implements ExportService {
 		context.setVariable("fathersName", m);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
-		context.setVariable("m1",Constants.tchighschoolM);
+	//	context.setVariable("m1",Constants.tchighschoolM);
 
 		String html = templateEngine.process("high_school", context);
 
@@ -831,6 +835,87 @@ public class ExportServiceImpl implements ExportService {
 
 	@Override
 	public byte[] downloadPdfJrCollegeTc(Long id, HttpServletResponse response) {
+		Admission admission = admissionRepository.getOne(id);
+
+		String s = admission.getStudentsName();
+		String m = admission.getMothersName();
+		String f = admission.getFathersName();
+		String studentid = admission.getIdNo();
+		Caste caste = admission.getCaste();
+		String idno = admission.getIdNo();
+		Religion religion = admission.getReligion();
+		String placeofbirth = admission.getPlaceOfBirth();
+		NationalityEntity nationality = admission.getNationality();
+		String dateofbirthinwords = admission.getDateOfBirthInWords();
+		Class<? extends Admission> classs = admission.getClass();
+		String rgno = admission.getStudentRegNo();
+		Long uidno = admission.getUidNo();
+		  String placeofb=admission.getPlaceOfBirth();
+		Calendar dateofadmission = admission.getDate();
+		MotherTongueEntity mother_tongue = admission.getMotherTongue();
+		
+		Address ad=new Address();
+      City city=   ad.getCity();
+      
+    
+        State state= ad.getState();
+        Country country=ad.getCountry();
+        Compliant Compliant=new Compliant();
+         String remark= Compliant.getRemark();
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		Context context = new Context();
+		context.setVariable("city", city);
+		context.setVariable("satate", state);
+		context.setVariable("country", country);
+		context.setVariable("remark", remark);
+		
+		context.setVariable("placeOfBirth", placeofb);
+		context.setVariable("studentRegNo", rgno);
+		context.setVariable("studentsName", s);
+		context.setVariable("mothersName", m);
+		context.setVariable("fathersName", m);
+		context.setVariable("fathersName", m);
+		context.setVariable("casteName", caste);
+		context.setVariable("idNo", idno);
+		context.setVariable("religion", religion);
+		context.setVariable("nationality", nationality);
+		context.setVariable("dateOfBirthInWords", dateofbirthinwords);
+		context.setVariable("name", mother_tongue);
+		context.setVariable("uidNo", uidno);
+		
+
+		context.setVariable("date", dateofadmission);
+
+		context.setVariable("fathersName", m);
+		context.setVariable("casteName", caste);
+		context.setVariable("idNo", idno);
+		
+		String html = templateEngine.process("jr_college_tc", context);
+
+		ITextRenderer renderer = new ITextRenderer();
+
+		renderer.setDocumentFromString(html);
+		renderer.layout();
+
+		try {
+			renderer.createPDF(bos, false);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		renderer.finishPDF();
+		response.setContentType("application/pdf");
+		// response.setHeader("Content-Disposition", "attachment; filename=" +
+		// "SaleOrder_" + sqt.getOrderno() + ".pdf");
+		try {
+			response.getOutputStream().flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bos.toByteArray();
+	}
+
+	@Override
+	public byte[] downloadPdfNilgamutara(Long id, HttpServletResponse response) {
 		Admission admission = admissionRepository.getOne(id);
 
 		String s = admission.getStudentsName();
@@ -874,8 +959,9 @@ public class ExportServiceImpl implements ExportService {
 		context.setVariable("fathersName", m);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
-		
-		String html = templateEngine.process("jr_college_tc", context);
+	//	context.setVariable("m1",Constants.tchighschoolM);
+
+		String html = templateEngine.process("NilgamUtarapdf", context);
 
 		ITextRenderer renderer = new ITextRenderer();
 
@@ -898,6 +984,7 @@ public class ExportServiceImpl implements ExportService {
 		}
 		return bos.toByteArray();
 	}
+	}
 
 
-}
+
