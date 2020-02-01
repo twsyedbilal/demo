@@ -29,7 +29,6 @@ public class DocumentBucketServiceImpl implements DocumentBucketService {
 		documentBucket.setFileName(file.getOriginalFilename());
 		documentBucket.setFileType(file.getContentType());
 		documentBucket.setName(file.getName());
-		documentBucket.setUrl(path);
 		documentBucket.setStore("Databse");
 		documentBucketRepository.save(documentBucket);
 		BucketOut out = new BucketOut();
