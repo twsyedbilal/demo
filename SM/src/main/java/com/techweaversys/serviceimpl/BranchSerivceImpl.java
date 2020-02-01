@@ -45,8 +45,8 @@ public class BranchSerivceImpl implements BranchService {
 			bb = BranchRepository.getOne(dto.getId());
 		}
 
-		bb.setBrancCode(dto.getBranchCode());
-		bb.setBranchName(dto.getBranchName());
+		bb.setBrancCode(dto.getcode());
+		bb.setBranchName(dto.getname());
 		BranchRepository.save(bb);
 
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);
@@ -78,9 +78,9 @@ public class BranchSerivceImpl implements BranchService {
 
 	@Override
 	public ResponseEntity<?> findAllwithpage(BranchSpacedto dto) {
-		logger.info("Showing list of branch", dto);
+		logger.info("showing list of users", dto);
 		PageRequest pg = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
-		Page<BranchEntity> branchs = BranchRepository.findAll(new BranchSpec(dto.getBranchName(), dto.getBranchCode()), pg);
+		Page<BranchEntity> branchs = BranchRepository.findAll(new BranchSpec(dto.getname(), dto.getcode()), pg);
 		List<BranchDto> list = branchs.stream().map( new BranchDtoConvertor() ).collect( Collectors.toList() );
 		PageDto pageDto = new PageDto(list, branchs.getTotalElements());
 		return Response.build(Code.OK, pageDto);

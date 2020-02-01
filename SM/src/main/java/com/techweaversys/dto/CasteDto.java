@@ -2,19 +2,19 @@ package com.techweaversys.dto;
 
 public class CasteDto {
 	private Long id;
-	private String casteName;
-	private String casteCode;
+	private String name;
+	private String code;
 	private SubCasteDto subCasteDto;
 
 	public CasteDto() {
 		super();
 	}
 
-	public CasteDto(Long id, String casteName, String casteCode, SubCasteDto subCasteDto) {
+	public CasteDto(Long id, String name, String code, SubCasteDto subCasteDto) {
 		super();
 		this.id = id;
-		this.casteName = casteName;
-		this.casteCode = casteCode;
+		this.name = name;
+		this.code = code;
 		this.subCasteDto = subCasteDto;
 	}
 
@@ -26,20 +26,20 @@ public class CasteDto {
 		this.id = id;
 	}
 
-	public String getCasteName() {
-		return casteName;
+	public String getname() {
+		return name;
 	}
 
-	public void setCasteName(String casteName) {
-		this.casteName = casteName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getCasteCode() {
-		return casteCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setCasteCode(String casteCode) {
-		this.casteCode = casteCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	public SubCasteDto getSubCasteDto() {
@@ -54,8 +54,8 @@ public class CasteDto {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((casteCode == null) ? 0 : casteCode.hashCode());
-		result = prime * result + ((casteName == null) ? 0 : casteName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((subCasteDto == null) ? 0 : subCasteDto.hashCode());
 		return result;
@@ -70,15 +70,15 @@ public class CasteDto {
 		if (getClass() != obj.getClass())
 			return false;
 		CasteDto other = (CasteDto) obj;
-		if (casteCode == null) {
-			if (other.casteCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!casteCode.equals(other.casteCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (casteName == null) {
-			if (other.casteName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!casteName.equals(other.casteName))
+		} else if (!name.equals(other.name))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -95,7 +95,7 @@ public class CasteDto {
 
 	@Override
 	public String toString() {
-		return "CasteDto [id=" + id + ", casteName=" + casteName + ", casteCode=" + casteCode + ", subCasteDto="
+		return "CasteDto [id=" + id + ", name=" + name + ", code=" + code + ", subCasteDto="
 				+ subCasteDto + "]";
 	}
 

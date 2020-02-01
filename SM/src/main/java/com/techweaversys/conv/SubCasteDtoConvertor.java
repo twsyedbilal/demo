@@ -9,8 +9,8 @@ public class SubCasteDtoConvertor implements Function<SubCaste, SubCasteDto> {
 	@Override
 	public SubCasteDto apply(SubCaste input) {
 		SubCasteDto dto = new SubCasteDto();
-		dto.setSubCasteName(input.getSubCasteName());
-		dto.setSubCasteCode(input.getSubCastecode());
+		dto.setname(input.getSubCasteName());
+		dto.setcode(input.getSubCastecode());
 		return dto;
 	}
 

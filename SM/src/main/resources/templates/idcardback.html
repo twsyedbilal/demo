@@ -42,6 +42,13 @@ color: black;
 width: 100%;
 max-width: 325.03937008px;
 min-width: 204.09448819px;
+
+.a{
+font-family: "Times New Roman", Times, serif;
+}
+}
+.b{
+color: 004080;
 }
 
 </style>
@@ -52,25 +59,25 @@ min-width: 204.09448819px;
 
 	<h1 class="set" >Details of Student</h1>
 
-	<table class="p1" style="width: 325.03937008px; height: 204.09448819px" >
+	<table class="p1" style="width: 325.03937008px; height: 204.09448819px; text-align:justify" >
 	<tr>
-	<h2><td>Date of Birth :</td>
-	<td th:text="${dob}"></td></h2>
+	<h2><td class="a">Date of Birth :</td>
+	<td class="b" th:text="${dob}"></td></h2>
 	</tr>
 
 	<tr>
-	<h2><td>Contact No. :</td>
-	<td th:text="${contactNo}"></td></h2>
+	<h2><td class="a">Contact No. :</td>
+	<td class="b" th:text="${contactNo}"></td></h2>
 	</tr>	
 
 	<tr>
-	<h2><td>Address </td>
-	<td th:text="${address}"></td></h2>
+	<h2><td class="a">Address </td>
+	<td class="b" th:text="${address}"></td></h2>
 	</tr>	
 
 	<tr>
-	<h2><td>Academic Year :</td>
-	<td th:text="${academicYear}"></td></h2>
+	<h2><td class="a">Academic Year :</td>
+	<td class="b" th:text="${academicYear}"></td></h2>
 	</tr>
 	
 </table>

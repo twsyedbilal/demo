@@ -2,40 +2,26 @@ package com.techweaversys.serviceimpl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.techweaversys.conv.BookDtoConvertor;
-import com.techweaversys.conv.BranchDtoConvertor;
 import com.techweaversys.dto.BookDto;
-import com.techweaversys.dto.BookSpaceDto;
-import com.techweaversys.dto.BranchDto;
-import com.techweaversys.dto.PageDto;
-import com.techweaversys.generics.AppConstants;
 import com.techweaversys.generics.Code;
 import com.techweaversys.generics.Messages;
 import com.techweaversys.generics.Response;
 import com.techweaversys.model.Book;
-import com.techweaversys.model.BranchEntity;
 import com.techweaversys.repository.BookRepository;
 import com.techweaversys.service.BookService;
-import com.techweaversys.spec.BookSpec;
-import com.techweaversys.spec.BranchSpec;
 
 @Service
 @Transactional
 public class BookSerivceImpl implements BookService {
-	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
@@ -49,8 +35,8 @@ public class BookSerivceImpl implements BookService {
 			bb = bookRepository.getOne(dto.getId());
 		}
 
-		bb.setBookName(dto.getBookName());
-		bb.setBookCode(dto.getBookCode());
+		bb.setBookName(dto.getname());
+		bb.setBookCode(dto.getcode());
 		bookRepository.save(bb);
 
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);
@@ -80,15 +66,4 @@ public class BookSerivceImpl implements BookService {
 		return Response.build(Code.OK, Messages.DELETED);
 	}
 
-	@Override
-	public ResponseEntity<?> findAllwithpage(BookSpaceDto dto) {
-		logger.info("Showing list of book", dto);
-		PageRequest pg = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
-		Page<Book> book = bookRepository.findAll(new BookSpec(dto.getBookName(),dto.getBookCode()), pg);
-		List<BookDto> list = book.stream().map( new BookDtoConvertor() ).collect( Collectors.toList() );
-		PageDto pageDto = new PageDto(list, book.getTotalElements());
-		return Response.build(Code.OK, pageDto);
-	}
-
-	}
-
+}

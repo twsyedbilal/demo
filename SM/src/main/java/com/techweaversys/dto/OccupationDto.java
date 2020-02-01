@@ -2,18 +2,18 @@ package com.techweaversys.dto;
 
 public class OccupationDto {
 	private Long id;
-	private String occupationName;
-	private String occupationCode;
+	private String name;
+	private String code;
 
 	public OccupationDto() {
 		super();
 	}
 
-	public OccupationDto(Long id, String occupationName, String occupationCode) {
+	public OccupationDto(Long id, String name, String code) {
 		super();
 		this.id = id;
-		this.occupationName = occupationName;
-		this.occupationCode = occupationCode;
+		this.name = name;
+		this.code = code;
 	}
 
 	public Long getId() {
@@ -24,20 +24,20 @@ public class OccupationDto {
 		this.id = id;
 	}
 
-	public String getOccupationName() {
-		return occupationName;
+	public String getname() {
+		return name;
 	}
 
-	public void setOccupationName(String occupationName) {
-		this.occupationName = occupationName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getOccupationCode() {
-		return occupationCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setOccupationCode(String occupationCode) {
-		this.occupationCode = occupationCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
@@ -45,8 +45,8 @@ public class OccupationDto {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((occupationCode == null) ? 0 : occupationCode.hashCode());
-		result = prime * result + ((occupationName == null) ? 0 : occupationName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -64,22 +64,22 @@ public class OccupationDto {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (occupationCode == null) {
-			if (other.occupationCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!occupationCode.equals(other.occupationCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (occupationName == null) {
-			if (other.occupationName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!occupationName.equals(other.occupationName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "OccupationDto [id=" + id + ", occupationName=" + occupationName + ", occupationCode=" + occupationCode
+		return "OccupationDto [id=" + id + ", name=" + name + ", code=" + code
 				+ "]";
 	}
 

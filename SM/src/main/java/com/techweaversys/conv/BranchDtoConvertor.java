@@ -9,8 +9,8 @@ public class BranchDtoConvertor implements Function<BranchEntity, BranchDto> {
 	@Override
 	public BranchDto apply(BranchEntity b) {
 		BranchDto dto = new BranchDto();
-		dto.setBranchCode(b.getBrancCode());
-		dto.setBranchName(b.getBranchName());
+		dto.setcode(b.getBrancCode());
+		dto.setname(b.getBranchName());
 		dto.setId(b.getId());
 		return dto;
 	}

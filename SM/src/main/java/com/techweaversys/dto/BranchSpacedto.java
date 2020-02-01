@@ -2,8 +2,8 @@ package com.techweaversys.dto;
 
 public class BranchSpacedto {
 
-	private String branchName;
-	private String branchCode;
+	private String name;
+	private String code;
 	private Integer page;
 	private Integer size;
 
@@ -11,28 +11,28 @@ public class BranchSpacedto {
 		super();
 	}
 
-	public BranchSpacedto(String branchName, String branchCode, Integer page, Integer size) {
+	public BranchSpacedto(String name, String code, Integer page, Integer size) {
 		super();
-		this.branchName = branchName;
-		this.branchCode = branchCode;
+		this.name = name;
+		this.code = code;
 		this.page = page;
 		this.size = size;
 	}
 
-	public String getBranchName() {
-		return branchName;
+	public String getname() {
+		return name;
 	}
 
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getBranchCode() {
-		return branchCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setBranchCode(String branchCode) {
-		this.branchCode = branchCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	public Integer getPage() {
@@ -55,8 +55,8 @@ public class BranchSpacedto {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((branchCode == null) ? 0 : branchCode.hashCode());
-		result = prime * result + ((branchName == null) ? 0 : branchName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((page == null) ? 0 : page.hashCode());
 		result = prime * result + ((size == null) ? 0 : size.hashCode());
 		return result;
@@ -71,15 +71,15 @@ public class BranchSpacedto {
 		if (getClass() != obj.getClass())
 			return false;
 		BranchSpacedto other = (BranchSpacedto) obj;
-		if (branchCode == null) {
-			if (other.branchCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!branchCode.equals(other.branchCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (branchName == null) {
-			if (other.branchName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!branchName.equals(other.branchName))
+		} else if (!name.equals(other.name))
 			return false;
 		if (page == null) {
 			if (other.page != null)
@@ -96,7 +96,7 @@ public class BranchSpacedto {
 
 	@Override
 	public String toString() {
-		return "BranchSpacedto [branchName=" + branchName + ", branchCode=" + branchCode + ", page=" + page + ", size="
+		return "BranchSpacedto [name=" + name + ", code=" + code + ", page=" + page + ", size="
 				+ size + "]";
 	}
 

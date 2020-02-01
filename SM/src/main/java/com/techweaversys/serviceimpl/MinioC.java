@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
@@ -41,9 +40,6 @@ public class MinioC {
 
 	@PostConstruct
 	private void initializeAmazon() throws InvalidEndpointException, InvalidPortException {
-		// AWSCredentials credentials = new BasicAWSCredentials(this.accessKey,
-		// this.secretKey);
-		// this.minioclients = new Amazonminioclients(credentials);
 		this.minioclients = new MinioClient(endpointUrl, accessKey, secretKey);
 
 	}
@@ -52,9 +48,9 @@ public class MinioC {
 		String fileUrl = "";
 		try {
 			File file = convertMultiPartToFile(multipartFile);
-			String fileName = generateFileName(multipartFile);
-			fileUrl = endpointUrl + "/" + bucketName + "/" + fileName;
-			uploadFileTos3bucket(fileName, multipartFile,fileUrl);
+			String fileName = minioclients.presignedGetObject(bucketName, multipartFile.getOriginalFilename());
+			fileUrl = fileName;
+			uploadFileTos3bucket(fileName, multipartFile, fileUrl);
 			file.delete();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,21 +64,6 @@ public class MinioC {
 		fos.write(file.getBytes());
 		fos.close();
 		return convFile;
-	}
-
-	/*
-	 * private String generateFullFileName(MultipartFile multiPart) {
-	 * 
-	 * return "?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-" +
-	 * "Credential=minioadmin%2F20200122%2F%2Fs3%2Faws4_" + "request&X-Amz-Date="+
-	 * new Date().getDate() + new Date().getTimezoneOffset()
-	 * +"&X-Amz-Expires=432000&X-Amz-\r\n" +
-	 * "SignedHeaders=host&X-Amz-\"Signature=1839d4fdf27191a122bc0e5e16d89307f74e3058572972d3ec3d76e6b6f219c0";
-	 * }
-	 */
-	
-	private String generateFileName(MultipartFile multiPart) {
-		return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
 	}
 
 	@SuppressWarnings("deprecation")
@@ -113,7 +94,5 @@ public class MinioC {
 		}
 		return false;
 	}
-	
-	
 
 }

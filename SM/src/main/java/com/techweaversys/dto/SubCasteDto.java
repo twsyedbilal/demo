@@ -2,18 +2,18 @@ package com.techweaversys.dto;
 
 public class SubCasteDto {
 	private Long id;
-	private String subCasteName;
-	private String subCasteCode;
+	private String name;
+	private String code;
 
 	public SubCasteDto() {
 		super();
 	}
 
-	public SubCasteDto(Long id, String subCasteName, String subCasteCode) {
+	public SubCasteDto(Long id, String name, String code) {
 		super();
 		this.id = id;
-		this.subCasteName = subCasteName;
-		this.subCasteCode = subCasteCode;
+		this.name = name;
+		this.code = code;
 	}
 
 	public Long getId() {
@@ -24,20 +24,20 @@ public class SubCasteDto {
 		this.id = id;
 	}
 
-	public String getSubCasteName() {
-		return subCasteName;
+	public String getname() {
+		return name;
 	}
 
-	public void setSubCasteName(String subCasteName) {
-		this.subCasteName = subCasteName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getSubCasteCode() {
-		return subCasteCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setSubCasteCode(String subCasteCode) {
-		this.subCasteCode = subCasteCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
@@ -45,8 +45,8 @@ public class SubCasteDto {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((subCasteCode == null) ? 0 : subCasteCode.hashCode());
-		result = prime * result + ((subCasteName == null) ? 0 : subCasteName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -64,22 +64,22 @@ public class SubCasteDto {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (subCasteCode == null) {
-			if (other.subCasteCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!subCasteCode.equals(other.subCasteCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (subCasteName == null) {
-			if (other.subCasteName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!subCasteName.equals(other.subCasteName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "SubCasteDto [id=" + id + ", subCasteName=" + subCasteName + ", subCasteCode=" + subCasteCode + "]";
+		return "SubCasteDto [id=" + id + ", name=" + name + ", code=" + code + "]";
 	}
 
 }

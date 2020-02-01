@@ -58,8 +58,8 @@ public class CasteServiceImpl implements CasteService {
 			}
 		}
 
-		caste.setCasteName(casteDto.getCasteName());
-		caste.setCasteCode(casteDto.getCasteCode());
+		caste.setCasteName(casteDto.getname());
+		caste.setCasteCode(casteDto.getcode());
 		casteRepository.save(caste);
 
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);
@@ -95,7 +95,7 @@ public class CasteServiceImpl implements CasteService {
 	public ResponseEntity<?> findAllwithpage(CasteSpecDto dto) {
 		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, 
 				AppConstants.MODIFIED);
-		Page<Caste> caste = casteRepository.findAll(new CasteSpec(dto.getCasteName(), dto.getCasteCode()), bb);
+		Page<Caste> caste = casteRepository.findAll(new CasteSpec(dto.getname(), dto.getcode()), bb);
 		
 		List<CasteDto> list = caste.stream().map(new CasteDtoConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, caste.getTotalElements());

@@ -10,60 +10,42 @@
   			/* margin-bottom:40px; */
   		}
   	}
-.pp {
-  border: 1px solid black;
-  width: 70px;
-  height: 100px;
-  padding: 0px;
-  border: 1px solid black;
-  margin-top: -150px;
-  margin-left: 30px;
-}
 .p1{
-  margin-left: 250px;
-  margin-top: -220px;
-  font-size: 25px;
+  margin-left: 97px;
+  margin-top: -105px;
+  font-size: 10px;
+  max-width: 325.03937008px;
+  min-width: 204.09448819px;
 }
-.p2{
-  border: 1px solid black;
+.hidd {
+  z-index: -1;
 }
-div {
-  width: 90px;
-  height: 130px;
-  padding: 0px;
-  border: 1px solid black;
-  margin-top: -130px;
-  margin-left: 80px;
-  border-color: white;
+.a{
+color: #004d99;
 }
-.maintain {
-color: black;
-width: 100%;
-max-width: 325.03937008px;
-min-width: 204.09448819px;
+.b{
+color: #660000;
 }
+
 
 </style>
 </head>
 <body>
-    <img th:src="@{${header}}" title="" class="" style="width: 325.03937008px; height: 204.09448819px"/>
-	<!-- this is for photo -->
-	<table>
-	<div>paste here
-	<img th:src="@{${photoUrl}}" style="width: 130%; height: 100%;  margin-top:-150px;"></img>
-	</div></table>
-<!-- 	<a th:href="${file}" th:text="${file}" /></div> -->
 
-<!-- 	<p class="pp p2"></p>	 -->
+    <img th:src="@{${header}}" title="" class="hidd" style="width: 325.03937008px; height: 204.09448819px"/>
+	<img th:src="@{${photoUrl}}"  class="" style=" width: 68px; height: 83px; margin-left: -315px; margin-bottom: 16px " />
+
 	<table class="p1">
-	<tr><td>Student's Name:</td>
-	<td th:text="${studentsName}"></td></tr>
-	<tr><td>Father's Name :</td>
-	<td th:text="${fathersName}"></td></tr>
-	<tr><td>Class:</td>
-	<td th:text="${className}"></td></tr></table>
+	<tr><td class="a" >Student's Name </td>
+	<td class="b" th:text="${studentsName}"></td></tr>
+
+	<tr><td class="a">Father's Name  </td>
+	<td class="b" th:text="${fathersName}"></td></tr>
+
+	<tr><td class="a">Class </td>
+	<td class="b" th:text="${className}"></td></tr></table>
 	
-	<h3 style="margin-left: 500px;margin-top: 60px">Principal</h3>
+	<h5 style="margin-left: 230px;margin-top: 25px; color: #000033">Principal</h5>
+
 </body>
 </html>
-

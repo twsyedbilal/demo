@@ -18,7 +18,6 @@ import com.techweaversys.service.AdmissionService;
 @RequestMapping("/rest/api/admission/")
 public class AdmissionController {
 
-	//Changes g
 	@Autowired
 	private AdmissionService admissionService;
 

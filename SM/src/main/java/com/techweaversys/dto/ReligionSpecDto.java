@@ -5,20 +5,20 @@ public class ReligionSpecDto {
 	private Long id;
 	private Integer page;
 	private Integer size;
-	private String religionName;
-	private String religionCode;
+	private String name;
+	private String code;
 
 	public ReligionSpecDto() {
 		super();
 	}
 
-	public ReligionSpecDto(Long id, Integer page, Integer size, String religionName, String religionCode) {
+	public ReligionSpecDto(Long id, Integer page, Integer size, String name, String code) {
 		super();
 		this.id = id;
 		this.page = page;
 		this.size = size;
-		this.religionName = religionName;
-		this.religionCode = religionCode;
+		this.name = name;
+		this.code = code;
 	}
 
 	public Long getId() {
@@ -45,20 +45,20 @@ public class ReligionSpecDto {
 		this.size = size;
 	}
 
-	public String getReligionName() {
-		return religionName;
+	public String getname() {
+		return name;
 	}
 
-	public void setReligionName(String religionName) {
-		this.religionName = religionName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getReligionCode() {
-		return religionCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setReligionCode(String religionCode) {
-		this.religionCode = religionCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
@@ -67,8 +67,8 @@ public class ReligionSpecDto {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((page == null) ? 0 : page.hashCode());
-		result = prime * result + ((religionCode == null) ? 0 : religionCode.hashCode());
-		result = prime * result + ((religionName == null) ? 0 : religionName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((size == null) ? 0 : size.hashCode());
 		return result;
 	}
@@ -92,15 +92,15 @@ public class ReligionSpecDto {
 				return false;
 		} else if (!page.equals(other.page))
 			return false;
-		if (religionCode == null) {
-			if (other.religionCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!religionCode.equals(other.religionCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (religionName == null) {
-			if (other.religionName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!religionName.equals(other.religionName))
+		} else if (!name.equals(other.name))
 			return false;
 		if (size == null) {
 			if (other.size != null)
@@ -112,8 +112,8 @@ public class ReligionSpecDto {
 
 	@Override
 	public String toString() {
-		return "ReligionSpecDto [id=" + id + ", page=" + page + ", size=" + size + ", religionName=" + religionName
-				+ ", religionCode=" + religionCode + "]";
+		return "ReligionSpecDto [id=" + id + ", page=" + page + ", size=" + size + ", name=" + name
+				+ ", code=" + code + "]";
 	}
 
 }

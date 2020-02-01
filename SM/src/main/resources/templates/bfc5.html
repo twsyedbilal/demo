@@ -12,10 +12,18 @@
 .maintain {
 color: black;
 width: 100%;
-max-width: 700px;
-min-width: 500px;
+margin-left: 15px;
+max-width: 690px;
+min-width: 470px;
 }
-
+.pbf
+{
+text-align: justify;
+text-indent: 70px;
+color: black;
+font-family: "Times New Roman", Times, serif;
+font-size: 23px;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="bf.css"/>
   </head>
@@ -23,19 +31,17 @@ min-width: 500px;
     <img th:src="@{${bonafideheader}}" title="" class="" style="width: 100%; height: 100%;" ></img>
     
     <pre>
-	<p style="	margin-top: -50px;"><h3>  Outward No.ARES/Bonafide /	/	/2019/20</h3></p>
-	<p style="margin-top: -70px;margin-left: 500px;"><h3> Date: </h3></p>
+	<p style="	margin-top: -50px;"><h3>  Outward No.ARES/Bonafide       /2019-20</h3></p>
+	<p style="margin-top: -73px;margin-left: 500px;"><h3> Date: </h3></p>
 	<p style="margin-top: -73px;margin-left: 560px;"><h3 th:text="${date}"></h3></p> 
 	</pre>
 
-	<h1 style="margin-top: 110px;margin-bottom: 150px;margin-left: 150px;"> Bona Fide Certificate</h1>
+	<h1 style="margin-top: 110px;margin-bottom: 150px;margin-left: 180px;"> Bona Fide Certificate</h1>
 
-	<p class="maintain" ><h2 style="color: black; padding-left: 5px; margin-left: 35px;" >
-	  			It is certified that Master/Miss: <a style="color: black" th:text="${name}"/> 
-	S/o./ D/o. <a style="color: black" th:text="${fatherName}"/> is the student of our 
-	AL-RIZWAN ENGLISH SCHOOL. He/She is studying in Std.	<a style="color: black" th:text="${className}"/> for the academic year <a style="color: black" th:text="${academicyear}"/> 
-	Admission No.  <a style="color: black" th:text="${addNo}"/>His/Her Birth date <a style="color: black" th:text="${birthdate}"/> recorded in the General Register of the school is 
-	___/___/____________________according to our school record.</h2></p>
+	<p class="maintain pbf" > It is certified that Master/Miss: <b><a style="color: black" th:text="${name}"/></b> 
+	S/o./ D/o. <b><a style="color: black" th:text="${fatherName}"/></b> is the student of our 
+	<b>AL-RIZWAN ENGLISH SCHOOL.</b> He/She is studying in Std.	<b><a style="color: black" th:text="${className}"/></b> for the academic year <b><a style="color: black" th:text="${academicyear}"/></b> 
+	Admission No.  <b><a style="color: black" th:text="${addNo}"/></b> His/Her Birth date <b><a style="color: black" th:text="${birthdate}"/></b> recorded on the General Register of the school is______/______/____________________according to our school record.</p>
 	<br><br></br></br>
 	<center><p style="margin-left:55px;"><h2>Hence this is certificate</h2></p></center>
 </body>

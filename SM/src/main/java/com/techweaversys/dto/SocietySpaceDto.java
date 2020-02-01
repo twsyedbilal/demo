@@ -2,7 +2,7 @@ package com.techweaversys.dto;
 
 public class SocietySpaceDto {
 
-	private String societyName;
+	private String name;
 	private String code;
 	private Integer page;
 	private Integer size;
@@ -11,20 +11,20 @@ public class SocietySpaceDto {
 		super();
 	}
 
-	public SocietySpaceDto(String societyName, String code, Integer page, Integer size) {
+	public SocietySpaceDto(String name, String code, Integer page, Integer size) {
 		super();
-		this.societyName = societyName;
+		this.name = name;
 		this.code = code;
 		this.page = page;
 		this.size = size;
 	}
 
-	public String getSocietyName() {
-		return societyName;
+	public String getname() {
+		return name;
 	}
 
-	public void setSocietyName(String societyName) {
-		this.societyName = societyName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getCode() {
@@ -58,7 +58,7 @@ public class SocietySpaceDto {
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((page == null) ? 0 : page.hashCode());
 		result = prime * result + ((size == null) ? 0 : size.hashCode());
-		result = prime * result + ((societyName == null) ? 0 : societyName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -86,17 +86,17 @@ public class SocietySpaceDto {
 				return false;
 		} else if (!size.equals(other.size))
 			return false;
-		if (societyName == null) {
-			if (other.societyName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!societyName.equals(other.societyName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "SocietySpaceDto [societyName=" + societyName + ", code=" + code + ", page=" + page + ", size=" + size
+		return "SocietySpaceDto [name=" + name + ", code=" + code + ", page=" + page + ", size=" + size
 				+ "]";
 	}
 

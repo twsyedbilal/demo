@@ -14,7 +14,7 @@ import com.techweaversys.dto.DebitBookDto;
 import com.techweaversys.service.DebitCreditService;
 
 @RestController
-@RequestMapping("/rest/api/library/")
+@RequestMapping("/rest/api/debitcredit/")
 public class DebitCreditController {
 
 	@Autowired

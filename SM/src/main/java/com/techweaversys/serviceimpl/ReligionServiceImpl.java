@@ -45,8 +45,8 @@ public class ReligionServiceImpl implements ReligionService {
 			religion = religionRepository.getOne(religionDto.getId());
 		}
 		
-		religion.setReligionName(religionDto.getReligionName());
-		religion.setReligionCode(religionDto.getReligionCode());
+		religion.setReligionName(religionDto.getname());
+		religion.setReligionCode(religionDto.getcode());
 		religionRepository.save(religion);
 		
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);
@@ -79,7 +79,7 @@ public class ReligionServiceImpl implements ReligionService {
 	public ResponseEntity<?> findAllwithpage(ReligionSpecDto dto) {
 		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, 
 				AppConstants.MODIFIED);
-		Page<Religion> religion = religionRepository.findAll(new ReligionSpec(dto.getReligionName(), dto.getReligionCode()), bb);
+		Page<Religion> religion = religionRepository.findAll(new ReligionSpec(dto.getname(), dto.getcode()), bb);
 		
 		List<ReligionDto> list = religion.stream().map(new ReligionDtoConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, religion.getTotalElements());

@@ -42,6 +42,7 @@ import com.techweaversys.model.SchoolEntityy;
 import com.techweaversys.model.SchoolType;
 import com.techweaversys.model.SocietyEntity;
 import com.techweaversys.model.State;
+import com.techweaversys.model.StudentStatus;
 import com.techweaversys.model.SubCaste;
 import com.techweaversys.repository.AddressRepository;
 import com.techweaversys.repository.AdmissionRepository;
@@ -50,6 +51,7 @@ import com.techweaversys.repository.CityRepository;
 import com.techweaversys.repository.ClassRepository;
 import com.techweaversys.repository.CountryRepository;
 import com.techweaversys.repository.DocumentRepository;
+import com.techweaversys.repository.LogRepository;
 import com.techweaversys.repository.MotherTongueRepository;
 import com.techweaversys.repository.NationalityRepository;
 import com.techweaversys.repository.OccupationRepository;
@@ -58,6 +60,7 @@ import com.techweaversys.repository.SchoolRepositriy;
 import com.techweaversys.repository.SchoolTypeRepository;
 import com.techweaversys.repository.SocietyRepository;
 import com.techweaversys.repository.StateRepository;
+import com.techweaversys.repository.StudentStatusRepository;
 import com.techweaversys.repository.SubCasteRepository;
 import com.techweaversys.service.AdmissionService;
 import com.techweaversys.spec.AdmissionSpec;
@@ -119,6 +122,12 @@ public class AdmissionServiceImpl implements AdmissionService {
 	@Autowired
 	private DocumentRepository documentBucketRepository;
 
+	@Autowired
+	private StudentStatusRepository studentStatusRepository;
+
+	@Autowired
+	private LogRepository logRepository;
+
 	private Logger logger = (Logger) LoggerFactory.getLogger(getClass());
 
 	/*
@@ -145,6 +154,12 @@ public class AdmissionServiceImpl implements AdmissionService {
 				logger.info("Admission Already Exist!");
 				throw new AdmissionAlreadyExiststException(Messages.ADMISSION_AlREADY);
 			}
+		}
+
+		if (null != admission.getId()) {
+			StudentStatus s = new StudentStatus();
+			s.setStatus(admission.getStatus());
+			studentStatusRepository.save(s);
 		}
 
 		// save admission details with Class details get by Id
@@ -199,13 +214,13 @@ public class AdmissionServiceImpl implements AdmissionService {
 			SocietyEntity society = societyRepository.getOne(admission.getSocietyId());
 			sh.setSociety(society);
 		}
-		
+
 		//
 		List<Document> document = new ArrayList<>();
 		if (admission.getDocument() != null) {
-			for (DocumentDto doc : admission.getDocument()) { 
+			for (DocumentDto doc : admission.getDocument()) {
 				Document du = new Document();
-				if (doc.getId() != null) { 
+				if (doc.getId() != null) {
 					du = documentBucketRepository.getOne(doc.getId());
 				}
 				document.add(du);
@@ -267,7 +282,6 @@ public class AdmissionServiceImpl implements AdmissionService {
 		sh.setPlaceOfBirth(admission.getPlaceOfBirth());
 		sh.setSurName(admission.getSurName());
 		sh.setStudentsName(admission.getStudentsName());
-		sh.setStatus(admission.getStatus());
 		sh.setLiveStatus(admission.getLiveStatus());
 		sh.setGender(admission.getGender());
 

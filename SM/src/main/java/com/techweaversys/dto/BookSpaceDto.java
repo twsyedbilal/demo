@@ -2,8 +2,8 @@ package com.techweaversys.dto;
 
 public class BookSpaceDto {
 
-	private String bookName;
-	private String bookCode;
+	private String name;
+	private String code;
 	private Integer page;
 	private Integer size;
 
@@ -11,28 +11,28 @@ public class BookSpaceDto {
 		super();
 	}
 
-	public BookSpaceDto(String bookName, String bookCode, Integer page, Integer size) {
+	public BookSpaceDto(String name, String code, Integer page, Integer size) {
 		super();
-		this.bookName = bookName;
-		this.bookCode = bookCode;
+		this.name = name;
+		this.code = code;
 		this.page = page;
 		this.size = size;
 	}
 
-	public String getBookName() {
-		return bookName;
+	public String getname() {
+		return name;
 	}
 
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getBookCode() {
-		return bookCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setBookCode(String bookCode) {
-		this.bookCode = bookCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	public Integer getPage() {
@@ -55,8 +55,8 @@ public class BookSpaceDto {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bookCode == null) ? 0 : bookCode.hashCode());
-		result = prime * result + ((bookName == null) ? 0 : bookName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((page == null) ? 0 : page.hashCode());
 		result = prime * result + ((size == null) ? 0 : size.hashCode());
 		return result;
@@ -71,15 +71,15 @@ public class BookSpaceDto {
 		if (getClass() != obj.getClass())
 			return false;
 		BookSpaceDto other = (BookSpaceDto) obj;
-		if (bookCode == null) {
-			if (other.bookCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!bookCode.equals(other.bookCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (bookName == null) {
-			if (other.bookName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!bookName.equals(other.bookName))
+		} else if (!name.equals(other.name))
 			return false;
 		if (page == null) {
 			if (other.page != null)
@@ -96,7 +96,7 @@ public class BookSpaceDto {
 
 	@Override
 	public String toString() {
-		return "BookSpaceDto [bookName=" + bookName + ", bookCode=" + bookCode + ", page=" + page + ", size=" + size
+		return "BookSpaceDto [name=" + name + ", code=" + code + ", page=" + page + ", size=" + size
 				+ "]";
 	}
 

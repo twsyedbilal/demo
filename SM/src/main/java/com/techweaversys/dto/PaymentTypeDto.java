@@ -3,17 +3,17 @@ package com.techweaversys.dto;
 public class PaymentTypeDto {
 	
 	private Long id;
-	private String payementTypeName;
-	private String payementTypeCode;
+	private String name;
+	private String code;
 
 	public PaymentTypeDto() {
 		super();
 	}
-	public PaymentTypeDto(Long id, String payementTypeName, String payementTypeCode) {
+	public PaymentTypeDto(Long id, String name, String code) {
 		super();
 		this.id = id;
-		this.payementTypeName = payementTypeName;
-		this.payementTypeCode = payementTypeCode;
+		this.name = name;
+		this.code = code;
 	}
 	public Long getId() {
 		return id;
@@ -21,25 +21,25 @@ public class PaymentTypeDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getPayementTypeName() {
-		return payementTypeName;
+	public String getname() {
+		return name;
 	}
-	public void setPayementTypeName(String payementTypeName) {
-		this.payementTypeName = payementTypeName;
+	public void setname(String name) {
+		this.name = name;
 	}
-	public String getPayementTypeCode() {
-		return payementTypeCode;
+	public String getcode() {
+		return code;
 	}
-	public void setPayementTypeCode(String payementTypeCode) {
-		this.payementTypeCode = payementTypeCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((payementTypeCode == null) ? 0 : payementTypeCode.hashCode());
-		result = prime * result + ((payementTypeName == null) ? 0 : payementTypeName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 	@Override
@@ -56,22 +56,22 @@ public class PaymentTypeDto {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (payementTypeCode == null) {
-			if (other.payementTypeCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!payementTypeCode.equals(other.payementTypeCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (payementTypeName == null) {
-			if (other.payementTypeName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!payementTypeName.equals(other.payementTypeName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "PaymentTypeDto [id=" + id + ", payementTypeName=" + payementTypeName + ", payementTypeCode="
-				+ payementTypeCode + "]";
+		return "PaymentTypeDto [id=" + id + ", name=" + name + ", code="
+				+ code + "]";
 	}
 
 

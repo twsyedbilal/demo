@@ -48,8 +48,8 @@ public class SubCasteServiceImpl implements SubCasteService {
 			subCaste = subCasteRepository.getOne(subCasteDto.getId());
 		}
 		
-		subCaste.setSubCasteName(subCasteDto.getSubCasteName());
-		subCaste.setSubCastecode(subCasteDto.getSubCasteCode());
+		subCaste.setSubCasteName(subCasteDto.getname());
+		subCaste.setSubCastecode(subCasteDto.getcode());
 		subCasteRepository.save(subCaste);
 		
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);	
@@ -84,7 +84,7 @@ public class SubCasteServiceImpl implements SubCasteService {
 	public ResponseEntity<?> findAllwithpage(SubCasteSpecDto dto) {
 		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, 
 				AppConstants.MODIFIED);
-		Page<SubCaste> subCaste = subCasteRepository.findAll(new SubCasteSpec(dto.getSubCasteName(), dto.getSubCasteCode()), bb);
+		Page<SubCaste> subCaste = subCasteRepository.findAll(new SubCasteSpec(dto.getname(), dto.getcode()), bb);
 		
 		List<SubCasteDto> list = subCaste.stream().map(new SubCasteDtoConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, subCaste.getTotalElements());

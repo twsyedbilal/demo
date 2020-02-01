@@ -49,8 +49,9 @@ public class StockInOutCommand implements Client {
 				Double stockinForIn = s.getStockIn();
 
 				double stockIn = stockInOutRepository.getSumofStockInByBookId(s.getBook().getId());
-				Double systemIn = returnbook + stockIn; 
-				
+
+				Double systemIn =  stockIn + returnbook  ; 
+
 				stock.setGivenQty(0);
 				Double given = stock.getGivenQty();
 				double stockOut = stockInOutRepository.getSumofStockOutByBookId(s.getBook().getId());

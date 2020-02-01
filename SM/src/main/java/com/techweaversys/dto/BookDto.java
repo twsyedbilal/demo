@@ -3,18 +3,18 @@ package com.techweaversys.dto;
 public class BookDto {
 
 	private Long id;
-	private String bookName;
-	private String bookCode;
+	private String name;
+	private String code;
 
 	public BookDto() {
 		super();
 	}
 
-	public BookDto(Long id, String bookName, String bookCode) {
+	public BookDto(Long id, String name, String code) {
 		super();
 		this.id = id;
-		this.bookName = bookName;
-		this.bookCode = bookCode;
+		this.name = name;
+		this.code = code;
 	}
 
 	public Long getId() {
@@ -25,28 +25,28 @@ public class BookDto {
 		this.id = id;
 	}
 
-	public String getBookName() {
-		return bookName;
+	public String getname() {
+		return name;
 	}
 
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getBookCode() {
-		return bookCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setBookCode(String bookCode) {
-		this.bookCode = bookCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bookCode == null) ? 0 : bookCode.hashCode());
-		result = prime * result + ((bookName == null) ? 0 : bookName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
@@ -60,15 +60,15 @@ public class BookDto {
 		if (getClass() != obj.getClass())
 			return false;
 		BookDto other = (BookDto) obj;
-		if (bookCode == null) {
-			if (other.bookCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!bookCode.equals(other.bookCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (bookName == null) {
-			if (other.bookName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!bookName.equals(other.bookName))
+		} else if (!name.equals(other.name))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -80,7 +80,7 @@ public class BookDto {
 
 	@Override
 	public String toString() {
-		return "BookDto [id=" + id + ", bookName=" + bookName + ", bookCode=" + bookCode + "]";
+		return "BookDto [id=" + id + ", name=" + name + ", code=" + code + "]";
 	}
 
 }

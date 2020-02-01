@@ -48,8 +48,8 @@ public class OccupationServiceImpl implements OccupationService{
 			occupation = occupationRepository.getOne(occupationDto.getId());
 		}
 		
-		occupation.setOccupationName(occupationDto.getOccupationName());
-		occupation.setOccupationCode(occupationDto.getOccupationCode());
+		occupation.setOccupationName(occupationDto.getname());
+		occupation.setOccupationCode(occupationDto.getcode());
 		occupationRepository.save(occupation);
 		
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);	
@@ -84,7 +84,7 @@ public class OccupationServiceImpl implements OccupationService{
 
 		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, 
 				AppConstants.MODIFIED);
-		Page<Occupation> occupation = occupationRepository.findAll(new OccupationSpec(dto.getOccupationName(), dto.getOccupationCode()), bb);
+		Page<Occupation> occupation = occupationRepository.findAll(new OccupationSpec(dto.getname(), dto.getcode()), bb);
 		
 		List<OccupationDto> list = occupation.stream().map(new OccupationDtoConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, occupation.getTotalElements());

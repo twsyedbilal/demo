@@ -9,8 +9,8 @@ public class OccupationDtoConvertor implements Function<Occupation, OccupationDt
 	@Override
 	public OccupationDto apply(Occupation input) {
 		OccupationDto dto = new OccupationDto();
-		dto.setOccupationName(input.getOccupationName());
-		dto.setOccupationCode(input.getOccupationCode());
+		dto.setname(input.getOccupationName());
+		dto.setcode(input.getOccupationCode());
 		return dto;
 	}
 	
