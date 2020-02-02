@@ -10,12 +10,9 @@ public class BookDtoConvertor implements Function<Book, BookDto> {
 	public BookDto apply(Book bb) {
 		BookDto b=new BookDto();
 		
-		b.setname(bb.getBookName());
-		b.setcode(bb.getBookCode());
+		b.setname(bb.getname());
+		b.setcode(bb.getcode());
 		b.setId(bb.getId());
 		return b;
 	}
-
-	
-	
 }

@@ -19,38 +19,38 @@ public class Book extends AbstractPersistable {
 
 	}
 
-	public Book(String bookName, String bookCode) {
+	public Book(String name, String code) {
 		super();
-		this.bookName = bookName;
-		this.bookCode = bookCode;
+		this.name = name;
+		this.code = code;
 	}
 
 	@Column(name = "book_name", nullable = false)
-	private String bookName;
+	private String name;
 
 	@Column(name = "book_code", nullable = false)
-	private String bookCode;
+	private String code;
 
-	public String getBookName() {
-		return bookName;
+	public String getname() {
+		return name;
 	}
 
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getBookCode() {
-		return bookCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setBookCode(String bookCode) {
-		this.bookCode = bookCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
 	public String toString() {
-		return "Book [bookName=" + bookName + ", bookCode=" + bookCode + ", getBookName()=" + getBookName()
-				+ ", getBookCode()=" + getBookCode() + ", getId()=" + getId() + ", isNew()=" + isNew()
+		return "Book [name=" + name + ", code=" + code + ", getname()=" + getname()
+				+ ", getcode()=" + getcode() + ", getId()=" + getId() + ", isNew()=" + isNew()
 				+ ", getDeleted()=" + getDeleted() + ", getCreated()=" + getCreated() + ", getModified()="
 				+ getModified() + ", toString()=" + super.toString() + ", hashCode()=" + hashCode() + ", getClass()="
 				+ getClass() + "]";
@@ -60,8 +60,8 @@ public class Book extends AbstractPersistable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((bookCode == null) ? 0 : bookCode.hashCode());
-		result = prime * result + ((bookName == null) ? 0 : bookName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -74,15 +74,15 @@ public class Book extends AbstractPersistable {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		if (bookCode == null) {
-			if (other.bookCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!bookCode.equals(other.bookCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (bookName == null) {
-			if (other.bookName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!bookName.equals(other.bookName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}

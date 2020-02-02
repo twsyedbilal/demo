@@ -19,7 +19,7 @@ public class SchoolType extends AbstractPersistable {
 	private static final long serialVersionUID = -487815098284380440L;
 
 	@Column(name = "school_type_name")
-	private String schoolTypeName;
+	private String name;
 
 	@Column(name = "code")
 	private String code;
@@ -28,18 +28,18 @@ public class SchoolType extends AbstractPersistable {
 		super(); 
 	}
 
-	public SchoolType(String schoolTypeName, String code) {
+	public SchoolType(String name, String code) {
 		super();
-		this.schoolTypeName = schoolTypeName;
+		this.name = name;
 		this.code = code;
 	}
 
-	public String getSchoolTypeName() {
-		return schoolTypeName;
+	public String getname() {
+		return name;
 	}
 
-	public void setSchoolTypeName(String schoolTypeName) {
-		this.schoolTypeName = schoolTypeName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getCode() {
@@ -55,7 +55,7 @@ public class SchoolType extends AbstractPersistable {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
-		result = prime * result + ((schoolTypeName == null) ? 0 : schoolTypeName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -73,17 +73,17 @@ public class SchoolType extends AbstractPersistable {
 				return false;
 		} else if (!code.equals(other.code))
 			return false;
-		if (schoolTypeName == null) {
-			if (other.schoolTypeName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!schoolTypeName.equals(other.schoolTypeName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "SchoolType [schoolTypeName=" + schoolTypeName + ", code=" + code + "]";
+		return "SchoolType [name=" + name + ", code=" + code + "]";
 	}
 
 }

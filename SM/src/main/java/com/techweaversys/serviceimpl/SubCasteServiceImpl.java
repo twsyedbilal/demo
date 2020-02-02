@@ -48,8 +48,8 @@ public class SubCasteServiceImpl implements SubCasteService {
 			subCaste = subCasteRepository.getOne(subCasteDto.getId());
 		}
 		
-		subCaste.setSubCasteName(subCasteDto.getname());
-		subCaste.setSubCastecode(subCasteDto.getcode());
+		subCaste.setcode(subCasteDto.getname());
+		subCaste.setcode(subCasteDto.getcode());
 		subCasteRepository.save(subCaste);
 		
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);	

@@ -19,43 +19,43 @@ public class SubCaste extends AbstractPersistable {
 	private static final long serialVersionUID = 445410939978111638L;
 
 	@Column(name = "sub_caste_name",nullable = false)
-	private String subCasteName;
+	private String name;
 	
 	@Column(name = "sub_caste_code")
-	private String subCastecode;
+	private String code;
 
 	public SubCaste() {
 		super();
 	}
 
-	public SubCaste(String subCasteName, String subCastecode) {
+	public SubCaste(String name, String code) {
 		super();
-		this.subCasteName = subCasteName;
-		this.subCastecode = subCastecode;
+		this.name = name;
+		this.code = code;
 	}
 
-	public String getSubCasteName() {
-		return subCasteName;
+	public String getname() {
+		return name;
 	}
 
-	public void setSubCasteName(String subCasteName) {
-		this.subCasteName = subCasteName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getSubCastecode() {
-		return subCastecode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setSubCastecode(String subCastecode) {
-		this.subCastecode = subCastecode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((subCasteName == null) ? 0 : subCasteName.hashCode());
-		result = prime * result + ((subCastecode == null) ? 0 : subCastecode.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		return result;
 	}
 
@@ -68,22 +68,22 @@ public class SubCaste extends AbstractPersistable {
 		if (getClass() != obj.getClass())
 			return false;
 		SubCaste other = (SubCaste) obj;
-		if (subCasteName == null) {
-			if (other.subCasteName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!subCasteName.equals(other.subCasteName))
+		} else if (!name.equals(other.name))
 			return false;
-		if (subCastecode == null) {
-			if (other.subCastecode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!subCastecode.equals(other.subCastecode))
+		} else if (!code.equals(other.code))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "SubCaste [subCasteName=" + subCasteName + ", subCastecode=" + subCastecode + "]";
+		return "SubCaste [name=" + name + ", code=" + code + "]";
 	}
 	
 }

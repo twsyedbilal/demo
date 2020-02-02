@@ -3,17 +3,17 @@ package com.techweaversys.dto;
 public class SchoolTypeDto {
 
 	private Long id;
-	private String schoolTypeName;
+	private String name;
 	private String code;
 
 	public SchoolTypeDto() {
 		super();
 	}
 
-	public SchoolTypeDto(Long id, String schoolTypeName, String code) {
+	public SchoolTypeDto(Long id, String name, String code) {
 		super();
 		this.id = id;
-		this.schoolTypeName = schoolTypeName;
+		this.name = name;
 		this.code = code;
 	}
 
@@ -33,12 +33,12 @@ public class SchoolTypeDto {
 		this.code = code;
 	}
 
-	public String getSchoolTypeName() {
-		return schoolTypeName;
+	public String getname() {
+		return name;
 	}
 
-	public void setSchoolTypeName(String schoolTypeName) {
-		this.schoolTypeName = schoolTypeName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class SchoolTypeDto {
 		int result = 1;
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((schoolTypeName == null) ? 0 : schoolTypeName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -70,17 +70,17 @@ public class SchoolTypeDto {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (schoolTypeName == null) {
-			if (other.schoolTypeName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!schoolTypeName.equals(other.schoolTypeName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "SchoolTypeDto [id=" + id + ", schoolTypeName=" + schoolTypeName + ", code=" + code + "]";
+		return "SchoolTypeDto [id=" + id + ", name=" + name + ", code=" + code + "]";
 	}
 
 }

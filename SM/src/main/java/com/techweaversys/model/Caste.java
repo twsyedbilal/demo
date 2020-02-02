@@ -23,10 +23,10 @@ public class Caste extends AbstractPersistable{
 	private static final long serialVersionUID = 4429910172787590649L;
 
 	@Column(name = "caste_name",nullable = false)
-	private String casteName;
+	private String name;
 	
 	@Column(name = "caste_code")
-	private String casteCode;
+	private String code;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "sm_sub_caste_id")
@@ -37,10 +37,10 @@ public class Caste extends AbstractPersistable{
 		super();
 	}
 
-	public Caste(String casteName, String casteCode, SubCaste subCaste) {
+	public Caste(String name, String code, SubCaste subCaste) {
 		super();
-		this.casteName = casteName;
-		this.casteCode = casteCode;
+		this.name = name;
+		this.code = code;
 		this.subCaste = subCaste;
 	}
 
@@ -52,28 +52,28 @@ public class Caste extends AbstractPersistable{
 		this.subCaste = subCaste;
 	}
 
-	public String getCasteName() {
-		return casteName;
+	public String getname() {
+		return name;
 	}
 
-	public void setCasteName(String casteName) {
-		this.casteName = casteName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getCasteCode() {
-		return casteCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setCasteCode(String casteCode) {
-		this.casteCode = casteCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((casteCode == null) ? 0 : casteCode.hashCode());
-		result = prime * result + ((casteName == null) ? 0 : casteName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((subCaste == null) ? 0 : subCaste.hashCode());
 		return result;
 	}
@@ -87,15 +87,15 @@ public class Caste extends AbstractPersistable{
 		if (getClass() != obj.getClass())
 			return false;
 		Caste other = (Caste) obj;
-		if (casteCode == null) {
-			if (other.casteCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!casteCode.equals(other.casteCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (casteName == null) {
-			if (other.casteName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!casteName.equals(other.casteName))
+		} else if (!name.equals(other.name))
 			return false;
 		if (subCaste == null) {
 			if (other.subCaste != null)
@@ -107,7 +107,7 @@ public class Caste extends AbstractPersistable{
 
 	@Override
 	public String toString() {
-		return "Caste [casteName=" + casteName + ", casteCode=" + casteCode + ", subCaste=" + subCaste + "]";
+		return "Caste [name=" + name + ", code=" + code + ", subCaste=" + subCaste + "]";
 	}
 
 }

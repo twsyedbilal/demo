@@ -3,7 +3,7 @@ package com.techweaversys.dto;
 public class SchoolTypeSpecDto {
 
 	private Long id;
-	private String schoolTypeName;
+	private String name;
 	private String code;
 	private Integer page;
 	private Integer size;
@@ -11,10 +11,10 @@ public class SchoolTypeSpecDto {
 	public SchoolTypeSpecDto() {
 		super();
 	}
-	public SchoolTypeSpecDto(Long id, String schoolTypeName, String code, Integer page, Integer size) {
+	public SchoolTypeSpecDto(Long id, String name, String code, Integer page, Integer size) {
 		super();
 		this.id = id;
-		this.schoolTypeName = schoolTypeName;
+		this.name = name;
 		this.code = code;
 		this.page = page;
 		this.size = size;
@@ -25,11 +25,11 @@ public class SchoolTypeSpecDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getSchoolTypeName() {
-		return schoolTypeName;
+	public String getname() {
+		return name;
 	}
-	public void setSchoolTypeName(String schoolTypeName) {
-		this.schoolTypeName = schoolTypeName;
+	public void setname(String name) {
+		this.name = name;
 	}
 	public String getCode() {
 		return code;
@@ -56,7 +56,7 @@ public class SchoolTypeSpecDto {
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((page == null) ? 0 : page.hashCode());
-		result = prime * result + ((schoolTypeName == null) ? 0 : schoolTypeName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((size == null) ? 0 : size.hashCode());
 		return result;
 	}
@@ -84,10 +84,10 @@ public class SchoolTypeSpecDto {
 				return false;
 		} else if (!page.equals(other.page))
 			return false;
-		if (schoolTypeName == null) {
-			if (other.schoolTypeName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!schoolTypeName.equals(other.schoolTypeName))
+		} else if (!name.equals(other.name))
 			return false;
 		if (size == null) {
 			if (other.size != null)
@@ -98,7 +98,7 @@ public class SchoolTypeSpecDto {
 	}
 	@Override
 	public String toString() {
-		return "SchoolTypeSpecDto [id=" + id + ", schoolTypeName=" + schoolTypeName + ", code=" + code + ", page="
+		return "SchoolTypeSpecDto [id=" + id + ", name=" + name + ", code=" + code + ", page="
 				+ page + ", size=" + size + "]";
 	}
 

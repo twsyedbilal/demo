@@ -19,43 +19,43 @@ public class Religion extends AbstractPersistable {
 	private static final long serialVersionUID = -2814189819281491404L;
 
 	@Column(name = "religion_name",nullable = false)
-	private String religionName;
+	private String name;
 	
 	@Column(name = "religion_code")
-	private String religionCode;
+	private String code;
 
 	public Religion() {
 		super();
 	}
 
-	public Religion(String religionName, String religionCode) {
+	public Religion(String name, String code) {
 		super();
-		this.religionName = religionName;
-		this.religionCode = religionCode;
+		this.name = name;
+		this.code = code;
 	}
 
-	public String getReligionName() {
-		return religionName;
+	public String getname() {
+		return name;
 	}
 
-	public void setReligionName(String religionName) {
-		this.religionName = religionName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getReligionCode() {
-		return religionCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setReligionCode(String religionCode) {
-		this.religionCode = religionCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((religionCode == null) ? 0 : religionCode.hashCode());
-		result = prime * result + ((religionName == null) ? 0 : religionName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -68,22 +68,22 @@ public class Religion extends AbstractPersistable {
 		if (getClass() != obj.getClass())
 			return false;
 		Religion other = (Religion) obj;
-		if (religionCode == null) {
-			if (other.religionCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!religionCode.equals(other.religionCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (religionName == null) {
-			if (other.religionName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!religionName.equals(other.religionName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Religion [religionName=" + religionName + ", religionCode=" + religionCode + "]";
+		return "Religion [name=" + name + ", code=" + code + "]";
 	}
 
 }

@@ -36,8 +36,8 @@ public class PayementTypeServiceImpl implements PayementTypeService {
 			paymentType = paymentTypeRepository.getOne(paymentTypeDto.getId());
 		}
 		
-		paymentType.setPaymentTypeName(paymentTypeDto.getname());
-		paymentType.setPaymentTypeCode(paymentTypeDto.getcode());
+		paymentType.setname(paymentTypeDto.getname());
+		paymentType.setcode(paymentTypeDto.getcode());
 		paymentTypeRepository.save(paymentType);
 		
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);	

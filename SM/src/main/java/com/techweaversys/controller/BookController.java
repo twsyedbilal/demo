@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techweaversys.dto.AttendanceSpaceDto;
 import com.techweaversys.dto.BookDto;
 import com.techweaversys.dto.BookSpaceDto;
 import com.techweaversys.service.BookService;

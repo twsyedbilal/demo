@@ -19,43 +19,43 @@ public class PaymentType extends AbstractPersistable {
 	private static final long serialVersionUID = -1669751946416320963L;
 
 	@Column(name = "payment_type_name", nullable = false)
-	private String paymentTypeName;
+	private String name;
 
 	@Column(name = "payment_type_code")
-	private String paymentTypeCode;
+	private String code;
 
 	public PaymentType() {
 		super();
 	}
 
-	public PaymentType(String paymentTypeName, String paymentTypeCode) {
+	public PaymentType(String name, String code) {
 		super();
-		this.paymentTypeName = paymentTypeName;
-		this.paymentTypeCode = paymentTypeCode;
+		this.name = name;
+		this.code = code;
 	}
 
-	public String getPaymentTypeName() {
-		return paymentTypeName;
+	public String getname() {
+		return name;
 	}
 
-	public void setPaymentTypeName(String paymentTypeName) {
-		this.paymentTypeName = paymentTypeName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getPaymentTypeCode() {
-		return paymentTypeCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setPaymentTypeCode(String paymentTypeCode) {
-		this.paymentTypeCode = paymentTypeCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((paymentTypeCode == null) ? 0 : paymentTypeCode.hashCode());
-		result = prime * result + ((paymentTypeName == null) ? 0 : paymentTypeName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -68,22 +68,22 @@ public class PaymentType extends AbstractPersistable {
 		if (getClass() != obj.getClass())
 			return false;
 		PaymentType other = (PaymentType) obj;
-		if (paymentTypeCode == null) {
-			if (other.paymentTypeCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!paymentTypeCode.equals(other.paymentTypeCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (paymentTypeName == null) {
-			if (other.paymentTypeName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!paymentTypeName.equals(other.paymentTypeName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "PaymentType [paymentTypeName=" + paymentTypeName + ", paymentTypeCode=" + paymentTypeCode + "]";
+		return "PaymentType [name=" + name + ", code=" + code + "]";
 	}
 
 }

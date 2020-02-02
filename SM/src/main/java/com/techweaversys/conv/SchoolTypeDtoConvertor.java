@@ -10,7 +10,7 @@ public class SchoolTypeDtoConvertor implements Function<SchoolType, SchoolTypeDt
      public SchoolTypeDto apply(SchoolType st) {
              
              SchoolTypeDto std=new SchoolTypeDto();
-             std.setSchoolTypeName(st.getSchoolTypeName());
+             std.setname(st.getname());
              std.setCode(st.getCode());
              std.setId(st.getId());
              return std;

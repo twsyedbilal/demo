@@ -45,8 +45,8 @@ public class ReligionServiceImpl implements ReligionService {
 			religion = religionRepository.getOne(religionDto.getId());
 		}
 		
-		religion.setReligionName(religionDto.getname());
-		religion.setReligionCode(religionDto.getcode());
+		religion.setname(religionDto.getname());
+		religion.setcode(religionDto.getcode());
 		religionRepository.save(religion);
 		
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);

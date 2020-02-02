@@ -44,8 +44,8 @@ public class BookSerivceImpl implements BookService {
 			bb = bookRepository.getOne(dto.getId());
 		}
 
-		bb.setBookName(dto.getname());
-		bb.setBookCode(dto.getcode());
+		bb.setname(dto.getname());
+		bb.setcode(dto.getcode());
 		bookRepository.save(bb);
 
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);

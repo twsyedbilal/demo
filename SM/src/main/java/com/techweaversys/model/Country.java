@@ -13,7 +13,7 @@ import com.techweaversys.generics.AbstractPersistable;
 @Where(clause = "deleted=false")
 public class Country extends AbstractPersistable {
 
-	/**
+	/**0
 	 * 
 	 */
 	private static final long serialVersionUID = 2877399532939501924L;

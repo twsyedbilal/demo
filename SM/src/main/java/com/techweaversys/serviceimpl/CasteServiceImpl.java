@@ -58,8 +58,8 @@ public class CasteServiceImpl implements CasteService {
 			}
 		}
 
-		caste.setCasteName(casteDto.getname());
-		caste.setCasteCode(casteDto.getcode());
+		caste.setname(casteDto.getname());
+		caste.setcode(casteDto.getcode());
 		casteRepository.save(caste);
 
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);

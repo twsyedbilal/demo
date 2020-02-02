@@ -9,8 +9,8 @@ public class CasteDtoConvertor implements Function<Caste, CasteDto>{
 	@Override
 	public CasteDto apply(Caste input) {
 		CasteDto dto = new CasteDto();
-		dto.setname(input.getCasteName());
-		dto.setcode(input.getCasteCode());
+		dto.setname(input.getname());
+		dto.setcode(input.getcode());
 		return dto;
 	}
 }

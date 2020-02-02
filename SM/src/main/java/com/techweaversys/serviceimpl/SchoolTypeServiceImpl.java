@@ -13,21 +13,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.techweaversys.conv.SchooDtoConvertor;
 import com.techweaversys.conv.SchoolTypeDtoConvertor;
 import com.techweaversys.dto.PageDto;
-import com.techweaversys.dto.SchoolDto;
 import com.techweaversys.dto.SchoolTypeDto;
 import com.techweaversys.dto.SchoolTypeSpecDto;
 import com.techweaversys.generics.AppConstants;
 import com.techweaversys.generics.Code;
 import com.techweaversys.generics.Messages;
 import com.techweaversys.generics.Response;
-import com.techweaversys.model.SchoolEntityy;
 import com.techweaversys.model.SchoolType;
 import com.techweaversys.repository.SchoolTypeRepository;
 import com.techweaversys.service.SchoolTypeService;
-import com.techweaversys.spec.SchoolSpace;
 import com.techweaversys.spec.SchoolTypeSpec;
 
 import ch.qos.logback.classic.Logger;
@@ -48,7 +44,7 @@ public class SchoolTypeServiceImpl implements SchoolTypeService {
 		if (ss.getId() != null) {
 			sh = str.getOne(ss.getId());
 		}
-		sh.setSchoolTypeName(ss.getSchoolTypeName());
+		sh.setname(ss.getname());
 		sh.setCode(ss.getCode());
 		str.save(sh);
 
@@ -84,7 +80,7 @@ public class SchoolTypeServiceImpl implements SchoolTypeService {
 	public ResponseEntity<?> findAllwithpage(SchoolTypeSpecDto dto) {
 		logger.info("Showing list of school_type", dto);
 		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
-		Page<SchoolType> school = str.findAll(new SchoolTypeSpec(dto.getSchoolTypeName(), dto.getCode()), bb);
+		Page<SchoolType> school = str.findAll(new SchoolTypeSpec(dto.getname(), dto.getCode()), bb);
 		List<SchoolTypeDto> list = school.stream().map(new SchoolTypeDtoConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, school.getTotalElements());
 		return Response.build(Code.OK, pageDto);
