@@ -11,7 +11,7 @@ public class SocietyConvertor implements Function<SocietyEntity, SocietyDto> {
 	@Override
 	public SocietyDto apply(SocietyEntity se) {
 		SocietyDto sd=new SocietyDto();
-		sd.setname(se.getSocietyName());
+		sd.setname(se.getname());
 		sd.setCode(se.getCode());
 		sd.setId(se.getId());
 		return null;

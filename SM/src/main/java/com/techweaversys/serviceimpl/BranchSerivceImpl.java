@@ -45,8 +45,8 @@ public class BranchSerivceImpl implements BranchService {
 			bb = BranchRepository.getOne(dto.getId());
 		}
 
-		bb.setBrancCode(dto.getcode());
-		bb.setBranchName(dto.getname());
+		bb.setcode(dto.getcode());
+		bb.setname(dto.getname());
 		BranchRepository.save(bb);
 
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);

@@ -19,28 +19,28 @@ public class BranchEntity extends AbstractPersistable {
 	private static final long serialVersionUID = 4869638572659268902L;
 
 	@Column(name = "branchname", unique = true, nullable = false)
-	private String branchName;
+	private String name;
 
 	@Column(name = "branccode", nullable = true)
-	private String branchCode;
+	private String code;
 	
 	
 	public BranchEntity() {
 		super();
 	}
 
-	public BranchEntity(String branchName, String branchCode) {
+	public BranchEntity(String name, String code) {
 		super();
-		this.branchName = branchName;
-		this.branchCode = branchCode;
+		this.name = name;
+		this.code = code;
 	}
 
-	public String getBranchCode () {
-		return branchCode;
+	public String getcode () {
+		return code;
 	}
 
-	public void setBranchCode(String branchCode) {
-		this.branchCode = branchCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 
@@ -48,28 +48,28 @@ public class BranchEntity extends AbstractPersistable {
 		  return serialVersionUID;
 	}
 
-	public String getBranchName() {
-		return branchName;
+	public String getname() {
+		return name;
 	}
 
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getBrancCode() {
-		return branchCode;
+		return code;
 	}
 
 	public void setBrancCode(String brancCode) {
-		this.branchCode = brancCode;
+		this.code = brancCode;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((branchCode == null) ? 0 : branchCode.hashCode());
-		result = prime * result + ((branchName == null) ? 0 : branchName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -82,22 +82,22 @@ public class BranchEntity extends AbstractPersistable {
 		if (getClass() != obj.getClass())
 			return false;
 		BranchEntity other = (BranchEntity) obj;
-		if (branchCode == null) {
-			if (other.branchCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!branchCode.equals(other.branchCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (branchName == null) {
-			if (other.branchName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!branchName.equals(other.branchName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "BranchEntity [branchName=" + branchName + ", branchCode=" + branchCode + "]";
+		return "BranchEntity [name=" + name + ", code=" + code + "]";
 	}
 
 }

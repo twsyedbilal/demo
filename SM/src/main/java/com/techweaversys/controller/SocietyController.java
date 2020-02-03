@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techweaversys.dto.SchoolTypeSpecDto;
 import com.techweaversys.dto.SocietyDto;
 import com.techweaversys.dto.SocietySpaceDto;
 import com.techweaversys.service.SocietyService;

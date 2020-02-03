@@ -19,7 +19,7 @@ public class SocietyEntity extends AbstractPersistable {
 	private static final long serialVersionUID = 1685500123079142613L;
 
 	@Column(name = "society_name")
-	private String societyName;
+	private String name;
 
 	@Column(name = "code")
 	private String code;
@@ -28,18 +28,18 @@ public class SocietyEntity extends AbstractPersistable {
 		super();
 	}
 
-	public SocietyEntity(String societyName, String code) {
+	public SocietyEntity(String name, String code) {
 		super();
-		this.societyName = societyName;
+		this.name = name;
 		this.code = code;
 	}
 
-	public String getSocietyName() {
-		return societyName;
+	public String getname() {
+		return name;
 	}
 
-	public void setSocietyName(String societyName) {
-		this.societyName = societyName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getCode() {
@@ -55,7 +55,7 @@ public class SocietyEntity extends AbstractPersistable {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
-		result = prime * result + ((societyName == null) ? 0 : societyName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -73,17 +73,17 @@ public class SocietyEntity extends AbstractPersistable {
 				return false;
 		} else if (!code.equals(other.code))
 			return false;
-		if (societyName == null) {
-			if (other.societyName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!societyName.equals(other.societyName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "SocietyEntity [societyName=" + societyName + ", code=" + code + "]";
+		return "SocietyEntity [name=" + name + ", code=" + code + "]";
 	}
 
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techweaversys.dto.SchoolSpaceDto;
 import com.techweaversys.dto.SchoolTypeDto;
 import com.techweaversys.dto.SchoolTypeSpecDto;
 import com.techweaversys.service.SchoolTypeService;
@@ -19,13 +18,13 @@ import com.techweaversys.service.SchoolTypeService;
 public class SchoolTypeController {
 
 	@Autowired
-	public SchoolTypeService  schooltypeservice;
+	public SchoolTypeService schooltypeservice;
 
-	
 	@PostMapping(value = "save")
 	public ResponseEntity<?> saveRecord(@RequestBody SchoolTypeDto schoolType) {
 		return schooltypeservice.saveRecord(schoolType);
 	}
+
 	@GetMapping(value = "getbyid/{id}")
 	public ResponseEntity<?> getById(@PathVariable Long id) {
 		return schooltypeservice.getById(id);
@@ -50,5 +49,4 @@ public class SchoolTypeController {
 
 	}
 
-	
 }

@@ -48,8 +48,8 @@ public class OccupationServiceImpl implements OccupationService{
 			occupation = occupationRepository.getOne(occupationDto.getId());
 		}
 		
-		occupation.setOccupationName(occupationDto.getname());
-		occupation.setOccupationCode(occupationDto.getcode());
+		occupation.setname(occupationDto.getname());
+		occupation.setcode(occupationDto.getcode());
 		occupationRepository.save(occupation);
 		
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);	

@@ -44,7 +44,7 @@ public class SocietyServiceImpl implements SocietyService {
 		if (dto.getId() != null) {
 			sh = societyRepository.getOne(dto.getId());
 		}
-		sh.setSocietyName(dto.getname());
+		sh.setname(dto.getname());
 		sh.setCode(dto.getCode());
 		societyRepository.save(sh);
 

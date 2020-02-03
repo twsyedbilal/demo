@@ -19,43 +19,43 @@ public class Occupation extends AbstractPersistable{
 	private static final long serialVersionUID = -3097611508839667446L;
 
 	@Column(name = "occupation_name",nullable = false)
-	private String occupationName;
+	private String name;
 	
 	@Column(name = "occupation_code")
-	private String occupationCode;
+	private String code;
 
 	public Occupation() {
 		super();
 	}
 
-	public Occupation(String occupationName, String occupationCode) {
+	public Occupation(String name, String code) {
 		super();
-		this.occupationName = occupationName;
-		this.occupationCode = occupationCode;
+		this.name = name;
+		this.code = code;
 	}
 
-	public String getOccupationName() {
-		return occupationName;
+	public String getname() {
+		return name;
 	}
 
-	public void setOccupationName(String occupationName) {
-		this.occupationName = occupationName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public String getOccupationCode() {
-		return occupationCode;
+	public String getcode() {
+		return code;
 	}
 
-	public void setOccupationCode(String occupationCode) {
-		this.occupationCode = occupationCode;
+	public void setcode(String code) {
+		this.code = code;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((occupationCode == null) ? 0 : occupationCode.hashCode());
-		result = prime * result + ((occupationName == null) ? 0 : occupationName.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -68,21 +68,21 @@ public class Occupation extends AbstractPersistable{
 		if (getClass() != obj.getClass())
 			return false;
 		Occupation other = (Occupation) obj;
-		if (occupationCode == null) {
-			if (other.occupationCode != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!occupationCode.equals(other.occupationCode))
+		} else if (!code.equals(other.code))
 			return false;
-		if (occupationName == null) {
-			if (other.occupationName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!occupationName.equals(other.occupationName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Occupation [occupationName=" + occupationName + ", occupationCode=" + occupationCode + "]";
+		return "Occupation [name=" + name + ", code=" + code + "]";
 	}	
 }
