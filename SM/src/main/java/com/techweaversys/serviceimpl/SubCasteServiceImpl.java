@@ -48,7 +48,7 @@ public class SubCasteServiceImpl implements SubCasteService {
 			subCaste = subCasteRepository.getOne(subCasteDto.getId());
 		}
 		
-		subCaste.setcode(subCasteDto.getname());
+		subCaste.setname(subCasteDto.getname());
 		subCaste.setcode(subCasteDto.getcode());
 		subCasteRepository.save(subCaste);
 		
