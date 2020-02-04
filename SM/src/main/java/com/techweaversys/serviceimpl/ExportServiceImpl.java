@@ -30,11 +30,11 @@ import com.techweaversys.model.MotherTongueEntity;
 import com.techweaversys.model.NationalityEntity;
 import com.techweaversys.model.Religion;
 import com.techweaversys.model.State;
+import com.techweaversys.model.SubCaste;
 import com.techweaversys.repository.AddressRepository;
 import com.techweaversys.repository.AdmissionRepository;
 import com.techweaversys.repository.DocumentRepository;
 import com.techweaversys.service.ExportService;
-import com.techweaversys.utility.Constants;
 
 @Service
 @Transactional
@@ -689,11 +689,10 @@ public class ExportServiceImpl implements ExportService {
 		}
 		return bos.toByteArray();
 	}
-	
+
 	@Override
 	public byte[] downloadPdfPrimaryTc(Long id, HttpServletResponse response) {
 		Admission admission = admissionRepository.getOne(id);
-
 		String s = admission.getStudentsName();
 		String m = admission.getMothersName();
 		String f = admission.getFathersName();
@@ -701,50 +700,44 @@ public class ExportServiceImpl implements ExportService {
 		Caste caste = admission.getCaste();
 		String idno = admission.getIdNo();
 		Religion religion = admission.getReligion();
+		String rname = religion.getname();
 		String placeofbirth = admission.getPlaceOfBirth();
 		NationalityEntity nationality = admission.getNationality();
 		String dateofbirthinwords = admission.getDateOfBirthInWords();
-		Class<? extends Admission> classs = admission.getClass();
 		String rgno = admission.getStudentRegNo();
 		Long uidno = admission.getUidNo();
-		 String placeofbirths=admission.getPlaceOfBirth();
+		String placeofbirths = admission.getPlaceOfBirth();
 		Calendar dateofadmission = admission.getDate();
 		MotherTongueEntity mother_tongue = admission.getMotherTongue();
-
 		Country country = new Country();
 		String c = country.getCountryName();
-
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		Context context = new Context();
 		context.setVariable("placeOfBirth", placeofbirths);
 		context.setVariable("studentRegNo", rgno);
+		context.setVariable("placeofbirth", placeofbirth);
 		context.setVariable("studentsName", s);
 		context.setVariable("mothersName", m);
-		context.setVariable("fathersName", m);
+		context.setVariable("fathersName", f);
 		context.setVariable("fathersName", m);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
-		context.setVariable("religion", religion);
+		context.setVariable("rname", rname);
 		context.setVariable("nationality", nationality);
 		context.setVariable("dateOfBirthInWords", dateofbirthinwords);
 		context.setVariable("name", mother_tongue);
 		context.setVariable("uidNo", uidno);
 		context.setVariable("countryName", c);
-
 		context.setVariable("date", dateofadmission);
-
 		context.setVariable("fathersName", m);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
 
+		context.setVariable("studentid", studentid);
 		String html = templateEngine.process("primary_school_tc", context);
-		String htmll = templateEngine.process("high_school", context);
-
 		ITextRenderer renderer = new ITextRenderer();
-
 		renderer.setDocumentFromString(html);
 		renderer.layout();
-
 		try {
 			renderer.createPDF(bos, false);
 		} catch (DocumentException e) {
@@ -765,7 +758,6 @@ public class ExportServiceImpl implements ExportService {
 	@Override
 	public byte[] downloadPdfHighSchoolTc(Long id, HttpServletResponse response) {
 		Admission admission = admissionRepository.getOne(id);
-
 		String s = admission.getStudentsName();
 		String m = admission.getMothersName();
 		String f = admission.getFathersName();
@@ -776,23 +768,21 @@ public class ExportServiceImpl implements ExportService {
 		String placeofbirth = admission.getPlaceOfBirth();
 		NationalityEntity nationality = admission.getNationality();
 		String dateofbirthinwords = admission.getDateOfBirthInWords();
-		Class<? extends Admission> classs = admission.getClass();
+
 		String rgno = admission.getStudentRegNo();
 		Long uidno = admission.getUidNo();
-
 		Calendar dateofadmission = admission.getDate();
 		MotherTongueEntity mother_tongue = admission.getMotherTongue();
-
 		Country country = new Country();
 		String c = country.getCountryName();
-
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		Context context = new Context();
 		context.setVariable("studentRegNo", rgno);
 		context.setVariable("studentsName", s);
 		context.setVariable("mothersName", m);
-		context.setVariable("fathersName", m);
-		context.setVariable("fathersName", m);
+		context.setVariable("fathersName", f);
+		context.setVariable("studentid",studentid);
+		context.setVariable("placeofbirth",placeofbirth);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
 		context.setVariable("religion", religion);
@@ -801,21 +791,15 @@ public class ExportServiceImpl implements ExportService {
 		context.setVariable("name", mother_tongue);
 		context.setVariable("uidNo", uidno);
 		context.setVariable("countryName", c);
-
 		context.setVariable("date", dateofadmission);
-
 		context.setVariable("fathersName", m);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
-	//	context.setVariable("m1",Constants.tchighschoolM);
-
+		// context.setVariable("m1",Constants.tchighschoolM);
 		String html = templateEngine.process("high_school", context);
-
 		ITextRenderer renderer = new ITextRenderer();
-
 		renderer.setDocumentFromString(html);
 		renderer.layout();
-
 		try {
 			renderer.createPDF(bos, false);
 		} catch (DocumentException e) {
@@ -836,7 +820,6 @@ public class ExportServiceImpl implements ExportService {
 	@Override
 	public byte[] downloadPdfJrCollegeTc(Long id, HttpServletResponse response) {
 		Admission admission = admissionRepository.getOne(id);
-
 		String s = admission.getStudentsName();
 		String m = admission.getMothersName();
 		String f = admission.getFathersName();
@@ -844,37 +827,32 @@ public class ExportServiceImpl implements ExportService {
 		Caste caste = admission.getCaste();
 		String idno = admission.getIdNo();
 		Religion religion = admission.getReligion();
-		String placeofbirth = admission.getPlaceOfBirth();
 		NationalityEntity nationality = admission.getNationality();
 		String dateofbirthinwords = admission.getDateOfBirthInWords();
-		Class<? extends Admission> classs = admission.getClass();
+
 		String rgno = admission.getStudentRegNo();
 		Long uidno = admission.getUidNo();
-		  String placeofb=admission.getPlaceOfBirth();
+		String placeofb = admission.getPlaceOfBirth();
 		Calendar dateofadmission = admission.getDate();
 		MotherTongueEntity mother_tongue = admission.getMotherTongue();
-		
-		Address ad=new Address();
-      City city=   ad.getCity();
-      
-    
-        State state= ad.getState();
-        Country country=ad.getCountry();
-        Compliant Compliant=new Compliant();
-         String remark= Compliant.getRemark();
+		Address ad = new Address();
+		City city = ad.getCity();
+		State state = ad.getState();
+		Country country = ad.getCountry();
+		Compliant Compliant = new Compliant();
+		String remark = Compliant.getRemark();
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		Context context = new Context();
 		context.setVariable("city", city);
 		context.setVariable("satate", state);
 		context.setVariable("country", country);
 		context.setVariable("remark", remark);
-		
 		context.setVariable("placeOfBirth", placeofb);
 		context.setVariable("studentRegNo", rgno);
 		context.setVariable("studentsName", s);
 		context.setVariable("mothersName", m);
-		context.setVariable("fathersName", m);
-		context.setVariable("fathersName", m);
+		context.setVariable("fathersName", f);
+		context.setVariable("studentid", studentid);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
 		context.setVariable("religion", religion);
@@ -882,21 +860,14 @@ public class ExportServiceImpl implements ExportService {
 		context.setVariable("dateOfBirthInWords", dateofbirthinwords);
 		context.setVariable("name", mother_tongue);
 		context.setVariable("uidNo", uidno);
-		
-
 		context.setVariable("date", dateofadmission);
-
 		context.setVariable("fathersName", m);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
-		
 		String html = templateEngine.process("jr_college_tc", context);
-
 		ITextRenderer renderer = new ITextRenderer();
-
 		renderer.setDocumentFromString(html);
 		renderer.layout();
-
 		try {
 			renderer.createPDF(bos, false);
 		} catch (DocumentException e) {
@@ -917,34 +888,41 @@ public class ExportServiceImpl implements ExportService {
 	@Override
 	public byte[] downloadPdfNilgamutara(Long id, HttpServletResponse response) {
 		Admission admission = admissionRepository.getOne(id);
-
 		String s = admission.getStudentsName();
 		String m = admission.getMothersName();
 		String f = admission.getFathersName();
 		String studentid = admission.getIdNo();
 		Caste caste = admission.getCaste();
 		String idno = admission.getIdNo();
-		Religion religion = admission.getReligion();
 		String placeofbirth = admission.getPlaceOfBirth();
-		NationalityEntity nationality = admission.getNationality();
 		String dateofbirthinwords = admission.getDateOfBirthInWords();
-		Class<? extends Admission> classs = admission.getClass();
 		String rgno = admission.getStudentRegNo();
 		Long uidno = admission.getUidNo();
-
+		String nilgamheader = environment.getRequiredProperty("bonafideheader.print.image") + "nilgamphoto.jpg";
 		Calendar dateofadmission = admission.getDate();
 		MotherTongueEntity mother_tongue = admission.getMotherTongue();
-
-		Country country = new Country();
-		String c = country.getCountryName();
-
+		String lan = mother_tongue.getName();
+		Caste ca = admission.getCaste();
+		String castee = ca.getname();
+		SubCaste scaste = admission.getSubCaste();
+		String subcaste = scaste.getname();
+		Religion religion = admission.getReligion();
+		Class<? extends Religion> religions = religion.getClass();
+		NationalityEntity nationality = admission.getNationality();
+		String nationlitys = nationality.getName();
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		Context context = new Context();
+		context.setVariable("PlaceOfBirth", placeofbirth);
+		context.setVariable("religions", religions);
+		context.setVariable("nationlitys", nationlitys);
+		context.setVariable("castee", castee);
+		context.setVariable("lan", lan);
 		context.setVariable("studentRegNo", rgno);
+		context.setVariable("name", mother_tongue);
 		context.setVariable("studentsName", s);
 		context.setVariable("mothersName", m);
-		context.setVariable("fathersName", m);
-		context.setVariable("fathersName", m);
+		context.setVariable("fathersName", f);
+		context.setVariable("studentid", studentid);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
 		context.setVariable("religion", religion);
@@ -952,22 +930,16 @@ public class ExportServiceImpl implements ExportService {
 		context.setVariable("dateOfBirthInWords", dateofbirthinwords);
 		context.setVariable("name", mother_tongue);
 		context.setVariable("uidNo", uidno);
-		context.setVariable("countryName", c);
-
+		context.setVariable("nilgamheader", nilgamheader);
 		context.setVariable("date", dateofadmission);
-
-		context.setVariable("fathersName", m);
+		context.setVariable("subcaste", subcaste);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
-	//	context.setVariable("m1",Constants.tchighschoolM);
 
-		String html = templateEngine.process("NilgamUtarapdf", context);
-
+		String html = templateEngine.process("NigamUtarapdfnew", context);
 		ITextRenderer renderer = new ITextRenderer();
-
 		renderer.setDocumentFromString(html);
 		renderer.layout();
-
 		try {
 			renderer.createPDF(bos, false);
 		} catch (DocumentException e) {
@@ -984,7 +956,4 @@ public class ExportServiceImpl implements ExportService {
 		}
 		return bos.toByteArray();
 	}
-	}
-
-
-
+}

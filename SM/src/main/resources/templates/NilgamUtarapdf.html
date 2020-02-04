@@ -1,35 +1,370 @@
-
-
 <!DOCTYPE html>
-<html lang="mr">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head> 
+<title>Student Id Card</title>	
+<style type="text/css">
+	@media print{
+  		.page{
+  			min-height:315px;
+  			/* margin-bottom:40px; */
+  		}
 
-<head>
-<meta charset ="UTF-8"/>
-<meta charset="ISO-8859-1"/>
-<meta lang="mr"/>
 
-<style>
-.vidyatri
+#marathi_number
+{
+writing-mode: vertical-rl;
+transform: rotate(-180deg);
+text-align: center;
+}
+
+#nav {
+text-align: center;
+}
+#myDiv{
+
+}
+#mySpan{
+writing-mode: vertical-rl;
+transform: rotate(-180deg);
+text-align: center;
+
+}
+
+.school_name
 {
 
+}
+.two
+{
+height:106px;
+ width: 240px;
+  margin-left:70px;
+  margin-top: -80px;
+  text-align: left-top;
+  border-style: hidden
+}
+
+.three {
+height: 4px;
+ width: 250px;
+ margin-top:+2px;
+  margin-left:70px;
+ border: 3px solid red;
+ border-style: hidden
+  }
+  
+  .four {
+ height: 4px;
+ width: 250px;
+ margin-top:-10px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  }
+  
+
+.five {
+ height: 4px;
+ width: 250px;
+ margin-top:-14px;
+  margin-left:70px;
+ border: 3px solid green;
+ border-style: hidden
+  }
+  
+  .six {
+ height: 4px;
+ width: 250px;
+ margin-top:-7px;
+  margin-left:70px;
+ border: 3px solid #7FFF00;
+ border-style: hidden
+  }
+  
+  .seven {
+ height: 4px;
+ width: 250px;
+ margin-top:-13px;
+  margin-left:70px;
+ border: 3px solid red;
+ border-style: hidden
+ 
+  }
+  .eight {
+ height: 4px;
+ width: 250px;
+ margin-top: -10px;
+  margin-left:70px;
+ border: 3px solid darkblue;
+ border-style: hidden
+  }
+  .nine {
+ height: 4px;
+ width: 250px;
+ margin-top: -11px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  }
+  .ten {
+ height: 4px;
+ width: 250px;
+ margin-top: -11px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  }
+  .eleven {
+ height: 10px;
+ width: 250px;
+ margin-top: 112px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  }
+  .twelve {
+ height: 70px;
+ width: 250px;
+ margin-top:+14px;
+  margin-left:70px;
+ border: 3px solid red;
+ border-style: hidden
+  }
+   .thirteen {
+ height: 6px;
+ width: 250px;
+ margin-top:-17px;
+  margin-left:70px;
+ border: 3px solid #8A2BE2;
+ border-style: hidden
+  }
+ .fourteen {
+ height: 4px;
+ width: 250px;
+ margin-top:-16px;
+  margin-left:70px;
+ border: 3px solid 	#0095B6;
+ border-style: hidden
+  }
+  .fifteen {
+ height: 6px;
+ width: 250px;
+ margin-top:-16px;
+  margin-left:70px;
+ border: 3px solid 	yellow;
+ border-style: hidden
+  }
+  
+  .sixteen {
+ height: 6px;
+ width: 250px;
+ margin-top:+4px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  }
+  .seventeen {
+ height: 6px;
+ width: 250px;
+ margin-top:-10px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  }
+  .eighteen {
+ height: 6px;
+ width: 250px;
+ margin-top:7px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  }
+  .nineteen {
+ height: 6px;
+ width: 250px;
+ margin-top:-15px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  }
+  .twenty {
+ height: 6px;
+ width: 250px;
+ margin-top:-3px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  }
+  
+  .twenty-one {
+ height: 8px;
+ width: 250px;
+ margin-top:-6px;
+  margin-left:70px;
+ border: 3px solid yellow;
+ border-style: hidden
+  } */
+  
+  
+.empty2{
+height: 90px;
+ width: 250px;
+ margin-left:70px;
+margin-top: 50px;
+
+}
+.empty
+{
+
+margin-left:70px;
+margin-top: -3250px;
+height: 10px;
+ width: 250px;
 text-align: center;
-font-weight: bold;
+ white-space: pre;
+  margin: 70px;
+  border-style: hidden
+  
+}
+
+
+.student_name{
+margin-left:70px;
+margin-top: -3250px;
+height: 10px;
+ width: 250px;
+text-align: center;
+ white-space: pre;
+  margin: 70px;
 
 
 }
+.rowone{
+line-height: 0.5;
+height: 20px;
+  width: 28px;
+border-style: none;
+ white-space: pre;
+  margin: 190px;
+  border-style: hidden;
+
+}
+
+.num{
+
+line-height: 0.5;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  
+  
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+img
+{
+ background-color: yellow;
+  -ms-transform: rotate(20deg); /* IE 9 */
+  -webkit-transform: rotate(20deg); /* Safari 3-8 */
+  transform: rotate(3deg);
+  
+}
+
+.table  {
+margin-top: -870px;
+margin-left: 190px;
+border-collapse: collapse;
+}
+.tablesdata
+{
+
+
+transform:rotate(270deg);}
+img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+
+}
+
+
+.ver{
+writing-mode: vertical-lr;
+transform: rotate(90deg);
+text-align: left;
+
+}
+
+
 </style>
-<title>Primary TC</title>
 </head>
-<body class="border">
+<body>
+ 
+   <img  th:src="@{${nilgamheader}}" title="" class="" style="width: 80%; height: 80%" ></img>
+   <table class="empty" >        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${studentRegNo}">  </pre></th></tr></table>
+     <table class="two" >        
+     <tr class="table" ><th><pre id="empty_table" th:text="${studentsName}">  </pre></th></tr></table>
+     <table class="three" >  
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${idNo}">  </pre></th></tr></table>
+     <table class="four" >        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
+     <table class="five" >        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${mothersName}">  </pre></th></tr></table>
+<table class="six" >        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${nationlitys}">  </pre></th></tr></table>
+     <table class="seven" > 
+            
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${lan}">  </pre></th></tr></table>
+     <table class="eight" >     
+        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${rname}">  </pre></th></tr></table>
+     <table class="nine" >  
+           
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${castee}">  </pre></th></tr></table>
+     <table class="ten" > 
+            
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${subcaste}">  </pre></th></tr></table>
+     <table class="eleven" > 
+            
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${placeofBirth}">  </pre></th></tr></table>
+     <table class="twelve" >  
+           
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${dateOfBirthInWords}">  </pre></th></tr></table>
+     <table class="thirteen" >     
+  
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
+     <table class="fourteen" >        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
+     <table class="fifteen" >        
 
-	<div style='border: 2px solid black; overflow: hidden; display: block'>
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
 
-		<p class="vidyatri">विद्यार्थी प्रवेश निर्गम प्रमाणे नोंदणी फार्म</p>
-		<pre> शाळेचे नांव___                तालुका______               जिल्हा__            पान नं. ()</pre>
-		
-		<h class="tcno">TC.NO.: <span style='margin-left: 0%'
-			th:text="${none}"></span></h>
-		<pre> </pre>
-	</div>
+
+
+<table class="sixteen" > 
+            
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
+     <table class="seventeen" >  
+           
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
+     <table class="eighteen" >     
+        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
+     <table class="nineteen" >        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
+     <table class="twenty" >        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
+ <table class="twenty-one" >        
+     <tr class="rowone" ><th><pre id="empty_table" th:text="${uidNo}">  </pre></th></tr></table>
+
+ </table>
+ <p class="school_name"th:text="${uidNo}"></p>
+
 </body>
 </html>

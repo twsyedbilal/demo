@@ -5,27 +5,18 @@
 <head>
 
 <style type="text/css">
-	@media print{
-  		.page{
-  			min-height:315px;
-  			/* margin-bottom:40px; */
-  		}
-  	}
+@media print {
+	.page {
+		min-height: 315px;
+		/* margin-bottom:40px; */
+	}
+}
+
 .uidse_no {
 	text-align: center;
 	font-size: 18px;
 	font-weight: bold;
 }
-
-.udise {
-	margin-left: 4px;
-	margin-bottom: 4px;
-}
-
-.tcno {
-	margin-left: 4px;
-}
-
 .regd_no {
 	font-size: 12px;
 	margin-left: 1px;
@@ -35,14 +26,65 @@
 	margin-left: 6px;
 }
 
+.udise {
+	text-align: center;
+}
+
+
+
+.mother_name {
+	margin-left: 4px;
+}
+
+.student_id_no{
+margin-left: 4px;
+
+}
+.religion {
+padding-top: 123px;
+	padding-right: 65px;
+	padding-bottom: 30px;
+	padding-left: 300px;
+
+}
+
+.date_of_issue {
+padding-top: 123px;
+	padding-right: 110px;
+	padding-bottom: 30px;
+	padding-left: 246px;
+
+}
+
+
+
+.jr {
+	margin-left: 0px;
+}
+
 .r {
 	font-size: 13px;
 	margin-left: 4px;
 }
 
+.attendance
+{
+	padding-top: 123px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	padding-left: 260px;
+}
+.conduct {
+	padding-top: 123px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	padding-left: 280px;
+}
 .note {
-	font-size: 13px;
+	font-size: 14px;
 	margin-left: 4px;
+	margin-right: 2px;
+	text-align:justify;
 }
 
 .pre {
@@ -50,7 +92,6 @@
 	line-height: 2.0;
 	font-family: Roboto, 'Segoe UI', Tahoma, sans-serifbody;
 }
-
 
 .list {
 	font-size: 14px;
@@ -65,16 +106,20 @@
 }
 
 .orignal {
+padding-top: 170px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	padding-left: 100px;
 	text-align: center;
 	margin-top: 8px;
 	margin-bottom: 10px;
 	margin-right: 10%;
 	text-align: center;
 	margin-left: 10px;
-	border: 2px solid black;
+	border: 1px solid black;
 	font-family: Verdana;
 	font-size: 11px;
-	padding: 0px 3px 1px 3px;
+	padding: 1px 10px 1px 10px;
 	font-weight: bold;
 }
 
@@ -91,12 +136,52 @@
 	height: auto;
 	border: 2px solid black;
 	weigth: auto;
+	
 }
-
+.caste
+{
+text-align:justify;
+}
 .school {
 	text-align: center;
 	font-weight: bold;
 	font-size: 23px;
+}
+
+.taluka {
+	padding-top: 123px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	padding-left: 110px;
+}
+.distric {
+	padding-top: 123px;
+	padding-right: 45px;
+	padding-bottom: 30px;
+	padding-left: 80px;
+}
+
+
+
+
+.country {
+	padding-top: 123px;
+	padding-right: 45px;
+	padding-bottom: 30px;
+	padding-left: 80px;
+}
+.natinality {
+	padding-top: 123px;
+	padding-right: 45px;
+	padding-bottom: 30px;
+	padding-left: 80px;
+}
+
+.garn {
+	padding-top: 123px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	padding-left: 300px;
 }
 
 .al-rizwan {
@@ -105,7 +190,7 @@
 	font-size: 55px;
 }
 </style>
-<title>Primary TC</title>
+<title>High School TC</title>
 </head>
 <body class="border">
 
@@ -129,9 +214,10 @@
 		<h class="tcno">TC.NO.: <span style='margin-left: 0%'
 			th:text="${none}"></span></h>
 
-		<h style='margin-left: 40%'>General Admission Reg. No. <span
+		<h style='margin-left: 49%'>General Admission Reg. No. <span
 			style='margin-left: 0%' th:text="${studentRegNo}"></span></h>
-		<p class="jr">
+			
+			<p class="jr">
 			Jr. College Recognistion No. :<b class="regd_no"> Regd. No. Govt.
 				Maharashtra SFA-1014/Pra.No.170/SM-2 Date : 2 June 2015 Yadi No. 893</b>
 		</p>
@@ -146,38 +232,53 @@
 			Sec. Education Latur Divisional Board Latur</center>
 		</h>
 		<hr></hr>
+			
 		<div class="school_leave">
 			<strong><u> LEAVING CERTIFICATE</u></strong><br></br>
 		</div>
 		<div style='float: left; text-align: left'>
 			<ol class="list">
+			
+			<h class="student_id_no">Student ID No.  <span
+						style='margin-left: 0%' th:text="${studentRegNo}"></span></h> 
+						
+						<h class="date_of_issue">Date of Issue  <span style='margin-left: 0%'
+						th:text="${studentRegNo}"></span></h>
+						
+			<h class="pupil">UID No. (Aadhar No.) <span style='margin-left: 14%'
+					th:text="${studentsName}"></span></h>
+			
+			
 				<li class="pupil">Name of pupil: <span style='margin-left: 14%'
 					th:text="${studentsName}"></span>
 				</li>
 				<li class="f ather">Father's : Name <span
 					style='margin-left: 14%' th:text="${fathersName}"></span>
 				</li>
+				<li><h class="mother_name">Mother’s Name <span
+						style='margin-left: 0%' th:text="${studentRegNo}"></span></h> <h
+						class="religion">Religion <span style='margin-left: 0%'
+						th:text="${studentRegNo}"></span></h></li>
 
-				<li class="mother">Mother’s Name <span style='margin-left: 14%'
-					th:text="${mothersName}"></span>Religion : <span
-					style='margin-left: 100%' th:text="${religion}"></span></li>
-			
-								<li class="caste">Caste and sub-caste only in the case of
-					pupils belonging to Backward Classes and category among <br></br>Backward
-					Classes (e.g., S.C./S.T.etc.) <span style='margin-left: 14%'
-					th:text="${casteName}"></span>
-				</li>
-
-				<li class="dob">Place of birth<span style='margin-left: 14%'
-					th:text="${placeOfBirth}"></span> Taluka : <span style='margin-left: 14%'
-					th:text="${none}"></span> District <span style='margin-left: 14%'
-					th:text="${city}"></span><br></br> State <span
-					style='margin-left: 14%' th:text="${state}"></span> Country <span
-					style='margin-left: 14%' th:text="${country}"></span>
-					Nationality : <span style='margin-left: 14%'
-					th:text="${nationality}"></span></li>
+                    <li> <h class="caste"> Caste and sub-caste only in the case ofpupils belonging to Backward Classes and category among </h>
+                    <br></br> <h >Backward Classes (e.g., S.C./S.T. etc.) <span th:text="${studentRegNo}"/></h>
+                    </li>
 					
 					
+				<li>	<h class="place_of_birth">Place of birth  <span
+						style='margin-left: 0%' th:text="${studentRegNo}"></span></h>
+						 <h class="taluka">Taluka :  <span style='margin-left: 0%'
+						th:text="${studentRegNo}"></span></h> <h class="distric"> District  <span style='margin-left: 0%'
+						th:text="${studentRegNo}"></span></h>
+						
+						
+						<h class="state">State  <span
+						style='margin-left: 0%' th:text="${studentRegNo}"></span></h>
+						 <h class="country">Country <span style='margin-left: 0%'
+						th:text="${studentRegNo}"></span></h> <h class="natinality"> Nationality :  <span style='margin-left: 0%'
+						th:text="${studentRegNo}"></span></h></li>
+
+
 				<li class="date_of_birth">Date of birth, month and year
 					according to the Christian era in words <span
 					style='margin-left: 14%' th:text="${dateofbirthinwords}"></span>
@@ -198,25 +299,28 @@
 					style='margin-left: 14%' th:text="${idNo}"></span></li>
 
 
-				<li class="progress">Progress <span style='margin-left: 14%'
-					th:text="${idNo}"></span> Conduct <span style='margin-left: 14%'
-					th:text="${idNo}"></span></li>
-					
-					
+
+
+			<li><h class="progress">Progress  <span
+						style='margin-left: 0%' th:text="${none}"></span></h> <h
+						class="conduct">Conduct <span style='margin-left: 0%'
+						th:text="${none}"></span></h></li>
+
+
 				<li class="date_of_leave">Date of leaving the school <span
 					style='margin-left: 14%' th:text="${idNo}"></span></li>
-
 				<li class="reason">Reason of leaving the school <span
 					style='margin-left: 14%' th:text="${idNo}"></span></li>
-					
-					
-				<li class="mother_tongue">Mother Tongue : <span
-					style='margin-left: 14%' th:text="${mother_tongue}">
-					
-					</span>Attendance
-					<span style='margin-left: 14%' th:text="${none}"></span></li>
-					
-					
+
+
+
+                   <li><h class="mother_tongue">Mother Tongue : <span
+						style='margin-left: 0%' th:text="${none}"></span></h> <h
+						class="attendance">Attendance<span style='margin-left: 0%'
+						th:text="${none}"></span></h></li>
+
+
+
 				<li class="remarks">Remarks <span style='margin-left: 14%'
 					th:text="${remark}"></span>
 				</li>
@@ -227,14 +331,14 @@
 			</ol>
 
 			<p5> <span
-				style="text-align: left; margin-left: 14%; margin-bottom: 15%">Clerk</span>
+				style="text-align: left;    margin-right: 14%;margin-left: 14%; margin-bottom: 15%">Clerk</span>
 			<span
 				style="text-align: right; padding-left: 48%; margin-bottom: 15%">
 				Principal </span> </p5>
 			<div class="note">Note : No change in any entry in this
 				certificate shall be made except by trie authority issuing it and
-				any infringement of this</div>
-			<h class="r"> requirement is liable to involve the imposition of
+				any infringement </div>
+			<h class="r"> of this requirement is liable to involve the imposition of
 			penalty such as that of rustication.</h>
 		</div>
 	</div>
