@@ -51,7 +51,6 @@ import com.techweaversys.repository.CityRepository;
 import com.techweaversys.repository.ClassRepository;
 import com.techweaversys.repository.CountryRepository;
 import com.techweaversys.repository.DocumentRepository;
-import com.techweaversys.repository.LogRepository;
 import com.techweaversys.repository.MotherTongueRepository;
 import com.techweaversys.repository.NationalityRepository;
 import com.techweaversys.repository.OccupationRepository;
@@ -124,9 +123,6 @@ public class AdmissionServiceImpl implements AdmissionService {
 
 	@Autowired
 	private StudentStatusRepository studentStatusRepository;
-
-	@Autowired
-	private LogRepository logRepository;
 
 	private Logger logger = (Logger) LoggerFactory.getLogger(getClass());
 
@@ -265,6 +261,7 @@ public class AdmissionServiceImpl implements AdmissionService {
 
 		sh.setDocument(document);
 		admission.setYear(yearInString);
+		admission.setDateOfBirth(sh.getDateOfBirth());
 		sh.setYear(admission.getYear());
 		sh.setUidNo(admission.getUidNo());
 		sh.setIdNo(admission.getIdNo());
@@ -292,9 +289,13 @@ public class AdmissionServiceImpl implements AdmissionService {
 
 	@Override
 	public ResponseEntity<?> getByIdAdmi(Long id) {
-		Admission s = admissionRepository.getOne(id);
-		AdmissionDto dto = modelMapper.map(s, AdmissionDto.class);
-		return Response.build(Code.OK, dto);
+		/*
+		 * Admission s = admissionRepository.getOne(id); AdmissionDto dto =
+		 * modelMapper.map(s, AdmissionDto.class);
+		 */
+		
+		Optional<Admission> s = admissionRepository.findById(id);		
+		return Response.build(Code.OK, s);
 	}
 
 	@Override

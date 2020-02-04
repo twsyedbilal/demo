@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+	<head> 
+<title>Student Id Card</title>	
+<style type="text/css">
+	@media print{
+  		.page{
+  			min-height:315px;
+  			/* margin-bottom:40px; */
+  		}
+  	}
+.frontp1{
+  margin-left: 97px;
+  margin-top: -105px;
+  font-size: 10px;
+  max-width: 325.03937008px;
+  min-width: 204.09448819px;
+}
+.hidd {
+  z-index: -1;
+}
+.a{
+color: #000066;
+}
+.b{
+color: #660000;
+}
+
+.c{
+/* I-CARD BACK SIDE */
+font-family: "Times New Roman", Times, serif;
+padding-left: 10px;
+}
+.d{
+/* I-CARD BACK SIDE */
+color: 004080;
+padding-left: 5px;
+}
+
+.backp1{
+  text-align: center;
+  margin-left: -10px;
+  margin-top: -25px;
+  font-size: 60%;
+  font-weight:bold;
+  max-width: 325.03937008px;
+  color: black;
+
+}
+
+
+</style>
+</head>
+<body>
+
+	<!-- THIS IS FOR I-CARD FRONT SIDE CODE AND DESIGN   -->
+
+    <img th:src="@{${header}}" title="" class="hidd" style="width: 325.03937008px; height: 204.09448819px"/>
+	<img th:src="@{${photoUrl}}"  class="" style=" width: 68px; height: 83px; margin-left: -315px; margin-bottom: 16px " />
+
+	<table class="frontp1">
+	<tr><td class="a" >Student's Name </td>
+	<td class="b" th:text="${studentsName}"></td></tr>
+
+	<tr><td class="a">Father's Name  </td>
+	<td class="b" th:text="${fathersName}"></td></tr>
+
+	<tr><td class="a">Class </td>
+	<td class="b" th:text="${className}"></td></tr></table>
+	
+	<h5 style="margin-left: 230px;margin-top: 25px; color: #000033">Principal</h5>
+
+	
+	<!-- THIS IS FOR ICARD BACK SIDE CODE AND DESIGN   -->
+	
+	<img th:src="@{${header}}" title="" class=" " style="width: 325.03937008px; height: 204.09448819px"/>
+
+	<h1 class="set" >Details of Student</h1>
+
+	<table class="backp1" style="width: 325.03937008px; height: 204.09448819px; text-align:justify" >
+	<tr>
+	<h4><td class="c" >Date of Birth <span style="padding-left: 27px"><b>:</b></span></td>
+	<td class="d" th:text="${dob}"></td></h4>
+	</tr>
+
+	<tr>
+	<h4><td class="c" >Contact No <span style="padding-left: 34px"><b>:</b></span></td>
+	<td class="d" th:text="${contactNo}"></td></h4>
+	</tr>	
+
+	<tr>
+	<h4><td class="c" >Address <h style="padding-left: 47px">:</h><span style="padding-left: 50px"/></td>
+	<td class="d"  th:text="${address}"></td></h4>
+	</tr>	
+
+	<tr>
+	<h4><td class="c" >Academic Year <span style="padding-left: 18px"><b>:</b></span></td>
+	<td class="d"  th:text="${academicYear}"></td></h4>
+	</tr>	
+
+</table>
+</body>
+</html>

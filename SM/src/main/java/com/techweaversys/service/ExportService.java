@@ -30,5 +30,5 @@ public interface ExportService {
 
 	byte[] downloadPdfNilgamutara(Long id, HttpServletResponse response);
 
-
+	byte[] downloadPdfICard(Long id, HttpServletResponse response);
 }

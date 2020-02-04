@@ -26,6 +26,7 @@ import com.techweaversys.model.City;
 import com.techweaversys.model.Compliant;
 import com.techweaversys.model.Country;
 import com.techweaversys.model.Document;
+import com.techweaversys.model.Log;
 import com.techweaversys.model.MotherTongueEntity;
 import com.techweaversys.model.NationalityEntity;
 import com.techweaversys.model.Religion;
@@ -34,7 +35,9 @@ import com.techweaversys.model.SubCaste;
 import com.techweaversys.repository.AddressRepository;
 import com.techweaversys.repository.AdmissionRepository;
 import com.techweaversys.repository.DocumentRepository;
+import com.techweaversys.repository.LogRepository;
 import com.techweaversys.service.ExportService;
+import com.techweaversys.utility.Constants;
 
 @Service
 @Transactional
@@ -55,6 +58,9 @@ public class ExportServiceImpl implements ExportService {
 	@Autowired
 	private AddressRepository addressRepository;
 
+	@Autowired
+	private LogRepository logRepository;
+
 	@Override
 	public byte[] downloadPdfIdCardFront(Long id, HttpServletResponse response) {
 		Admission admission = admissionRepository.getOne(id);
@@ -63,7 +69,7 @@ public class ExportServiceImpl implements ExportService {
 		String fathersName = admission.getFathersName();
 		String surName = admission.getSurName();
 		String studentsName = surName + " " + firstname;
-		String path = "http://localhost:9000/alrizwancloud/bb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20200121%2F%2Fs3%2Faws4_request&X-Amz-Date=20200121T073727Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=a6b3b9cbc626fffa12a06313e16c8a5e95b0f1b566d384be41b60dc33480ad54";
+		String path = " ";
 
 		if (admission.getDocument() != null) {
 			for (Document doc : admission.getDocument()) {
@@ -105,6 +111,12 @@ public class ExportServiceImpl implements ExportService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("ID-Card");
+		log.setMessage(Constants.IDCARD);
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -166,6 +178,13 @@ public class ExportServiceImpl implements ExportService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("ID-Card");
+		log.setMessage(Constants.IDCARD);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 
 	}
@@ -191,7 +210,7 @@ public class ExportServiceImpl implements ExportService {
 		String fatherName = admission.getFathersName();
 		String birthinwords = admission.getDateOfBirthInWords();
 
-		String path = "http://localhost:9000/alrizwancloud/bb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20200121%2F%2Fs3%2Faws4_request&X-Amz-Date=20200121T073727Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=a6b3b9cbc626fffa12a06313e16c8a5e95b0f1b566d384be41b60dc33480ad54";
+		String path = " ";
 
 		if (admission.getDocument() != null) {
 			for (Document doc : admission.getDocument()) {
@@ -230,12 +249,19 @@ public class ExportServiceImpl implements ExportService {
 		renderer.finishPDF();
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition",
-				"attachment; filename=" + "bonafide_" + admission.getStudentsName() + ".pdf");
+				"attachment; filename=" + "bonafide_" + admission.getStudentRegNo() + ".pdf");
 		try {
 			response.getOutputStream().flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("BONAFIDE");
+		log.setMessage(Constants.BONAFIDE_SCHOOL);
+//		log.setLogInfo("Message");
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -260,7 +286,7 @@ public class ExportServiceImpl implements ExportService {
 		String fatherName = admission.getFathersName();
 		String birthinwords = admission.getDateOfBirthInWords();
 
-		String path = "http://localhost:9000/alrizwancloud/bb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20200121%2F%2Fs3%2Faws4_request&X-Amz-Date=20200121T073727Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=a6b3b9cbc626fffa12a06313e16c8a5e95b0f1b566d384be41b60dc33480ad54";
+		String path = " ";
 
 		if (admission.getDocument() != null) {
 			for (Document doc : admission.getDocument()) {
@@ -299,12 +325,18 @@ public class ExportServiceImpl implements ExportService {
 		renderer.finishPDF();
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition",
-				"attachment; filename=" + "bonafide_" + admission.getStudentsName() + ".pdf");
+				"attachment; filename=" + "bonafide_" + admission.getStudentRegNo() + ".pdf");
 		try {
 			response.getOutputStream().flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("BONAFIDE");
+		log.setMessage(Constants.BONAFIDE_SCHOOL_BIRTH);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -330,7 +362,7 @@ public class ExportServiceImpl implements ExportService {
 		String birthinwords = admission.getDateOfBirthInWords();
 		String addNo = admission.getStudentRegNo();
 
-		String path = "http://localhost:9000/alrizwancloud/bb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20200121%2F%2Fs3%2Faws4_request&X-Amz-Date=20200121T073727Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=a6b3b9cbc626fffa12a06313e16c8a5e95b0f1b566d384be41b60dc33480ad54";
+		String path = " ";
 
 		if (admission.getDocument() != null) {
 			for (Document doc : admission.getDocument()) {
@@ -376,12 +408,18 @@ public class ExportServiceImpl implements ExportService {
 		renderer.finishPDF();
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition",
-				"attachment; filename=" + "bonafide_jr_" + admission.getStudentsName() + ".pdf");
+				"attachment; filename=" + "bonafide_jr_" + admission.getStudentRegNo() + ".pdf");
 		try {
 			response.getOutputStream().flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("BONAFIDE");
+		log.setMessage(Constants.BONAFIDE_JUNIOR_COLLEGE);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -407,7 +445,7 @@ public class ExportServiceImpl implements ExportService {
 		String birthinwords = admission.getDateOfBirthInWords();
 		String addNo = admission.getStudentRegNo();
 
-		String path = "http://localhost:9000/alrizwancloud/bb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20200121%2F%2Fs3%2Faws4_request&X-Amz-Date=20200121T073727Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=a6b3b9cbc626fffa12a06313e16c8a5e95b0f1b566d384be41b60dc33480ad54";
+		String path = " ";
 
 		if (admission.getDocument() != null) {
 			for (Document doc : admission.getDocument()) {
@@ -453,12 +491,18 @@ public class ExportServiceImpl implements ExportService {
 		renderer.finishPDF();
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition",
-				"attachment; filename=" + "bonafide_science_" + admission.getStudentsName() + ".pdf");
+				"attachment; filename=" + "bonafide_science_" + admission.getStudentRegNo() + ".pdf");
 		try {
 			response.getOutputStream().flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("BONAFIDE");
+		log.setMessage(Constants.BONAFIDE_JUNIOR_SCIENCE_ADMISSION_NO);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 
 	}
@@ -485,7 +529,7 @@ public class ExportServiceImpl implements ExportService {
 		String birthinwords = admission.getDateOfBirthInWords();
 		String addNo = admission.getStudentRegNo();
 
-		String path = "http://localhost:9000/alrizwancloud/bb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20200121%2F%2Fs3%2Faws4_request&X-Amz-Date=20200121T073727Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=a6b3b9cbc626fffa12a06313e16c8a5e95b0f1b566d384be41b60dc33480ad54";
+		String path = " ";
 
 		if (admission.getDocument() != null) {
 			for (Document doc : admission.getDocument()) {
@@ -531,12 +575,18 @@ public class ExportServiceImpl implements ExportService {
 		renderer.finishPDF();
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition",
-				"attachment; filename=" + "bonafide_science_" + admission.getStudentsName() + ".pdf");
+				"attachment; filename=" + "bonafide_science_" + admission.getStudentRegNo() + ".pdf");
 		try {
 			response.getOutputStream().flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("BONAFIDE");
+		log.setMessage(Constants.BONAFIDE_SCHOOL_ADMISSION_NO);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -561,7 +611,7 @@ public class ExportServiceImpl implements ExportService {
 		String fatherName = admission.getFathersName();
 		String birthinwords = admission.getDateOfBirthInWords();
 
-		String path = "http://localhost:9000/alrizwancloud/bb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20200121%2F%2Fs3%2Faws4_request&X-Amz-Date=20200121T073727Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=a6b3b9cbc626fffa12a06313e16c8a5e95b0f1b566d384be41b60dc33480ad54";
+		String path = " ";
 
 		if (admission.getDocument() != null) {
 			for (Document doc : admission.getDocument()) {
@@ -606,12 +656,18 @@ public class ExportServiceImpl implements ExportService {
 		renderer.finishPDF();
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition",
-				"attachment; filename=" + "bonafide_was_" + admission.getStudentsName() + ".pdf");
+				"attachment; filename=" + "bonafide_was_" + admission.getStudentRegNo() + ".pdf");
 		try {
 			response.getOutputStream().flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("BONAFIDE");
+		log.setMessage(Constants.BONAFIDE_PAST_JUNIOR_SCIENCE);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -636,7 +692,7 @@ public class ExportServiceImpl implements ExportService {
 		String fatherName = admission.getFathersName();
 		String birthinwords = admission.getDateOfBirthInWords();
 
-		String path = "http://localhost:9000/alrizwancloud/bb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20200121%2F%2Fs3%2Faws4_request&X-Amz-Date=20200121T073727Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=a6b3b9cbc626fffa12a06313e16c8a5e95b0f1b566d384be41b60dc33480ad54";
+		String path = " ";
 
 		if (admission.getDocument() != null) {
 			for (Document doc : admission.getDocument()) {
@@ -681,12 +737,18 @@ public class ExportServiceImpl implements ExportService {
 		renderer.finishPDF();
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition",
-				"attachment; filename=" + "bonafide_science_" + admission.getStudentsName() + ".pdf");
+				"attachment; filename=" + "bonafide_science_" + admission.getStudentRegNo() + ".pdf");
 		try {
 			response.getOutputStream().flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("BONAFIDE");
+		log.setMessage(Constants.BONAFIDE_JUNIOR_SCIENCE);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -752,6 +814,12 @@ public class ExportServiceImpl implements ExportService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("PRIMARY-SCHOOL-TC");
+		log.setMessage(Constants.PRIMARY_TC);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -781,8 +849,8 @@ public class ExportServiceImpl implements ExportService {
 		context.setVariable("studentsName", s);
 		context.setVariable("mothersName", m);
 		context.setVariable("fathersName", f);
-		context.setVariable("studentid",studentid);
-		context.setVariable("placeofbirth",placeofbirth);
+		context.setVariable("studentid", studentid);
+		context.setVariable("placeofbirth", placeofbirth);
 		context.setVariable("casteName", caste);
 		context.setVariable("idNo", idno);
 		context.setVariable("religion", religion);
@@ -814,6 +882,12 @@ public class ExportServiceImpl implements ExportService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("HIGH-SCHOOL-TC");
+		log.setMessage(Constants.HIGH_SCHOOL_TC);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -882,6 +956,12 @@ public class ExportServiceImpl implements ExportService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("JR-COLLEGE-TC");
+		log.setMessage(Constants.JUNIOR_COLLEGE_TC);
+//		log.setLogInfo();
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 
@@ -954,6 +1034,102 @@ public class ExportServiceImpl implements ExportService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("NILGAM-UTARA");
+		log.setMessage(Constants.NILGAM_UTARA);
+//		log.setLogInfo();
+		log = logRepository.save(log);
+		return bos.toByteArray();
+	}
+
+	@Override
+	public byte[] downloadPdfICard(Long id, HttpServletResponse response) {
+		Admission admission = admissionRepository.getOne(id);
+
+		String firstname = admission.getStudentsName();
+		String fathersName = admission.getFathersName();
+		String surName = admission.getSurName();
+		String studentsName = surName + " " + firstname;
+		String path = " ";
+
+		if (admission.getDocument() != null) {
+			for (Document doc : admission.getDocument()) {
+				if (doc.getId() != null) {
+					doc = documentRepository.getOne(doc.getId());
+					path = doc.getPath();
+				}
+			}
+		}
+
+		String contactNo = admission.getContactNo();
+		String addressdetail = "";
+
+		if (admission.getAddress() != null) {
+			for (Address add : admission.getAddress()) {
+				if (add.getId() != null) {
+					add = addressRepository.getOne(add.getId());
+					addressdetail = add.getDetailAddress();
+				}
+			}
+		}
+
+		Calendar birthdate = admission.getDateOfBirth();
+		Date indate = birthdate.getTime();
+
+		String dateString = null;
+		SimpleDateFormat sdfr = new SimpleDateFormat("dd.MMM.yyyy");
+		dateString = sdfr.format(indate);
+
+		LocalDate now = LocalDate.now();
+		int yearInt = now.getYear();
+		String yearString = Integer.toString(yearInt);
+		yearInt++;
+		String academicYear = yearString + "-" + yearInt++;
+
+		
+		String idCover = environment.getRequiredProperty("idcardfront.print.image") + "idfront.png";
+		String idBack = environment.getRequiredProperty("idcardfront.print.image") + "idback.jpg";
+		
+		String className = admission.getClassOffered().getClassName();
+
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		Context context = new Context();
+		context.setVariable("header", idCover);
+		context.setVariable("idBack", idBack);
+		
+		context.setVariable("studentsName", studentsName);
+		context.setVariable("fathersName", fathersName);
+		context.setVariable("className", className);
+		context.setVariable("photoUrl", path);
+
+
+		String html = templateEngine.process("icard", context);
+		ITextRenderer renderer = new ITextRenderer();
+
+		renderer.setDocumentFromString(html);
+		renderer.layout();
+
+		try {
+			renderer.createPDF(bos, false);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		renderer.finishPDF();
+		response.setContentType("application/pdf");
+		response.setHeader("Content-Disposition",
+				"attachment; filename=" + "icard_" + admission.getStudentRegNo() + ".pdf");
+		try {
+			response.getOutputStream().flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		Log log = new Log();
+		log.setAdmission(admission);
+		log.setName("ID-Card");
+		log.setMessage(Constants.IDCARD);
+		log = logRepository.save(log);
 		return bos.toByteArray();
 	}
 }

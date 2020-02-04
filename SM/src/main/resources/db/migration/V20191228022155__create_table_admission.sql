@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS sm_admission (
     CONSTRAINT fk_admission__sm_mother_tongue FOREIGN KEY (sm_mother_tongue_id) REFERENCES sm_mother_tongue(id),      
 
     KEY fk_admission__sm_nationality(sm_nationality_id),
-    CONSTRAINT fk_admission__sm_nationality FOREIGN KEY (sm_mother_tongue_id) REFERENCES sm_nationality(id),       
+    CONSTRAINT fk_admission__sm_nationality FOREIGN KEY (sm_nationality_id) REFERENCES sm_nationality(id),       
 
     KEY fk_admission__sm_society(sm_society_id),
     CONSTRAINT fk_admission__sm_society FOREIGN KEY (sm_society_id) REFERENCES sm_society(id)

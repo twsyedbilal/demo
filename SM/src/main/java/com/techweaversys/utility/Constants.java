@@ -84,4 +84,6 @@ public class Constants {
 	public static final String OPENING_BALANCE_CREDIT = "OPENING_BALANCE_CREDIT";
 	public static final String OPENING_BALANCE_DEBIT = "OPENING_BALANCE_DEBIT";
 	public static final String LOG_INFO = "[INFO] : ";
+	public static final String NILGAM_UTARA = "NILGAM UTARA GENERATED";
+
 }
