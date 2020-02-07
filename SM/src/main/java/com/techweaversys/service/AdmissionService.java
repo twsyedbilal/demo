@@ -18,5 +18,7 @@ public interface AdmissionService {
 
 	ResponseEntity<?> findalladmissionWithPage(AdmissionSpecDto dto);
 
+	ResponseEntity<?> getByView(Long id);
+
 	
 }

@@ -8,6 +8,7 @@ public class AddressDto {
 	private Long countryId;
 	private Long pincode;
 	private String detailAddress;
+	private String type;
 
 	public AddressDto() {
 		super();
@@ -18,7 +19,8 @@ public class AddressDto {
 		this.detailAddress = detailAddress;
 	}
 
-	public AddressDto(Long id, Long cityId, Long stateId, Long countryId, Long pincode, String detailAddress) {
+	public AddressDto(Long id, Long cityId, Long stateId, Long countryId, Long pincode, String detailAddress,
+			String type) {
 		super();
 		this.id = id;
 		this.cityId = cityId;
@@ -26,6 +28,7 @@ public class AddressDto {
 		this.countryId = countryId;
 		this.pincode = pincode;
 		this.detailAddress = detailAddress;
+		this.type = type;
 	}
 
 	public Long getId() {
@@ -50,6 +53,14 @@ public class AddressDto {
 
 	public void setDetailAddress(String detailAddress) {
 		this.detailAddress = detailAddress;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public Long getCityId() {
@@ -86,6 +97,7 @@ public class AddressDto {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((pincode == null) ? 0 : pincode.hashCode());
 		result = prime * result + ((stateId == null) ? 0 : stateId.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -128,13 +140,17 @@ public class AddressDto {
 				return false;
 		} else if (!stateId.equals(other.stateId))
 			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "AddressDto [id=" + id + ", cityId=" + cityId + ", stateId=" + stateId + ", countryId=" + countryId
-				+ ", pincode=" + pincode + ", detailAddress=" + detailAddress + "]";
+				+ ", pincode=" + pincode + ", detailAddress=" + detailAddress + ", type=" + type + "]";
 	}
-
 }

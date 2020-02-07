@@ -1,0 +1,1 @@
+ALTER TABLE sm_address ADD COLUMN Type varchar(100) AFTER deleted;

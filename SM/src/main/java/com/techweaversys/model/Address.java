@@ -27,17 +27,21 @@ public class Address extends AbstractPersistable {
 		super();
 	}
 
-	public Address(Long pinCode, String detailAddress, City city, State state, Country country) {
+	public Address(Long pinCode, String detailAddress, City city, State state, Country country,String type) {
 		super();
 		this.pinCode = pinCode;
 		this.detailAddress = detailAddress;
 		this.city = city;
 		this.state = state;
 		this.country = country;
+		this.type = type;
 	}
 
 	@Column(name = "pin_code")
 	private Long pinCode;
+
+//	@Column(name = "type")
+	private String type;
 
 	@Column(name = "detail_address", nullable = false)
 	private String detailAddress;
@@ -60,6 +64,14 @@ public class Address extends AbstractPersistable {
 
 	public void setPinCode(Long pinCode) {
 		this.pinCode = pinCode;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getDetailAddress() {
@@ -103,6 +115,7 @@ public class Address extends AbstractPersistable {
 		result = prime * result + ((detailAddress == null) ? 0 : detailAddress.hashCode());
 		result = prime * result + ((pinCode == null) ? 0 : pinCode.hashCode());
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -140,13 +153,18 @@ public class Address extends AbstractPersistable {
 				return false;
 		} else if (!state.equals(other.state))
 			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Address [pinCode=" + pinCode + ", detailAddress=" + detailAddress + ", city=" + city + ", state="
-				+ state + ", country=" + country + "]";
+		return "Address [pinCode=" + pinCode + ", type=" + type + ", detailAddress=" + detailAddress + ", city=" + city
+				+ ", state=" + state + ", country=" + country + "]";
 	}
 
 }

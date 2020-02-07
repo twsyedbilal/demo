@@ -45,5 +45,9 @@ public class AdmissionController {
 	public ResponseEntity<?> deletId(@PathVariable Long id) {
 		return admissionService.deletId(id);
 	}
-
+	
+	@GetMapping(value = "getview/{id}")
+	public ResponseEntity<?> getByView(@PathVariable Long id) {
+		return admissionService.getByView(id);
+	}
 }

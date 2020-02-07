@@ -86,4 +86,8 @@ public class Constants {
 	public static final String LOG_INFO = "[INFO] : ";
 	public static final String NILGAM_UTARA = "NILGAM UTARA GENERATED";
 
+	//address present/permanent
+	public static final String PRESENT = "present";
+	public static final String PERMANENT = "permanent";
+	
 }

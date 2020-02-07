@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +20,7 @@ import com.techweaversys.dto.AddressDto;
 import com.techweaversys.dto.AdmissionDto;
 import com.techweaversys.dto.AdmissionSpecDto;
 import com.techweaversys.dto.DocumentDto;
+import com.techweaversys.dto.MastersViewDto;
 import com.techweaversys.dto.PageDto;
 import com.techweaversys.exception.AdmissionAlreadyExiststException;
 import com.techweaversys.generics.AppConstants;
@@ -63,6 +63,7 @@ import com.techweaversys.repository.StudentStatusRepository;
 import com.techweaversys.repository.SubCasteRepository;
 import com.techweaversys.service.AdmissionService;
 import com.techweaversys.spec.AdmissionSpec;
+import com.techweaversys.utility.Constants;
 
 import ch.qos.logback.classic.Logger;
 
@@ -70,8 +71,9 @@ import ch.qos.logback.classic.Logger;
 @Transactional
 public class AdmissionServiceImpl implements AdmissionService {
 
-	@Autowired
-	private ModelMapper modelMapper;
+	/*
+	 * @Autowired private ModelMapper modelMapper;
+	 */
 
 	@Autowired
 	private AdmissionRepository admissionRepository;
@@ -230,10 +232,10 @@ public class AdmissionServiceImpl implements AdmissionService {
 
 			for (AddressDto a : admission.getAddress()) {
 				Address ad = new Address();
+			
 				if (a.getId() != null) {
 					ad = addressRepository.getOne(a.getId());
 				}
-
 				if (a.getCityId() != null) {
 					City city = cityRepository.getOne(a.getCityId());
 					ad.setCity(city);
@@ -246,9 +248,18 @@ public class AdmissionServiceImpl implements AdmissionService {
 				if (a.getCountryId() != null) {
 					Country country = countryRepository.getOne(a.getCountryId());
 					ad.setCountry(country);
+				}	
+
+				if(a.getType().equals(Constants.PRESENT)){
+					ad.setType(a.getType());
+					ad.setDetailAddress(a.getDetailAddress());
+					ad.setPinCode(a.getPincode());
 				}
-				ad.setDetailAddress(a.getDetailAddress());
-				ad.setPinCode(a.getPincode());
+				if(a.getType().equals(Constants.PERMANENT)){
+					ad.setType(a.getType());
+					ad.setDetailAddress(a.getDetailAddress());
+					ad.setPinCode(a.getPincode());
+				}
 				address.add(ad);
 			}
 			sh.setAddress(address);
@@ -261,7 +272,6 @@ public class AdmissionServiceImpl implements AdmissionService {
 
 		sh.setDocument(document);
 		admission.setYear(yearInString);
-		admission.setDateOfBirth(sh.getDateOfBirth());
 		sh.setYear(admission.getYear());
 		sh.setUidNo(admission.getUidNo());
 		sh.setIdNo(admission.getIdNo());
@@ -293,7 +303,6 @@ public class AdmissionServiceImpl implements AdmissionService {
 		 * Admission s = admissionRepository.getOne(id); AdmissionDto dto =
 		 * modelMapper.map(s, AdmissionDto.class);
 		 */
-		
 		Optional<Admission> s = admissionRepository.findById(id);		
 		return Response.build(Code.OK, s);
 	}
@@ -327,5 +336,34 @@ public class AdmissionServiceImpl implements AdmissionService {
 		PageDto pageDto = new PageDto(list, admission.getTotalElements());
 		return Response.build(Code.OK, pageDto);
 
+	}
+
+	@Override
+	public ResponseEntity<?> getByView(Long id) {
+
+		MastersViewDto dto = new MastersViewDto();
+		Admission admission = admissionRepository.getOne(id);
+	
+		String className = admission.getClassOffered().getClassName();
+		String casteName = admission.getCaste().getname();
+		String casteSubName = admission.getSubCaste().getname();
+		String occpationName = admission.getOccupation().getname();
+		String schoolName = admission.getSchool().getSchoolName();
+		String schooltypeName = admission.getSchoolType().getname();
+		String religionName = admission.getReligion().getname();
+		String societyName = admission.getSociety().getname();
+		String nationalityName = admission.getNationality().getName();
+
+		dto.setClassName(className);
+		dto.setCasteName(casteName);
+		dto.setCasteSubName(casteSubName);
+		dto.setOccpationName(occpationName);
+		dto.setSchoolName(schoolName);
+		dto.setSchooltypeName(schooltypeName);
+		dto.setNationalityName(nationalityName);
+		dto.setSocietyName(societyName);
+		dto.setReligionName(religionName);
+		
+		return Response.build(Code.OK, dto);
 	}
 }
