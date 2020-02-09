@@ -37,6 +37,7 @@ public class OpeningStockCommand implements Client {
 				
 				stock.setStockIn(0);
 				stock.setStockOut(0);				
+				stock.setReturnQty(0);
 				stock.setStockQty(totalStock);
 				stock.setOpeningQty(OpeningStock);
 				libraryStockRepository.save(stock);

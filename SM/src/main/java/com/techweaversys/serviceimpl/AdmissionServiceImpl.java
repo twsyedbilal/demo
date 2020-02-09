@@ -232,7 +232,7 @@ public class AdmissionServiceImpl implements AdmissionService {
 
 			for (AddressDto a : admission.getAddress()) {
 				Address ad = new Address();
-			
+
 				if (a.getId() != null) {
 					ad = addressRepository.getOne(a.getId());
 				}
@@ -248,14 +248,14 @@ public class AdmissionServiceImpl implements AdmissionService {
 				if (a.getCountryId() != null) {
 					Country country = countryRepository.getOne(a.getCountryId());
 					ad.setCountry(country);
-				}	
+				}
 
-				if(a.getType().equals(Constants.PRESENT)){
+				if (a.getType().equals(Constants.PRESENT)) {
 					ad.setType(a.getType());
 					ad.setDetailAddress(a.getDetailAddress());
 					ad.setPinCode(a.getPincode());
 				}
-				if(a.getType().equals(Constants.PERMANENT)){
+				if (a.getType().equals(Constants.PERMANENT)) {
 					ad.setType(a.getType());
 					ad.setDetailAddress(a.getDetailAddress());
 					ad.setPinCode(a.getPincode());
@@ -303,7 +303,7 @@ public class AdmissionServiceImpl implements AdmissionService {
 		 * Admission s = admissionRepository.getOne(id); AdmissionDto dto =
 		 * modelMapper.map(s, AdmissionDto.class);
 		 */
-		Optional<Admission> s = admissionRepository.findById(id);		
+		Optional<Admission> s = admissionRepository.findById(id);
 		return Response.build(Code.OK, s);
 	}
 
@@ -343,7 +343,7 @@ public class AdmissionServiceImpl implements AdmissionService {
 
 		MastersViewDto dto = new MastersViewDto();
 		Admission admission = admissionRepository.getOne(id);
-	
+
 		String className = admission.getClassOffered().getClassName();
 		String casteName = admission.getCaste().getname();
 		String casteSubName = admission.getSubCaste().getname();
@@ -363,7 +363,7 @@ public class AdmissionServiceImpl implements AdmissionService {
 		dto.setNationalityName(nationalityName);
 		dto.setSocietyName(societyName);
 		dto.setReligionName(religionName);
-		
+
 		return Response.build(Code.OK, dto);
 	}
 }

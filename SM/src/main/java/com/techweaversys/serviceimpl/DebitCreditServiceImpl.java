@@ -92,7 +92,17 @@ public class DebitCreditServiceImpl implements DebitCreditService {
 					BookDto it = modelMapper.map(book, BookDto.class);
 					st.setBook(it);
 				}
-
+				if (debitBookDto.getType().equals(Constants.DEBIT) || debitBookDto.getType().equals(Constants.CREDIT)) {
+					st.setGivenQty(i.getGivenQty());
+					st.setReturnQty(i.getReturnQty());
+					}
+				/*
+				 * if (debitBookDto.getType().equals(Constants.CREDIT)) {
+				 * st.setGivenQty(i.getGivenQty()); st.setReturnQty(i.getReturnQty());
+				 * 
+				 * }
+				 * 
+				 */
 				s.setGivenQty(i.getGivenQty());
 				s.setReturnQty(i.getReturnQty());
 				s.setQty(i.getQty());
@@ -100,12 +110,9 @@ public class DebitCreditServiceImpl implements DebitCreditService {
 				s.setToDate(i.getToDate());
 				s.setDebitBook(debitBook);
 
-				if (debitBookDto.getType().equals(Constants.STOCKIN)) {
-					st.setGivenQty(i.getGivenQty());
-					st.setReturnQty(i.getReturnQty());
-
-					dbs.add(s);
-				}
+				dbs.add(s);
+					
+				
 				stock.add(st);
 			}
 			debitBook.setDebitSlave(dbs);
