@@ -291,6 +291,7 @@ public class AdmissionServiceImpl implements AdmissionService {
 		sh.setStudentsName(admission.getStudentsName());
 		sh.setLiveStatus(admission.getLiveStatus());
 		sh.setGender(admission.getGender());
+		sh.setProfileId(admission.getProfileId());
 
 		admissionRepository.save(sh);
 

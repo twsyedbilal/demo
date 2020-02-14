@@ -56,7 +56,7 @@ public class Admission extends AbstractPersistable {
 			Long income, String contactNo, String identityByMarkOrAadharNo, List<Address> address,
 			ClassEntity classOffered, SchoolType schoolType, SchoolEntityy school, Caste caste, Religion religion,
 			SubCaste subCaste, PaymentType paymentType, Occupation occupation, MotherTongueEntity motherTongue,
-			NationalityEntity nationality, SocietyEntity society) {
+			NationalityEntity nationality, SocietyEntity society,Integer profileId) {
 		super();
 		this.studentRegNo = studentRegNo;
 		this.uidNo = uidNo;
@@ -89,7 +89,7 @@ public class Admission extends AbstractPersistable {
 		this.motherTongue = motherTongue;
 		this.nationality = nationality;
 		this.society = society;
-
+		this.profileId = profileId;
 	}
 
 	@Column(name = "student_reg_no", nullable = false)
@@ -150,6 +150,9 @@ public class Admission extends AbstractPersistable {
 
 	@Column(name = "identity_by_mark_or_aadhar_no")
 	private String identityByMarkOrAadharNo;
+	
+	@Column(name = "profile_id")
+	private Integer profileId;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "sm_admission_sm_address", joinColumns = @JoinColumn(name = "sm_admission_id"), inverseJoinColumns = @JoinColumn(name = "sm_address_id"))
@@ -460,6 +463,14 @@ public class Admission extends AbstractPersistable {
 	public void setMotherTongue(MotherTongueEntity motherTongue) {
 		this.motherTongue = motherTongue;
 	}
+	
+	public Integer getProfileId() {
+		return profileId;
+	}
+
+	public void setProfileId(Integer profileId) {
+		this.profileId = profileId;
+	}
 
 	@Override
 	public int hashCode() {
@@ -472,6 +483,7 @@ public class Admission extends AbstractPersistable {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
 		result = prime * result + ((dateOfBirthInWords == null) ? 0 : dateOfBirthInWords.hashCode());
+		result = prime * result + ((document == null) ? 0 : document.hashCode());
 		result = prime * result + ((fathersName == null) ? 0 : fathersName.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((guardiansName == null) ? 0 : guardiansName.hashCode());
@@ -485,6 +497,7 @@ public class Admission extends AbstractPersistable {
 		result = prime * result + ((occupation == null) ? 0 : occupation.hashCode());
 		result = prime * result + ((paymentType == null) ? 0 : paymentType.hashCode());
 		result = prime * result + ((placeOfBirth == null) ? 0 : placeOfBirth.hashCode());
+		result = prime * result + ((profileId == null) ? 0 : profileId.hashCode());
 		result = prime * result + ((religion == null) ? 0 : religion.hashCode());
 		result = prime * result + ((school == null) ? 0 : school.hashCode());
 		result = prime * result + ((schoolType == null) ? 0 : schoolType.hashCode());
@@ -542,6 +555,11 @@ public class Admission extends AbstractPersistable {
 			if (other.dateOfBirthInWords != null)
 				return false;
 		} else if (!dateOfBirthInWords.equals(other.dateOfBirthInWords))
+			return false;
+		if (document == null) {
+			if (other.document != null)
+				return false;
+		} else if (!document.equals(other.document))
 			return false;
 		if (fathersName == null) {
 			if (other.fathersName != null)
@@ -608,6 +626,11 @@ public class Admission extends AbstractPersistable {
 				return false;
 		} else if (!placeOfBirth.equals(other.placeOfBirth))
 			return false;
+		if (profileId == null) {
+			if (other.profileId != null)
+				return false;
+		} else if (!profileId.equals(other.profileId))
+			return false;
 		if (religion == null) {
 			if (other.religion != null)
 				return false;
@@ -673,11 +696,10 @@ public class Admission extends AbstractPersistable {
 				+ fathersName + ", mothersName=" + mothersName + ", guardiansName=" + guardiansName + ", status="
 				+ status + ", liveStatus=" + liveStatus + ", dateOfBirth=" + dateOfBirth + ", dateOfBirthInWords="
 				+ dateOfBirthInWords + ", placeOfBirth=" + placeOfBirth + ", gender=" + gender + ", income=" + income
-				+ ", contactNo=" + contactNo + ", identityByMarkOrAadharNo=" + identityByMarkOrAadharNo + ", address="
-				+ address + ", classOffered=" + classOffered + ", schoolType=" + schoolType + ", school=" + school
-				+ ", caste=" + caste + ", religion=" + religion + ", subCaste=" + subCaste + ", paymentType="
-				+ paymentType + ", occupation=" + occupation + ", motherTongue=" + motherTongue + ", nationality="
-				+ nationality + ", society=" + society + "]";
+				+ ", contactNo=" + contactNo + ", identityByMarkOrAadharNo=" + identityByMarkOrAadharNo + ", profileId="
+				+ profileId + ", address=" + address + ", document=" + document + ", classOffered=" + classOffered
+				+ ", schoolType=" + schoolType + ", school=" + school + ", caste=" + caste + ", religion=" + religion
+				+ ", subCaste=" + subCaste + ", paymentType=" + paymentType + ", occupation=" + occupation
+				+ ", motherTongue=" + motherTongue + ", nationality=" + nationality + ", society=" + society + "]";
 	}
-
 }

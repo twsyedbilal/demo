@@ -38,15 +38,8 @@ public class AdmissionDto {
 	private List<AddressDto> address;
 	private AcountFeeDto accountFees;
 	private List<DocumentDto> document;
-
-	public List<DocumentDto> getDocument() {
-		return document;
-	}
-
-	public void setDocument(List<DocumentDto> document) {
-		this.document = document;
-	}
-
+	private Integer profileId;
+	
 	public AdmissionDto() {
 		super();
 	}
@@ -56,7 +49,7 @@ public class AdmissionDto {
 			String gender, Calendar dateOfBirth, String dateOfBirthInWords, String placeOfBirth, Long income,
 			String contactNo, String status, String liveStatus, String identityByMarkOrAadharNo, Long classId,
 			Long schoolId, Long schoolTypeId, Long religionId, Long castId, Long subCastId, Long occupationId,
-			Long societyId, Long nationalityId, Long mothertongId, List<AddressDto> address, AcountFeeDto accountFees) {
+			Long societyId, Long nationalityId, Long mothertongId, List<AddressDto> address, AcountFeeDto accountFees,Integer profileId) {
 		super();
 		this.id = id;
 		this.uidNo = uidNo;
@@ -361,6 +354,21 @@ public class AdmissionDto {
 	public void setAddress(List<AddressDto> address) {
 		this.address = address;
 	}
+	public List<DocumentDto> getDocument() {
+		return document;
+	}
+
+	public void setDocument(List<DocumentDto> document) {
+		this.document = document;
+	}
+
+	public Integer getProfileId() {
+		return profileId;
+	}
+
+	public void setProfileId(Integer profileId) {
+		this.profileId = profileId;
+	}
 
 	@Override
 	public int hashCode() {
@@ -374,6 +382,7 @@ public class AdmissionDto {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
 		result = prime * result + ((dateOfBirthInWords == null) ? 0 : dateOfBirthInWords.hashCode());
+		result = prime * result + ((document == null) ? 0 : document.hashCode());
 		result = prime * result + ((fathersName == null) ? 0 : fathersName.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((guardiansName == null) ? 0 : guardiansName.hashCode());
@@ -387,6 +396,7 @@ public class AdmissionDto {
 		result = prime * result + ((nationalityId == null) ? 0 : nationalityId.hashCode());
 		result = prime * result + ((occupationId == null) ? 0 : occupationId.hashCode());
 		result = prime * result + ((placeOfBirth == null) ? 0 : placeOfBirth.hashCode());
+		result = prime * result + ((profileId == null) ? 0 : profileId.hashCode());
 		result = prime * result + ((religionId == null) ? 0 : religionId.hashCode());
 		result = prime * result + ((schoolId == null) ? 0 : schoolId.hashCode());
 		result = prime * result + ((schoolTypeId == null) ? 0 : schoolTypeId.hashCode());
@@ -449,6 +459,11 @@ public class AdmissionDto {
 			if (other.dateOfBirthInWords != null)
 				return false;
 		} else if (!dateOfBirthInWords.equals(other.dateOfBirthInWords))
+			return false;
+		if (document == null) {
+			if (other.document != null)
+				return false;
+		} else if (!document.equals(other.document))
 			return false;
 		if (fathersName == null) {
 			if (other.fathersName != null)
@@ -514,6 +529,11 @@ public class AdmissionDto {
 			if (other.placeOfBirth != null)
 				return false;
 		} else if (!placeOfBirth.equals(other.placeOfBirth))
+			return false;
+		if (profileId == null) {
+			if (other.profileId != null)
+				return false;
+		} else if (!profileId.equals(other.profileId))
 			return false;
 		if (religionId == null) {
 			if (other.religionId != null)
@@ -584,7 +604,8 @@ public class AdmissionDto {
 				+ ", classId=" + classId + ", schoolId=" + schoolId + ", schoolTypeId=" + schoolTypeId + ", religionId="
 				+ religionId + ", castId=" + castId + ", subCastId=" + subCastId + ", occupationId=" + occupationId
 				+ ", societyId=" + societyId + ", nationalityId=" + nationalityId + ", mothertongId=" + mothertongId
-				+ ", address=" + address + ", accountFees=" + accountFees + ", document=" + document + "]";
+				+ ", address=" + address + ", accountFees=" + accountFees + ", document=" + document + ", profileId="
+				+ profileId + "]";
 	}
 
 }

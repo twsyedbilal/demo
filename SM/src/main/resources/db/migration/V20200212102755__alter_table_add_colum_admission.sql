@@ -1,0 +1,1 @@
+ALTER TABLE sm_admission ADD COLUMN profile_id bigint(20) DEFAULT NULL AFTER deleted;
