@@ -13,7 +13,7 @@ import com.techweaversys.dto.StockInOutDto;
 import com.techweaversys.service.LibraryStockService;
 
 @RestController
-@RequestMapping("stock/")
+@RequestMapping("rest/api/stock/")
 public class StockController {
 
 	@Autowired
@@ -31,6 +31,16 @@ public class StockController {
 	@GetMapping(value ="byStockInOut/{id}")
 	public ResponseEntity<?> byStockInOut(@PathVariable Long id) {
 		return libraryStockService.byStockInOut(id);
+	}
+	
+	@GetMapping(value ="findallstock")
+	public ResponseEntity<?> findAll(){
+		return libraryStockService.findAll();
+	}
+	
+	@GetMapping(value = "deleteid/{id}")
+	public ResponseEntity<?> deletId(@PathVariable Long id) {
+		return libraryStockService.deletId(id);
 	}
 	
 	/*

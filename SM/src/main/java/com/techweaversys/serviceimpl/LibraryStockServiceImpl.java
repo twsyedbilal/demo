@@ -58,9 +58,10 @@ public class LibraryStockServiceImpl implements LibraryStockService {
 		if (dto.getId() != null) {
 			sio = stockInOutRepository.getOne(dto.getId());
 		}
-		Book i = bookRepository.getOne(dto.getBook().getId());
+		Book i = bookRepository.getOne(dto.getBookId());// .getId());
 		sio.setBook(i);
 
+		
 		List<LibraryStockDto> stock = new ArrayList<>();
 		for (int j = 0; j < 1; j++) {
 			LibraryStockDto stockdto = new LibraryStockDto();
@@ -105,6 +106,23 @@ public class LibraryStockServiceImpl implements LibraryStockService {
 		StockInOut stock = stockInOutRepository.getOne(id);
 		StockInOutDto dto = modelMapper.map(stock, StockInOutDto.class);
 		return Response.build(Code.OK, dto);
+	}
+
+	@Override
+	public ResponseEntity<?> findAll() {
+		List<StockInOut> list = stockInOutRepository.findAll();
+		return Response.build(Code.OK, list);
+	}
+
+	@Override
+	public ResponseEntity<?> deletId(Long id) {
+		StockInOut sio = new StockInOut();
+		if (id != null) {
+			sio = stockInOutRepository.getOne(id);
+			sio.setDeleted(true);
+			stockInOutRepository.save(sio);
+		}
+		return Response.build(Code.OK, Messages.DELETED);
 	}
 
 }

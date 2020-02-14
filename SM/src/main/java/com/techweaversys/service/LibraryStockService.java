@@ -12,4 +12,8 @@ public interface LibraryStockService {
 
 	ResponseEntity<?> byStockInOut(Long id);
 
+	ResponseEntity<?> findAll();
+
+	ResponseEntity<?> deletId(Long id);
+
 }

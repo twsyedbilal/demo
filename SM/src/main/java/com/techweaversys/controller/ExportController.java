@@ -15,27 +15,27 @@ import com.lowagie.text.DocumentException;
 import com.techweaversys.service.ExportService;
 
 @RestController
-@RequestMapping(value = "/export/")
+@RequestMapping(value = "rest/api/export/pdf/")
 public class ExportController {
 
 	@Autowired
 	private ExportService exportService;
 
-	@GetMapping("bonafide/pdf/{id}")
+	@GetMapping("bonafide/{id}")
 	@ResponseBody
 	public byte[] downloadPdfBonoFide(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException {
 		return exportService.downloadPdfBonoFide(id, response);
 	}
 
-	@GetMapping("icardfront/pdf/{id}")
+	@GetMapping("icardfront/{id}")
 	@ResponseBody
 	public byte[] downloadPdfIdCardFront(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException, IOException {
 		return exportService.downloadPdfIdCardFront(id, response);
 	}
 
-	@GetMapping("icardback/pdf/{id}")
+	@GetMapping("icardback/{id}")
 	@ResponseBody
 	public byte[] downloadPdfIdCardBack(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException, IOException {
@@ -43,7 +43,7 @@ public class ExportController {
 	}
 
 	// 2
-	@GetMapping("bonafidebirth/pdf/{id}")
+	@GetMapping("bonafidebirth/{id}")
 	@ResponseBody
 	public byte[] downloadPdfBfByBirth(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException {
@@ -51,7 +51,7 @@ public class ExportController {
 	}
 
 	// 3
-	@GetMapping("bonafideaddscience/pdf/{id}")
+	@GetMapping("bonafideaddscience/{id}")
 	@ResponseBody
 	public byte[] downloadPdfBfByAddScience(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException {
@@ -59,7 +59,7 @@ public class ExportController {
 	}
 
 	// 4
-	@GetMapping("bonafidejr/pdf/{id}")
+	@GetMapping("bonafidejr/{id}")
 	@ResponseBody
 	public byte[] downloadPdfBfByJr(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException {
@@ -67,7 +67,7 @@ public class ExportController {
 	}
 
 	// 5
-	@GetMapping("bonafide5/pdf/{id}")
+	@GetMapping("bonafide5/{id}")
 	@ResponseBody
 	public byte[] downloadPdfBfBySchoolRecord(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException {
@@ -75,7 +75,7 @@ public class ExportController {
 	}
 
 	// 6
-	@GetMapping("bonafidescience/pdf/{id}")
+	@GetMapping("bonafidescience/{id}")
 	@ResponseBody
 	public byte[] downloadPdfBfByScience(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException {
@@ -83,35 +83,35 @@ public class ExportController {
 	}
 
 	// 7
-	@GetMapping("bonafidepast/pdf/{id}")
+	@GetMapping("bonafidepast/{id}")
 	@ResponseBody
 	public byte[] downloadPdfBfByWas(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException {
 		return exportService.downloadPdfBfBySchoolWas(id, response);
 	}
 
-	@GetMapping("primarytc/pdf/{id}")
+	@GetMapping("primarytc/{id}")
 	@ResponseBody
 	public byte[] downloadPdfPrimaryTc(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException, IOException {
 		return exportService.downloadPdfPrimaryTc(id, response);
 	}
 
-	@GetMapping("highschooltc/pdf/{id}")
+	@GetMapping("highschooltc/{id}")
 	@ResponseBody
 	public byte[] downloadPdfHighSchoolTc(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException, IOException {
 		return exportService.downloadPdfHighSchoolTc(id, response);
 	}
 
-	@GetMapping("jrcollegetc/pdf/{id}")
+	@GetMapping("jrcollegetc/{id}")
 	@ResponseBody
 	public byte[] downloadPdfJrCollegeTc(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException, IOException {
 		return exportService.downloadPdfJrCollegeTc(id, response);
 	}
 
-	@GetMapping("nilgamutara/pdf/{id}")
+	@GetMapping("nilgamutara/{id}")
 	@ResponseBody
 	public byte[] downloadPdfNilgamutara(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException, IOException {
@@ -119,7 +119,7 @@ public class ExportController {
 
 	}
 	
-	@GetMapping("icard/pdf/{id}")
+	@GetMapping("icard/{id}")
 	@ResponseBody
 	public byte[] downloadPdfICard(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException, IOException {
