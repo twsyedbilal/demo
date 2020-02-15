@@ -17,4 +17,6 @@ public interface BookService {
 
 	ResponseEntity<?> findAllwithpage(BookSpaceDto dto);
 
+	ResponseEntity<?> findbynamecode(String code);
+
 }

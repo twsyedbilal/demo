@@ -16,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.techweaversys.conv.CompliantConvertor;
 import com.techweaversys.dto.CompliantDto;
+import com.techweaversys.dto.CompliantListDto;
 import com.techweaversys.dto.CompliantSpceDto;
+import com.techweaversys.dto.DocumentDto;
 import com.techweaversys.dto.PageDto;
 import com.techweaversys.generics.AppConstants;
 import com.techweaversys.generics.Code;
@@ -61,23 +63,23 @@ public class CompliantServiceImpl implements CompliantService {
 		}
 
 		// save data with admission
-		if (compliantDto.getAdmission() != null) {
-			if (compliantDto.getAdmission().getId() != null) {
-				Admission sc = admissionRepository.getOne(compliantDto.getAdmission().getId());
+		if (compliantDto.getAdmissionId() != null) {
+			
+				Admission sc = admissionRepository.getOne(compliantDto.getAdmissionId());
 				ct.setAdmission(sc);
-			}
+			
 		}
 
 		// save data with compliantType
-		if (compliantDto.getCompliantdto() != null) {
-			if (compliantDto.getCompliantdto().getId() != null) {
-				CompliantTypes sc = compliantTypeRepositry.getOne(compliantDto.getCompliantdto().getId());
+		if (compliantDto.getComplianttypeid() != null) {
+			
+				CompliantTypes sc = compliantTypeRepositry.getOne(compliantDto.getComplianttypeid());
 				ct.setCompliant(sc);
-			}
+			
 		}
 		List<Document> document = new ArrayList<>();
-		if (compliantDto.getDocument() != null) {
-			for (Document doc : compliantDto.getDocument()) {
+		if (compliantDto.getDocumentdtolist() != null) {
+			for (DocumentDto doc : compliantDto.getDocumentdtolist()) {
 				Document du = new Document();
 				if (doc.getId() != null) {
 					du = documentBucketRepository.getOne(doc.getId());
@@ -127,7 +129,7 @@ public class CompliantServiceImpl implements CompliantService {
 		logger.info("Showing list of Compliant " + dto);
 		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
 		Page<Compliant> c = compliantRepository.findAll(new ComplianteSpce(dto.getRemark()), bb);
-		List<CompliantDto> list = c.stream().map(new CompliantConvertor()).collect(Collectors.toList());
+		List<CompliantListDto> list = c.stream().map(new CompliantConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, c.getTotalElements());
 		return Response.build(Code.OK, pageDto);
 

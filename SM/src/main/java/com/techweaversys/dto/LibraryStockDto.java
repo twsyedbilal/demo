@@ -9,6 +9,7 @@ public class LibraryStockDto {
 	private double givenQty;
 	private double returnQty;
 	private double openingQty;
+	private double qyt;
 	private String type;
 	private BookDto book;
 

@@ -47,5 +47,11 @@ import com.techweaversys.service.BookService;
 			return bookService.findAllwithpage(dto);
 
 		}
+			
+		@GetMapping(value = "bookbynameandcode/{code}")
+		public ResponseEntity<?> findbynamecode(@PathVariable String code) {
+			return bookService.findbynamecode(code);
 
+		}
+		
 	}

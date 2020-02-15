@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.techweaversys.model.Book;
-import com.techweaversys.model.BranchEntity;
 
 public class BookSpec  implements Specification<Book> {
 
@@ -31,7 +30,6 @@ public class BookSpec  implements Specification<Book> {
 		if (StringUtils.isNotEmpty(this.bookCode)) {
 			conjunction.getExpressions().add(cb.like(root.get("bookCode"), "%" + this.bookCode + "%"));
 		}
-
 		if (StringUtils.isNotEmpty(this.bookName)) {
 			conjunction.getExpressions().add(cb.like(root.get("bookName"), "%" + this.bookName + "%"));
 		}

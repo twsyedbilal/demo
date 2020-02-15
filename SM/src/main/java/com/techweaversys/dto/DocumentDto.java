@@ -14,9 +14,7 @@ public class DocumentDto {
 	private String store;
 	private String url;
 	private byte[] doc;
-	/*private Admission admission;
-	private Compliant compliant;
-*/
+	
 	public DocumentDto() {
 		super();
 	}

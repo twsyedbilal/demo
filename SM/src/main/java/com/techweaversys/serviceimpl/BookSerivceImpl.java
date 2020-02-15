@@ -84,4 +84,12 @@ public class BookSerivceImpl implements BookService {
 		PageDto pageDto = new PageDto(list, book.getTotalElements());
 		return Response.build(Code.OK, pageDto);
 	}
+
+	@Override
+	public ResponseEntity<?> findbynamecode(String code) {
+		logger.info("Showing list of book");
+		List<Book> book = bookRepository.findAll(new BookSpec(code,code));
+		List<BookDto> list = book.stream().map( new BookDtoConvertor() ).collect( Collectors.toList() );
+		return Response.build(Code.OK, list);
+	}
 }

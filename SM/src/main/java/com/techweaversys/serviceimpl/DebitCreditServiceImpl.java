@@ -95,7 +95,7 @@ public class DebitCreditServiceImpl implements DebitCreditService {
 				if (debitBookDto.getType().equals(Constants.DEBIT) || debitBookDto.getType().equals(Constants.CREDIT)) {
 					st.setGivenQty(i.getGivenQty());
 					st.setReturnQty(i.getReturnQty());
-					}
+				}
 				/*
 				 * if (debitBookDto.getType().equals(Constants.CREDIT)) {
 				 * st.setGivenQty(i.getGivenQty()); st.setReturnQty(i.getReturnQty());
