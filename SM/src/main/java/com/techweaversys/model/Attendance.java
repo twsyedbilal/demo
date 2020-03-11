@@ -5,24 +5,26 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techweaversys.generics.AbstractPersistable;
 
 @Entity
 @Table(name = "sm_attendance")
 @Where(clause = "deleted=false")
-public class Attendance extends AbstractPersistable{
+public class Attendance extends AbstractPersistable {
 
 	private static final long serialVersionUID = 5321094935089067273L;
 
 	@Column(name = "present", nullable = false)
 	private Boolean present = false;
-	
-	
+
 	@Column(name = "absent", nullable = false)
 	private Boolean absent = false;
 
@@ -32,21 +34,28 @@ public class Attendance extends AbstractPersistable{
 	@Column(name = "types")
 	private String types;
 
-
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "classs_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private ClassEntity classs;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private User user;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "admission_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private Admission admission;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "subject_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private SubjectMaster subject;
 
 	public Attendance() {

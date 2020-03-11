@@ -28,23 +28,23 @@ public class OpeningStock extends AbstractPersistable {
 	private Calendar openingDate;
 
 	@Column(name = "opening_qty", nullable = true)
-	private double OpeningQty;
+	private double openingQty;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "book_id")
 	@JsonIgnore
 	@NotFound(action = NotFoundAction.IGNORE)
-	private Book Book;
+	private Book book;
 
 	public OpeningStock() {
 		super();
 	}
 
-	public OpeningStock(Calendar openingDate, double openingQty, com.techweaversys.model.Book book) {
+	public OpeningStock(Calendar openingDate, double openingQty, Book book) {
 		super();
 		this.openingDate = openingDate;
-		OpeningQty = openingQty;
-		Book = book;
+		this.openingQty = openingQty;
+		this.book = book;
 	}
 
 	public Calendar getOpeningDate() {
@@ -56,30 +56,30 @@ public class OpeningStock extends AbstractPersistable {
 	}
 
 	public double getOpeningQty() {
-		return OpeningQty;
+		return openingQty;
 	}
 
 	public void setOpeningQty(double openingQty) {
-		OpeningQty = openingQty;
+		this.openingQty = openingQty;
 	}
 
 	public Book getBook() {
-		return Book;
+		return book;
 	}
 
 	public void setBook(Book book) {
-		Book = book;
+		this.book = book;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((Book == null) ? 0 : Book.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(OpeningQty);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((openingDate == null) ? 0 : openingDate.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(openingQty);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -92,24 +92,24 @@ public class OpeningStock extends AbstractPersistable {
 		if (getClass() != obj.getClass())
 			return false;
 		OpeningStock other = (OpeningStock) obj;
-		if (Book == null) {
-			if (other.Book != null)
+		if (book == null) {
+			if (other.book != null)
 				return false;
-		} else if (!Book.equals(other.Book))
-			return false;
-		if (Double.doubleToLongBits(OpeningQty) != Double.doubleToLongBits(other.OpeningQty))
+		} else if (!book.equals(other.book))
 			return false;
 		if (openingDate == null) {
 			if (other.openingDate != null)
 				return false;
 		} else if (!openingDate.equals(other.openingDate))
 			return false;
+		if (Double.doubleToLongBits(openingQty) != Double.doubleToLongBits(other.openingQty))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "OpeningStock [openingDate=" + openingDate + ", OpeningQty=" + OpeningQty + ", Book=" + Book + "]";
+		return "OpeningStock [openingDate=" + openingDate + ", openingQty=" + openingQty + ", book=" + book + "]";
 	}
 
 }

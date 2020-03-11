@@ -10,4 +10,10 @@ public interface CommonService {
 
 	ResponseEntity<?> getCityList(Long stateId);
 
+	ResponseEntity<?> getCountryById(Long id);
+
+	ResponseEntity<?> getStateById(Long id);
+
+	ResponseEntity<?> getCityById(Long id);
+
 }

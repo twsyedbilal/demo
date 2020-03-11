@@ -10,14 +10,14 @@ public class DebitSlaveDto {
 	private double returnQty;
 	private Calendar fromDate;
 	private Calendar toDate;
-	private Long bookId;
+	private BookDto book;
 
 	public DebitSlaveDto() {
 		super();
 	}
 
 	public DebitSlaveDto(Long id, double qty, double givenQty, double returnQty, Calendar fromDate, Calendar toDate,
-			Long bookId) {
+			BookDto book) {
 		super();
 		this.id = id;
 		this.qty = qty;
@@ -25,15 +25,7 @@ public class DebitSlaveDto {
 		this.returnQty = returnQty;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
-		this.bookId = bookId;
-	}
-
-	public Long getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(Long bookId) {
-		this.bookId = bookId;
+		this.book = book;
 	}
 
 	public Long getId() {
@@ -84,11 +76,19 @@ public class DebitSlaveDto {
 		this.toDate = toDate;
 	}
 
+	public BookDto getBook() {
+		return book;
+	}
+
+	public void setBook(BookDto book) {
+		this.book = book;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((fromDate == null) ? 0 : fromDate.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(givenQty);
@@ -111,10 +111,10 @@ public class DebitSlaveDto {
 		if (getClass() != obj.getClass())
 			return false;
 		DebitSlaveDto other = (DebitSlaveDto) obj;
-		if (bookId == null) {
-			if (other.bookId != null)
+		if (book == null) {
+			if (other.book != null)
 				return false;
-		} else if (!bookId.equals(other.bookId))
+		} else if (!book.equals(other.book))
 			return false;
 		if (fromDate == null) {
 			if (other.fromDate != null)
@@ -143,7 +143,7 @@ public class DebitSlaveDto {
 	@Override
 	public String toString() {
 		return "DebitSlaveDto [id=" + id + ", qty=" + qty + ", givenQty=" + givenQty + ", returnQty=" + returnQty
-				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", bookId=" + bookId + "]";
+				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", book=" + book + "]";
 	}
 
 }

@@ -49,5 +49,10 @@ public class AttendanceController {
 		return attendanceService.findAllwithpage(dto);
 
 	}
+	@GetMapping(value = "getclassbyid/{id}")
+	public ResponseEntity<?> findByClassId(@PathVariable Long id) {
+		return attendanceService.findByClassId(id);
+
+	}
 
 }

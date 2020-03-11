@@ -123,7 +123,7 @@ public class ExportController {
 	@ResponseBody
 	public byte[] downloadPdfICard(@PathVariable("id") Long id, HttpServletResponse response)
 			throws DocumentException, IOException {
-		return exportService.downloadPdfIdCardFront(id, response);
+		return exportService.downloadPdfICard(id, response);
 	}
 
 }

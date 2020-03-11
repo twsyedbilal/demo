@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,9 +72,8 @@ import ch.qos.logback.classic.Logger;
 @Transactional
 public class AdmissionServiceImpl implements AdmissionService {
 
-	/*
-	 * @Autowired private ModelMapper modelMapper;
-	 */
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Autowired
 	private AdmissionRepository admissionRepository;
@@ -183,13 +183,13 @@ public class AdmissionServiceImpl implements AdmissionService {
 			sh.setReligion(religion);
 		}
 		// save admission details with Caste get by Id
-		if (admission.getCastId() != null) {
-			Caste caste = casteRepository.getOne(admission.getCastId());
+		if (admission.getCasteId() != null) {
+			Caste caste = casteRepository.getOne(admission.getCasteId());
 			sh.setCaste(caste);
 		}
 		// save admission details with SubCaste get by Id
-		if (admission.getSubCastId() != null) {
-			SubCaste subCaste = subCasteRepository.getOne(admission.getSubCastId());
+		if (admission.getSubCasteId() != null) {
+			SubCaste subCaste = subCasteRepository.getOne(admission.getSubCasteId());
 			sh.setSubCaste(subCaste);
 		}
 		// save admission details with Occupation get by Id
@@ -198,8 +198,8 @@ public class AdmissionServiceImpl implements AdmissionService {
 			sh.setOccupation(occupation);
 		}
 		// save admission details with MotherTongue get by Id
-		if (admission.getMothertongId() != null) {
-			MotherTongueEntity MotherTongue = motherTongueRepository.getOne(admission.getMothertongId());
+		if (admission.getMotherTongueId() != null) {
+			MotherTongueEntity MotherTongue = motherTongueRepository.getOne(admission.getMotherTongueId());
 			sh.setMotherTongue(MotherTongue);
 		}
 		// save admission details with Nationality get by Id
@@ -254,15 +254,19 @@ public class AdmissionServiceImpl implements AdmissionService {
 					ad.setType(a.getType());
 					ad.setDetailAddress(a.getDetailAddress());
 					ad.setPinCode(a.getPincode());
+					ad.setAdmission(sh);
+
 				}
 				if (a.getType().equals(Constants.PERMANENT)) {
 					ad.setType(a.getType());
 					ad.setDetailAddress(a.getDetailAddress());
 					ad.setPinCode(a.getPincode());
+					ad.setAdmission(sh);
 				}
 				address.add(ad);
 			}
 			sh.setAddress(address);
+
 		}
 
 		// to get current year
@@ -300,12 +304,10 @@ public class AdmissionServiceImpl implements AdmissionService {
 
 	@Override
 	public ResponseEntity<?> getByIdAdmi(Long id) {
-		/*
-		 * Admission s = admissionRepository.getOne(id); AdmissionDto dto =
-		 * modelMapper.map(s, AdmissionDto.class);
-		 */
-		Optional<Admission> s = admissionRepository.findById(id);
-		return Response.build(Code.OK, s);
+
+		Admission s = admissionRepository.getOne(id);
+		AdmissionDto dto = modelMapper.map(s, AdmissionDto.class);
+		return Response.build(Code.OK, dto);
 	}
 
 	@Override

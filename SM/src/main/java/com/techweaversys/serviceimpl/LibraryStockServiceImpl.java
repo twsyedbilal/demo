@@ -2,6 +2,7 @@ package com.techweaversys.serviceimpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
@@ -12,7 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.techweaversys.commands.RemoteControl;
 import com.techweaversys.commands.StockInOutCommand;
+import com.techweaversys.conv.StockInOutCovertor;
 import com.techweaversys.dto.BookDto;
+import com.techweaversys.dto.BookSpaceDto;
 import com.techweaversys.dto.LibraryStockDto;
 import com.techweaversys.dto.StockInOutDto;
 import com.techweaversys.generics.Code;
@@ -58,28 +61,37 @@ public class LibraryStockServiceImpl implements LibraryStockService {
 		if (dto.getId() != null) {
 			sio = stockInOutRepository.getOne(dto.getId());
 		}
-		Book i = bookRepository.getOne(dto.getBookId());// .getId());
+		Book i = bookRepository.getOne(dto.getBook().getId());
 		sio.setBook(i);
+
+//		if(dto.getBook().getId() != null) {
+//		Book book = bookRepository.getOne(dto.getBook().getId());
+//		openingStock.setBook(book);
+//		BookDto bookDto = modelMapper.map(book, BookDto.class);
+//		stockdto.setBook(bookDto);
+//		}
 
 		
 		List<LibraryStockDto> stock = new ArrayList<>();
 		for (int j = 0; j < 1; j++) {
 			LibraryStockDto stockdto = new LibraryStockDto();
 			BookDto it = modelMapper.map(i, BookDto.class);
+//			stockdto.setBook(it);
 			if (StringUtils.isNotEmpty(dto.getType())) {
 
 				if (dto.getType().equals(Constants.STOCKIN)) {
-					sio.setStockin(dto.getStockin());
+					sio.setStockin(dto.getQty());
 					sio.setQty(dto.getQty());
 					sio.setType(dto.getType());
+					sio.setStockout(0);
 					stockdto.setStockIn(sio.getStockin());
 
-
 				} else {
-					sio.setStockout(dto.getStockout());
+					sio.setStockout(dto.getQty());
 					sio.setQty(dto.getQty());
 					sio.setType(dto.getType());
-					stockdto.setStockOut(dto.getStockout());
+					sio.setStockin(0);
+					stockdto.setStockOut(sio.getStockout());
 				}
 				stockdto.setBook(it);
 			}
@@ -111,7 +123,8 @@ public class LibraryStockServiceImpl implements LibraryStockService {
 	@Override
 	public ResponseEntity<?> findAll() {
 		List<StockInOut> list = stockInOutRepository.findAll();
-		return Response.build(Code.OK, list);
+		List<StockInOutDto> dto = list.stream().map(new StockInOutCovertor()).collect(Collectors.toList());
+		return Response.build(Code.OK, dto);
 	}
 
 	@Override
@@ -125,4 +138,11 @@ public class LibraryStockServiceImpl implements LibraryStockService {
 		return Response.build(Code.OK, Messages.DELETED);
 	}
 
+	@Override
+	public ResponseEntity<?> stockList(BookSpaceDto spectDto) {
+
+		return null;
+	}
+
 }
+

@@ -1102,6 +1102,10 @@ public class ExportServiceImpl implements ExportService {
 		context.setVariable("fathersName", fathersName);
 		context.setVariable("className", className);
 		context.setVariable("photoUrl", path);
+		context.setVariable("dob", dateString);
+		context.setVariable("contactNo", contactNo);
+		context.setVariable("academicYear", academicYear);
+		context.setVariable("address", addressdetail);
 
 
 		String html = templateEngine.process("icard", context);

@@ -8,12 +8,12 @@ public class AttendanceDto {
 	private String reason;
 	private String types;
 	private UserDto userdto;
-	private ClassDto classdto;
-	private AdmissionDto admissiondto;
-	private SubjectMasterDto subjectdto;
+	private ClassDto classs;
+	private AdmissionDto admission;
+	private SubjectMasterDto subject;
 
 	public AttendanceDto(Long id, Boolean present, Boolean absent, String reason, String types, UserDto userdto,
-			ClassDto classdto, AdmissionDto admissiondto, SubjectMasterDto subjectdto) {
+			ClassDto classs, AdmissionDto admission, SubjectMasterDto subject) {
 		super();
 		this.id = id;
 		this.present = present;
@@ -21,9 +21,9 @@ public class AttendanceDto {
 		this.reason = reason;
 		this.types = types;
 		this.userdto = userdto;
-		this.classdto = classdto;
-		this.admissiondto = admissiondto;
-		this.subjectdto = subjectdto;
+		this.classs = classs;
+		this.admission = admission;
+		this.subject = subject;
 	}
 
 	public AttendanceDto() {
@@ -79,28 +79,25 @@ public class AttendanceDto {
 		this.userdto = userdto;
 	}
 
-	public ClassDto getClassdto() {
-		return classdto;
+	/*
+	 * public ClassDto getClassdto() { return classdto; }
+	 * 
+	 * public void setClassdto(ClassDto classdto) { this.classdto = classdto; }
+	 */
+	public AdmissionDto getAdmission() {
+		return admission;
 	}
 
-	public void setClassdto(ClassDto classdto) {
-		this.classdto = classdto;
-	}
-
-	public AdmissionDto getAdmissiondto() {
-		return admissiondto;
-	}
-
-	public void setAdmissiondto(AdmissionDto admissiondto) {
-		this.admissiondto = admissiondto;
+	public void setAdmission(AdmissionDto admission) {
+		this.admission = admission;
 	}
 
 	public SubjectMasterDto getSubjectdto() {
-		return subjectdto;
+		return subject;
 	}
 
-	public void setSubjectdto(SubjectMasterDto subjectdto) {
-		this.subjectdto = subjectdto;
+	public void setSubjectdto(SubjectMasterDto subject) {
+		this.subject = subject;
 	}
 
 	@Override
@@ -108,12 +105,12 @@ public class AttendanceDto {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((absent == null) ? 0 : absent.hashCode());
-		result = prime * result + ((admissiondto == null) ? 0 : admissiondto.hashCode());
-		result = prime * result + ((classdto == null) ? 0 : classdto.hashCode());
+		result = prime * result + ((admission == null) ? 0 : admission.hashCode());
+		result = prime * result + ((classs == null) ? 0 : classs.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((present == null) ? 0 : present.hashCode());
 		result = prime * result + ((reason == null) ? 0 : reason.hashCode());
-		result = prime * result + ((subjectdto == null) ? 0 : subjectdto.hashCode());
+		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result + ((types == null) ? 0 : types.hashCode());
 		result = prime * result + ((userdto == null) ? 0 : userdto.hashCode());
 		return result;
@@ -133,15 +130,15 @@ public class AttendanceDto {
 				return false;
 		} else if (!absent.equals(other.absent))
 			return false;
-		if (admissiondto == null) {
-			if (other.admissiondto != null)
+		if (admission == null) {
+			if (other.admission != null)
 				return false;
-		} else if (!admissiondto.equals(other.admissiondto))
+		} else if (!admission.equals(other.admission))
 			return false;
-		if (classdto == null) {
-			if (other.classdto != null)
+		if (classs == null) {
+			if (other.classs != null)
 				return false;
-		} else if (!classdto.equals(other.classdto))
+		} else if (!classs.equals(other.classs))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -158,10 +155,10 @@ public class AttendanceDto {
 				return false;
 		} else if (!reason.equals(other.reason))
 			return false;
-		if (subjectdto == null) {
-			if (other.subjectdto != null)
+		if (subject == null) {
+			if (other.subject != null)
 				return false;
-		} else if (!subjectdto.equals(other.subjectdto))
+		} else if (!subject.equals(other.subject))
 			return false;
 		if (types == null) {
 			if (other.types != null)
@@ -176,11 +173,19 @@ public class AttendanceDto {
 		return true;
 	}
 
+	public ClassDto getClasss() {
+		return classs;
+	}
+
+	public void setClasss(ClassDto classs) {
+		this.classs = classs;
+	}
+
 	@Override
 	public String toString() {
 		return "AttendanceDto [id=" + id + ", present=" + present + ", absent=" + absent + ", reason=" + reason
-				+ ", types=" + types + ", userdto=" + userdto + ", classdto=" + classdto + ", admissiondto="
-				+ admissiondto + ", subjectdto=" + subjectdto + "]";
+				+ ", types=" + types + ", userdto=" + userdto + ", classs=" + classs + ", admission="
+				+ admission + ", subject=" + subject + "]";
 	}
 
 }

@@ -18,7 +18,7 @@ public class LibraryStockDto {
 	}
 
 	public LibraryStockDto(Long id, double stockQty, double stockIn, double stockOut, double givenQty, double returnQty,
-			double openingQty, String type, BookDto book) {
+			double openingQty, String type, BookDto book, double qyt) {
 		super();
 		this.id = id;
 		this.stockQty = stockQty;
@@ -29,6 +29,7 @@ public class LibraryStockDto {
 		this.openingQty = openingQty;
 		this.type = type;
 		this.book = book;
+		this.qyt = qyt;
 	}
 
 	public BookDto getBook() {
@@ -103,6 +104,14 @@ public class LibraryStockDto {
 		this.openingQty = openingQty;
 	}
 
+	public double getQyt() {
+		return qyt;
+	}
+
+	public void setQyt(double qyt) {
+		this.qyt = qyt;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -113,6 +122,8 @@ public class LibraryStockDto {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		temp = Double.doubleToLongBits(openingQty);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(qyt);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(returnQty);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -149,6 +160,8 @@ public class LibraryStockDto {
 			return false;
 		if (Double.doubleToLongBits(openingQty) != Double.doubleToLongBits(other.openingQty))
 			return false;
+		if (Double.doubleToLongBits(qyt) != Double.doubleToLongBits(other.qyt))
+			return false;
 		if (Double.doubleToLongBits(returnQty) != Double.doubleToLongBits(other.returnQty))
 			return false;
 		if (Double.doubleToLongBits(stockIn) != Double.doubleToLongBits(other.stockIn))
@@ -169,7 +182,7 @@ public class LibraryStockDto {
 	public String toString() {
 		return "LibraryStockDto [id=" + id + ", stockQty=" + stockQty + ", stockIn=" + stockIn + ", stockOut="
 				+ stockOut + ", givenQty=" + givenQty + ", returnQty=" + returnQty + ", openingQty=" + openingQty
-				+ ", type=" + type + ", book=" + book + "]";
+				+ ", qyt=" + qyt + ", type=" + type + ", book=" + book + "]";
 	}
 
 }

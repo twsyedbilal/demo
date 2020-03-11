@@ -9,12 +9,21 @@ public interface DebitCreditService {
 
 	ResponseEntity<?> deleteById(Long id);
 
-	ResponseEntity<?> getByIdDebit(Long id);
+	ResponseEntity<?> byBookId(Long id);
 
-	ResponseEntity<?> getByIdCredit(Long id);
+	ResponseEntity<?> findAll();
 
-	ResponseEntity<?> findAlDebitBook();
+	ResponseEntity<?> getDebitCreditById(Long id);
+	
+	/*
+	 * ResponseEntity<?> getByIdDebit(Long id);
+	 * 
+	 * ResponseEntity<?> getByIdCredit(Long id);
+	 * 
+	 * ResponseEntity<?> findAlDebitBook();
+	 * 
+	 * ResponseEntity<?> findAlCreditBook();
+	 */
 
-	ResponseEntity<?> findAlCreditBook();
 
 }

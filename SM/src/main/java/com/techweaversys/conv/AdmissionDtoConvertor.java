@@ -47,13 +47,13 @@ public class AdmissionDtoConvertor implements Function<Admission, AdmissionDto> 
 			dto.setSchoolTypeId(ad.getSchoolType().getId());
 		}
 		if (ad.getCaste() != null) {
-			dto.setCastId(ad.getCaste().getId());
+			dto.setCasteId(ad.getCaste().getId());
 		}
 		if (ad.getSubCaste() != null) {
-			dto.setSubCastId(ad.getSubCaste().getId());
+			dto.setSubCasteId(ad.getSubCaste().getId());
 		}
 		if (ad.getMotherTongue() != null) {
-			dto.setMothertongId(ad.getMotherTongue().getId());
+			dto.setMotherTongueId(ad.getMotherTongue().getId());
 		}
 		if (ad.getOccupation() != null) {
 			dto.setOccupationId(ad.getOccupation().getId());

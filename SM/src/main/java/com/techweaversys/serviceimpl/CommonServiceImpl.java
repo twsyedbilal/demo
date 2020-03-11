@@ -68,4 +68,25 @@ public class CommonServiceImpl implements CommonService {
 		return Response.build(Code.OK, cityDto);
 	}
 
+	@Override
+	public ResponseEntity<?> getCountryById(Long id) {
+		Country country = countryRepository.getOne(id);
+		CountryDto dto = modelMapper.map(country, CountryDto.class);
+		return Response.build(Code.OK, dto);
+	}
+
+	@Override
+	public ResponseEntity<?> getStateById(Long id) {
+		City city = cityRepository.getOne(id);
+		CityDto dto = modelMapper.map(city, CityDto.class);
+		return Response.build(Code.OK, dto);
+	}
+
+	@Override
+	public ResponseEntity<?> getCityById(Long id) {
+		State state = stateRepository.getOne(id);
+		StateDto dto = modelMapper.map(state, StateDto.class);
+		return Response.build(Code.OK, dto);
+	}
+
 }

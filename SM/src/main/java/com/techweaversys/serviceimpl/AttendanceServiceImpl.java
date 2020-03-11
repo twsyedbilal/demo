@@ -1,9 +1,9 @@
 package com.techweaversys.serviceimpl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +56,9 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Autowired
 	public SubjectMasterRepository smr;
 
+	@Autowired
+	private ModelMapper modelMapper;
+
 	@Override
 	public ResponseEntity<?> create(AttendanceDto dto) {
 		logger.info("Creating Attendance: " + dto);
@@ -65,26 +68,26 @@ public class AttendanceServiceImpl implements AttendanceService {
 		}
 
 		// save class details get by Id
-		if (dto.getClassdto() != null) {
-			ClassEntity b = classRepository.getOne(dto.getId());
+		if (dto.getClasss() != null) {
+			ClassEntity b = classRepository.getOne(dto.getClasss().getId());
 			a.setClasss(b);
 		}
 
 		// save user details get by Id
 		if (dto.getUserdto() != null) {
-			User b = userRepository.getOne(dto.getId());
+			User b = userRepository.getOne(dto.getUserdto().getId());
 			a.setUser(b);
 		}
 
 		// save addmission details get by Id
-		if (dto.getAdmissiondto() != null) {
-			Admission b = admissionRepository.getOne(dto.getId());
+		if (dto.getAdmission() != null) {
+			Admission b = admissionRepository.getOne(dto.getAdmission().getId());
 			a.setAdmission(b);
 		}
 
 		// save subjectMaster details get by Id
 		if (dto.getSubjectdto() != null) {
-			SubjectMaster b = smr.getOne(dto.getId());
+			SubjectMaster b = smr.getOne(dto.getSubjectdto().getId());
 			a.setSubject(b);
 		}
 
@@ -99,14 +102,13 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Override
 	public ResponseEntity<?> getDataById(Long id) {
-
-		Optional<Attendance> a = attendanceRepository.findById(id);
-		return Response.build(Code.OK, a);
+		Attendance attendance = attendanceRepository.getOne(id);
+		AttendanceDto dto = modelMapper.map(attendance, AttendanceDto.class);
+		return Response.build(Code.OK, dto);
 	}
 
 	@Override
 	public ResponseEntity<?> findAllData() {
-
 		List<Attendance> list = attendanceRepository.findAll();
 		return Response.build(Code.OK, list);
 	}
@@ -132,6 +134,13 @@ public class AttendanceServiceImpl implements AttendanceService {
 		List<AttendanceDto> list = attendance.stream().map(new AttendanceConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, attendance.getTotalElements());
 		return Response.build(Code.OK, pageDto);
+	}
+
+	@Override
+	public ResponseEntity<?> findByClassId(Long id) {
+		Attendance attendance = attendanceRepository.findByClasssId(id);
+		AttendanceDto dto = modelMapper.map(attendance, AttendanceDto.class);
+		return Response.build(Code.OK, dto);
 	}
 
 }

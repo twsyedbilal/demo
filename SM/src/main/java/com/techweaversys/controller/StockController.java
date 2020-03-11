@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techweaversys.dto.BookSpaceDto;
 import com.techweaversys.dto.StockInOutDto;
 import com.techweaversys.service.LibraryStockService;
 
@@ -42,10 +43,10 @@ public class StockController {
 	public ResponseEntity<?> deletId(@PathVariable Long id) {
 		return libraryStockService.deletId(id);
 	}
-	
-	/*
-	 * @PostMapping(value = "list") public ResponseEntity<?> stockList(@RequestBody
-	 * BookSpecDto spectDto) { return libraryStockService.stockList(spectDto); }
-	 */
+
+	@PostMapping(value = "list")
+	public ResponseEntity<?> stockList(@RequestBody BookSpaceDto spectDto) {
+		return libraryStockService.stockList(spectDto);
+	}
 	
 }

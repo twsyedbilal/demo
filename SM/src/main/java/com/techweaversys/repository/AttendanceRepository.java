@@ -10,4 +10,6 @@ import com.techweaversys.model.Attendance;
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long>, JpaSpecificationExecutor<Attendance> {
 
+	Attendance findByClasssId(Long id);
+
 }

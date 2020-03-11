@@ -29,17 +29,17 @@ public class AdmissionDto {
 	private Long schoolId;
 	private Long schoolTypeId;
 	private Long religionId;
-	private Long castId;
-	private Long subCastId;
+	private Long casteId;
+	private Long subCasteId;
 	private Long occupationId;
 	private Long societyId;
 	private Long nationalityId;
-	private Long mothertongId;
+	private Long motherTongueId;
 	private List<AddressDto> address;
-	private AcountFeeDto accountFees;
 	private List<DocumentDto> document;
 	private Integer profileId;
-	
+	private String rollNo;
+
 	public AdmissionDto() {
 		super();
 	}
@@ -48,8 +48,9 @@ public class AdmissionDto {
 			String surName, String studentsName, String fathersName, String mothersName, String guardiansName,
 			String gender, Calendar dateOfBirth, String dateOfBirthInWords, String placeOfBirth, Long income,
 			String contactNo, String status, String liveStatus, String identityByMarkOrAadharNo, Long classId,
-			Long schoolId, Long schoolTypeId, Long religionId, Long castId, Long subCastId, Long occupationId,
-			Long societyId, Long nationalityId, Long mothertongId, List<AddressDto> address, AcountFeeDto accountFees,Integer profileId) {
+			Long schoolId, Long schoolTypeId, Long religionId, Long casteId, Long subCasteId, Long occupationId,
+			Long societyId, Long nationalityId, Long motherTongueId, List<AddressDto> address,
+			List<DocumentDto> document, Integer profileId) {
 		super();
 		this.id = id;
 		this.uidNo = uidNo;
@@ -75,14 +76,15 @@ public class AdmissionDto {
 		this.schoolId = schoolId;
 		this.schoolTypeId = schoolTypeId;
 		this.religionId = religionId;
-		this.castId = castId;
-		this.subCastId = subCastId;
+		this.casteId = casteId;
+		this.subCasteId = subCasteId;
 		this.occupationId = occupationId;
 		this.societyId = societyId;
 		this.nationalityId = nationalityId;
-		this.mothertongId = mothertongId;
+		this.motherTongueId = motherTongueId;
 		this.address = address;
-		this.accountFees = accountFees;
+		this.document = document;
+		this.profileId = profileId;
 	}
 
 	public AdmissionDto(String studentRegNo, String year, Calendar date, String studentsName, String gender,
@@ -97,14 +99,6 @@ public class AdmissionDto {
 		this.dateOfBirthInWords = dateOfBirthInWords;
 		this.income = income;
 		this.contactNo = contactNo;
-	}
-
-	public AcountFeeDto getAccountFees() {
-		return accountFees;
-	}
-
-	public void setAccountFees(AcountFeeDto accountFees) {
-		this.accountFees = accountFees;
 	}
 
 	public Long getId() {
@@ -299,20 +293,20 @@ public class AdmissionDto {
 		this.religionId = religionId;
 	}
 
-	public Long getCastId() {
-		return castId;
+	public Long getCasteId() {
+		return casteId;
 	}
 
-	public void setCastId(Long castId) {
-		this.castId = castId;
+	public void setCasteId(Long casteId) {
+		this.casteId = casteId;
 	}
 
-	public Long getSubCastId() {
-		return subCastId;
+	public Long getSubCasteId() {
+		return subCasteId;
 	}
 
-	public void setSubCastId(Long subCastId) {
-		this.subCastId = subCastId;
+	public void setSubCasteId(Long subCasteId) {
+		this.subCasteId = subCasteId;
 	}
 
 	public Long getOccupationId() {
@@ -339,14 +333,6 @@ public class AdmissionDto {
 		this.nationalityId = nationalityId;
 	}
 
-	public Long getMothertongId() {
-		return mothertongId;
-	}
-
-	public void setMothertongId(Long mothertongId) {
-		this.mothertongId = mothertongId;
-	}
-
 	public List<AddressDto> getAddress() {
 		return address;
 	}
@@ -354,6 +340,7 @@ public class AdmissionDto {
 	public void setAddress(List<AddressDto> address) {
 		this.address = address;
 	}
+
 	public List<DocumentDto> getDocument() {
 		return document;
 	}
@@ -370,13 +357,20 @@ public class AdmissionDto {
 		this.profileId = profileId;
 	}
 
+	public Long getMotherTongueId() {
+		return motherTongueId;
+	}
+
+	public void setMotherTongueId(Long motherTongueId) {
+		this.motherTongueId = motherTongueId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((accountFees == null) ? 0 : accountFees.hashCode());
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((castId == null) ? 0 : castId.hashCode());
+		result = prime * result + ((casteId == null) ? 0 : casteId.hashCode());
 		result = prime * result + ((classId == null) ? 0 : classId.hashCode());
 		result = prime * result + ((contactNo == null) ? 0 : contactNo.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
@@ -391,8 +385,8 @@ public class AdmissionDto {
 		result = prime * result + ((identityByMarkOrAadharNo == null) ? 0 : identityByMarkOrAadharNo.hashCode());
 		result = prime * result + ((income == null) ? 0 : income.hashCode());
 		result = prime * result + ((liveStatus == null) ? 0 : liveStatus.hashCode());
+		result = prime * result + ((motherTongueId == null) ? 0 : motherTongueId.hashCode());
 		result = prime * result + ((mothersName == null) ? 0 : mothersName.hashCode());
-		result = prime * result + ((mothertongId == null) ? 0 : mothertongId.hashCode());
 		result = prime * result + ((nationalityId == null) ? 0 : nationalityId.hashCode());
 		result = prime * result + ((occupationId == null) ? 0 : occupationId.hashCode());
 		result = prime * result + ((placeOfBirth == null) ? 0 : placeOfBirth.hashCode());
@@ -404,7 +398,7 @@ public class AdmissionDto {
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((studentRegNo == null) ? 0 : studentRegNo.hashCode());
 		result = prime * result + ((studentsName == null) ? 0 : studentsName.hashCode());
-		result = prime * result + ((subCastId == null) ? 0 : subCastId.hashCode());
+		result = prime * result + ((subCasteId == null) ? 0 : subCasteId.hashCode());
 		result = prime * result + ((surName == null) ? 0 : surName.hashCode());
 		result = prime * result + ((uidNo == null) ? 0 : uidNo.hashCode());
 		result = prime * result + ((year == null) ? 0 : year.hashCode());
@@ -420,20 +414,15 @@ public class AdmissionDto {
 		if (getClass() != obj.getClass())
 			return false;
 		AdmissionDto other = (AdmissionDto) obj;
-		if (accountFees == null) {
-			if (other.accountFees != null)
-				return false;
-		} else if (!accountFees.equals(other.accountFees))
-			return false;
 		if (address == null) {
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (castId == null) {
-			if (other.castId != null)
+		if (casteId == null) {
+			if (other.casteId != null)
 				return false;
-		} else if (!castId.equals(other.castId))
+		} else if (!casteId.equals(other.casteId))
 			return false;
 		if (classId == null) {
 			if (other.classId != null)
@@ -505,15 +494,15 @@ public class AdmissionDto {
 				return false;
 		} else if (!liveStatus.equals(other.liveStatus))
 			return false;
+		if (motherTongueId == null) {
+			if (other.motherTongueId != null)
+				return false;
+		} else if (!motherTongueId.equals(other.motherTongueId))
+			return false;
 		if (mothersName == null) {
 			if (other.mothersName != null)
 				return false;
 		} else if (!mothersName.equals(other.mothersName))
-			return false;
-		if (mothertongId == null) {
-			if (other.mothertongId != null)
-				return false;
-		} else if (!mothertongId.equals(other.mothertongId))
 			return false;
 		if (nationalityId == null) {
 			if (other.nationalityId != null)
@@ -570,10 +559,10 @@ public class AdmissionDto {
 				return false;
 		} else if (!studentsName.equals(other.studentsName))
 			return false;
-		if (subCastId == null) {
-			if (other.subCastId != null)
+		if (subCasteId == null) {
+			if (other.subCasteId != null)
 				return false;
-		} else if (!subCastId.equals(other.subCastId))
+		} else if (!subCasteId.equals(other.subCasteId))
 			return false;
 		if (surName == null) {
 			if (other.surName != null)
@@ -602,10 +591,17 @@ public class AdmissionDto {
 				+ ", placeOfBirth=" + placeOfBirth + ", income=" + income + ", contactNo=" + contactNo + ", status="
 				+ status + ", liveStatus=" + liveStatus + ", identityByMarkOrAadharNo=" + identityByMarkOrAadharNo
 				+ ", classId=" + classId + ", schoolId=" + schoolId + ", schoolTypeId=" + schoolTypeId + ", religionId="
-				+ religionId + ", castId=" + castId + ", subCastId=" + subCastId + ", occupationId=" + occupationId
-				+ ", societyId=" + societyId + ", nationalityId=" + nationalityId + ", mothertongId=" + mothertongId
-				+ ", address=" + address + ", accountFees=" + accountFees + ", document=" + document + ", profileId="
-				+ profileId + "]";
+				+ religionId + ", casteId=" + casteId + ", subCasteId=" + subCasteId + ", occupationId=" + occupationId
+				+ ", societyId=" + societyId + ", nationalityId=" + nationalityId + ", motherTongueId=" + motherTongueId
+				+ ", address=" + address + ",document=" + document + ", profileId=" + profileId + "]";
+	}
+
+	public String getRollNo() {
+		return rollNo;
+	}
+
+	public void setRollNo(String rollNo) {
+		this.rollNo = rollNo;
 	}
 
 }

@@ -24,29 +24,40 @@ public class DebitCreditController {
 	public ResponseEntity<?> create(@RequestBody DebitBookDto adDto) {
 		return librayService.create(adDto);
 	}
-
-	@GetMapping(value = "getbyiddebit/{id}")
-	public ResponseEntity<?> getByIdDebit(@PathVariable Long id) {
-		return librayService.getByIdDebit(id);
-	}
-
-	@GetMapping(value = "getbyidcrebit/{id}")
-	public ResponseEntity<?> getByIdCredit(@PathVariable Long id) {
-		return librayService.getByIdCredit(id);
-	}
-
-	@GetMapping(value = "finddebitbook")
-	public ResponseEntity<?> findAlDebitBook() {
-		return librayService.findAlDebitBook();
-	}
-
-	@GetMapping(value = "findcreditbook")
-	public ResponseEntity<?> findAlCreditBook() {
-		return librayService.findAlCreditBook();
+	
+	@GetMapping(value ="bybookid/{id}")
+	public ResponseEntity<?> byBookId(@PathVariable Long id) {
+		return librayService.byBookId(id);
 	}
 
 	@GetMapping(value = "deletebyid/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable Long id) {
 		return librayService.deleteById(id);
 	}
+	
+	@GetMapping(value = "findall")
+	public ResponseEntity<?> findAll() {
+		return librayService.findAll();
+	}
+	/*
+	 * @GetMapping(value = "getbyiddebit/{id}") public ResponseEntity<?>
+	 * getByIdDebit(@PathVariable Long id) { return librayService.getByIdDebit(id);
+	 * }
+	 * 
+	 * @GetMapping(value = "getbyidcrebit/{id}") public ResponseEntity<?>
+	 * getByIdCredit(@PathVariable Long id) { return
+	 * librayService.getByIdCredit(id); }
+	 * 
+	 * @GetMapping(value = "finddebitbook") public ResponseEntity<?>
+	 * findAlDebitBook() { return librayService.findAlDebitBook(); }
+	 * 
+	 * @GetMapping(value = "findcreditbook") public ResponseEntity<?>
+	 * findAlCreditBook() { return librayService.findAlCreditBook(); }
+	 */
+
+	@GetMapping("get/{id}")
+	public ResponseEntity<?> getDebitCreditById(@PathVariable Long id) {
+		return librayService.getDebitCreditById(id);
+	}
+
 }

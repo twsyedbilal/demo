@@ -23,8 +23,6 @@ import com.techweaversys.model.Document;
 import com.techweaversys.repository.DocumentRepository;
 import com.techweaversys.service.DocumentService;
 
-import io.minio.MinioClient;
-
 @Service
 @Transactional
 public class DocumentServiceImpl implements DocumentService {
@@ -35,41 +33,34 @@ public class DocumentServiceImpl implements DocumentService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	//@Autowired(required = true)
-//	private MinioClient minioClient;
-
-	@Override
-	public ResponseEntity<?> testMinio(MultipartFile file) throws IOException {
-
-		byte[] doc = file.getBytes();
-		
-		Document document = new Document();
-		try {
-		      MinioClient minioClient = new MinioClient("http://localhost:9000","minioadmin", "minioadmin");
-
-		      document.setName(file.getName());
-		      document.setFileName(file.getOriginalFilename());
-		      document.setFileType(file.getContentType());
-
-		      boolean isExist = minioClient.bucketExists("alrizwancloud");
-		      if(isExist) {
-		        System.out.println("Bucket already exists.");
-		      } else {
-		        minioClient.makeBucket("alrizwancloud");
-		      }
-
-		      String filename = file.getOriginalFilename();
-		      // Upload the zip file to the bucket with putObject
-		//      minioClient.putObject("asiatrip","asiaphotos.zip", "/home/user/Photos/asiaphotos.zip");
-		      minioClient.putObject("alrizwancloud", "doc","filename");
-		      System.out.println(minioClient);
-		} catch (Exception e) {
-
-		}
-		documentRepository.save(document);
-		DocumentDto dto = modelMapper.map(doc, DocumentDto.class);
-		return Response.build(Code.CREATED, Messages.DOCUMENT_UPLOADED, dto);
-	}
+	/*
+	 * //@Autowired(required = true) // private MinioClient minioClient;
+	 * 
+	 * @Override public ResponseEntity<?> testMinio(MultipartFile file) throws
+	 * IOException {
+	 * 
+	 * byte[] doc = file.getBytes();
+	 * 
+	 * Document document = new Document(); try { MinioClient minioClient = new
+	 * MinioClient("http://localhost:9000","minioadmin", "minioadmin");
+	 * 
+	 * document.setName(file.getName());
+	 * document.setFileName(file.getOriginalFilename());
+	 * document.setFileType(file.getContentType());
+	 * 
+	 * boolean isExist = minioClient.bucketExists("alrizwancloud"); if(isExist) {
+	 * System.out.println("Bucket already exists."); } else {
+	 * minioClient.makeBucket("alrizwancloud"); }
+	 * 
+	 * String filename = file.getOriginalFilename(); // Upload the zip file to the
+	 * bucket with putObject // minioClient.putObject("asiatrip","asiaphotos.zip",
+	 * "/home/user/Photos/asiaphotos.zip"); minioClient.putObject("alrizwancloud",
+	 * "doc","filename"); System.out.println(minioClient); } catch (Exception e) {
+	 * 
+	 * } documentRepository.save(document); DocumentDto dto = modelMapper.map(doc,
+	 * DocumentDto.class); return Response.build(Code.CREATED,
+	 * Messages.DOCUMENT_UPLOADED, dto); }
+	 */
 
 	@Override
 	public ResponseEntity<?> upload(MultipartFile file) throws IOException {
@@ -95,8 +86,7 @@ public class DocumentServiceImpl implements DocumentService {
 			headers.setLastModified(Calendar.getInstance().getTime().getTime());
 			headers.setCacheControl("no-cache");
 			headers.setContentType(MediaType.IMAGE_JPEG);
-//		    return new ResponseEntity<byte[]>(doc.getDoc(), headers, HttpStatus.OK);
-			return null;
+		    return new ResponseEntity<byte[]>(doc.getDoc(), headers, HttpStatus.OK);
 		}
 		return null;
 	}
@@ -109,8 +99,7 @@ public class DocumentServiceImpl implements DocumentService {
 			headers.setLastModified(Calendar.getInstance().getTime().getTime());
 			headers.setCacheControl("no-cache");
 			headers.setContentType(MediaType.APPLICATION_PDF);
-//		    return new ResponseEntity<byte[]>(doc.getDoc(), headers, HttpStatus.OK);
-			return null;
+		    return new ResponseEntity<byte[]>(doc.getDoc(), headers, HttpStatus.OK);
 		}
 		return null;
 	}

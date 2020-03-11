@@ -13,7 +13,7 @@ import com.techweaversys.dto.OpeningStockDto;
 import com.techweaversys.service.OpeningStockService;
 
 @RestController
-@RequestMapping("OpeningStock/")
+@RequestMapping("rest/api/openingstock/")
 public class OpeningStockController {
 
 	@Autowired
@@ -34,4 +34,8 @@ public class OpeningStockController {
 		return openingStockService.softDeletedOpenigStock(id);
 	}
 
+	@GetMapping(value = "findall")
+	public ResponseEntity<?> findAll() {
+		return openingStockService.findAll();
+	}
 }

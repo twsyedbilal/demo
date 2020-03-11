@@ -5,11 +5,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techweaversys.generics.AbstractPersistable;
 
 @Entity
@@ -27,7 +30,7 @@ public class Address extends AbstractPersistable {
 		super();
 	}
 
-	public Address(Long pinCode, String detailAddress, City city, State state, Country country,String type) {
+	public Address(Long pinCode, String detailAddress, City city, State state, Country country, String type) {
 		super();
 		this.pinCode = pinCode;
 		this.detailAddress = detailAddress;
@@ -40,23 +43,43 @@ public class Address extends AbstractPersistable {
 	@Column(name = "pin_code")
 	private Long pinCode;
 
-//	@Column(name = "type")
+	@Column(name = "type")
 	private String type;
 
 	@Column(name = "detail_address", nullable = false)
 	private String detailAddress;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "sm_city_id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "sm_city_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private City city;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "sm_state_id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "sm_state_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private State state;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "sm_country_id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "sm_country_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private Country country;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "admission_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
+	private Admission admission;
+
+	public Admission getAdmission() {
+		return admission;
+	}
+
+	public void setAdmission(Admission admission) {
+		this.admission = admission;
+	}
 
 	public Long getPinCode() {
 		return pinCode;
@@ -166,5 +189,4 @@ public class Address extends AbstractPersistable {
 		return "Address [pinCode=" + pinCode + ", type=" + type + ", detailAddress=" + detailAddress + ", city=" + city
 				+ ", state=" + state + ", country=" + country + "]";
 	}
-
 }

@@ -9,12 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -56,7 +58,7 @@ public class Admission extends AbstractPersistable {
 			Long income, String contactNo, String identityByMarkOrAadharNo, List<Address> address,
 			ClassEntity classOffered, SchoolType schoolType, SchoolEntityy school, Caste caste, Religion religion,
 			SubCaste subCaste, PaymentType paymentType, Occupation occupation, MotherTongueEntity motherTongue,
-			NationalityEntity nationality, SocietyEntity society,Integer profileId) {
+			NationalityEntity nationality, SocietyEntity society, Integer profileId) {
 		super();
 		this.studentRegNo = studentRegNo;
 		this.uidNo = uidNo;
@@ -150,12 +152,11 @@ public class Admission extends AbstractPersistable {
 
 	@Column(name = "identity_by_mark_or_aadhar_no")
 	private String identityByMarkOrAadharNo;
-	
+
 	@Column(name = "profile_id")
 	private Integer profileId;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "sm_admission_sm_address", joinColumns = @JoinColumn(name = "sm_admission_id"), inverseJoinColumns = @JoinColumn(name = "sm_address_id"))
+	@OneToMany(mappedBy = "admission", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JsonIgnore
 	private List<Address> address;
 
@@ -164,49 +165,74 @@ public class Admission extends AbstractPersistable {
 	@JsonIgnore
 	private List<Document> document;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_class_master_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private ClassEntity classOffered;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_school_type_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private SchoolType schoolType;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_school_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private SchoolEntityy school;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_caste_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private Caste caste;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_religion_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private Religion religion;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_sub_caste_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private SubCaste subCaste;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_payment_type_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private PaymentType paymentType;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_occupation_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private Occupation occupation;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_mother_tongue_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private MotherTongueEntity motherTongue;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_nationality_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private NationalityEntity nationality;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sm_society_id")
+	@JsonIgnore
+	@NotFound(action = NotFoundAction.IGNORE)
 	private SocietyEntity society;
+
+	@Column(name = "roll_no")
+	private String rollNo;
 
 	public List<Document> getDocument() {
 		return document;
@@ -463,7 +489,7 @@ public class Admission extends AbstractPersistable {
 	public void setMotherTongue(MotherTongueEntity motherTongue) {
 		this.motherTongue = motherTongue;
 	}
-	
+
 	public Integer getProfileId() {
 		return profileId;
 	}
@@ -701,5 +727,13 @@ public class Admission extends AbstractPersistable {
 				+ ", schoolType=" + schoolType + ", school=" + school + ", caste=" + caste + ", religion=" + religion
 				+ ", subCaste=" + subCaste + ", paymentType=" + paymentType + ", occupation=" + occupation
 				+ ", motherTongue=" + motherTongue + ", nationality=" + nationality + ", society=" + society + "]";
+	}
+
+	public String getRollNo() {
+		return rollNo;
+	}
+
+	public void setRollNo(String rollNo) {
+		this.rollNo = rollNo;
 	}
 }

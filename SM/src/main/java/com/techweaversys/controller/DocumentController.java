@@ -1,8 +1,6 @@
 package com.techweaversys.controller;
 
 import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.xmlpull.v1.XmlPullParserException;
 
 import com.techweaversys.service.DocumentService;
-
-import io.minio.errors.ErrorResponseException;
-import io.minio.errors.InsufficientDataException;
-import io.minio.errors.InternalException;
-import io.minio.errors.InvalidArgumentException;
-import io.minio.errors.InvalidBucketNameException;
-import io.minio.errors.NoResponseException;
 
 @RestController
 @RequestMapping("/rest/api/document")
@@ -31,12 +21,14 @@ public class DocumentController {
 	@Autowired
 	private DocumentService documentService;
 
-	@PostMapping("test")
-	public ResponseEntity<?> testMinio(@RequestParam(value = "file") MultipartFile file) throws InvalidKeyException,
-			InvalidBucketNameException, NoSuchAlgorithmException, InsufficientDataException, NoResponseException,
-			ErrorResponseException, InternalException, InvalidArgumentException, IOException, XmlPullParserException {
-		return documentService.testMinio(file);
-	}
+	/*
+	 * @PostMapping("test") public ResponseEntity<?> testMinio(@RequestParam(value =
+	 * "file") MultipartFile file) throws InvalidKeyException,
+	 * InvalidBucketNameException, NoSuchAlgorithmException,
+	 * InsufficientDataException, NoResponseException, ErrorResponseException,
+	 * InternalException, InvalidArgumentException, IOException,
+	 * XmlPullParserException { return documentService.testMinio(file); }
+	 */
 
 	@PostMapping("/upload")
 	public ResponseEntity<?> upload(@RequestParam(value = "file") MultipartFile file) throws IOException {

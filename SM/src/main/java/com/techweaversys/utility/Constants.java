@@ -77,8 +77,8 @@ public class Constants {
 	public static final String STOCK_OUT = "STOCK_OUT";
 	public static final String ACCOUNTS = "Accounts";
 
-	public static final String CREDIT = "Credit";
-	public static final String DEBIT = "Debit";
+	public static final String CREDIT = "credit";
+	public static final String DEBIT = "debit";
 	public static final String JOURNAL_VOUCHER_CREDIT = "JOURNAL_VOUCHER_CREDIT";
 	public static final String JOURNAL_VOUCHER_DEBIT = "JOURNAL_VOUCHER_DEBIT";
 	public static final String OPENING_BALANCE_CREDIT = "OPENING_BALANCE_CREDIT";

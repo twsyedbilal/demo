@@ -12,6 +12,7 @@ public interface DebitSlaveRepository extends JpaRepository<DebitSlave, Long>, J
 
 	@Query(value = "SELECT sum(return_qty) FROM sm_debit_slave where book_id = ?1 and deleted=0", nativeQuery = true)
 	double getSumByBookId(Long id);
-	
+
+	DebitSlave findByBookId(Long id);
 
 }

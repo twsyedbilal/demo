@@ -16,4 +16,6 @@ public interface AttendanceService {
 	ResponseEntity<?> DeletById(Long id);
 
 	ResponseEntity<?> findAllwithpage(AttendanceSpaceDto dto);
+
+	ResponseEntity<?> findByClassId(Long id);
 }

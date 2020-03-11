@@ -43,13 +43,30 @@ padding-left: 5px;
   text-align: center;
   margin-left: -10px;
   margin-top: -25px;
-  font-size: 60%;
+  font-size: 75%;
   font-weight:bold;
   max-width: 325.03937008px;
   color: black;
 
 }
-
+.img2 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  opacity: 0.1;
+  filter: alpha(opacity=10);
+}
+.set{
+    text-align: center;
+	margin-top: -210px;
+	margin-left: 350px;
+	background-color: #000033;
+	font-size: 130%;
+	max-width: 325.03937008px;
+	height: 30px;
+	color: white;
+}
 
 </style>
 </head>
@@ -75,23 +92,23 @@ padding-left: 5px;
 	
 	<!-- THIS IS FOR ICARD BACK SIDE CODE AND DESIGN   -->
 	
-	<img th:src="@{${header}}" title="" class=" " style="width: 325.03937008px; height: 204.09448819px"/>
+	<img th:src="@{${idBack}}" title="" class="img2" style=" margin-left:350px;width: 325.03937008px; height: 264.09448819px"/>
 
 	<h1 class="set" >Details of Student</h1>
 
-	<table class="backp1" style="width: 325.03937008px; height: 204.09448819px; text-align:justify" >
+	<table class="backp1" style=" margin-left:350px; width: 325.03937008px; height: 204.09448819px; text-align:justify" >
 	<tr>
 	<h4><td class="c" >Date of Birth <span style="padding-left: 27px"><b>:</b></span></td>
 	<td class="d" th:text="${dob}"></td></h4>
 	</tr>
 
 	<tr>
-	<h4><td class="c" >Contact No <span style="padding-left: 34px"><b>:</b></span></td>
+	<h4><td class="c" >Contact No <span style="padding-left: 38px"><b>:</b></span></td>
 	<td class="d" th:text="${contactNo}"></td></h4>
 	</tr>	
 
 	<tr>
-	<h4><td class="c" >Address <h style="padding-left: 47px">:</h><span style="padding-left: 50px"/></td>
+	<h4><td class="c" >Address <h style="padding-left: 54px"><b>:</b></h></td>
 	<td class="d"  th:text="${address}"></td></h4>
 	</tr>	
 

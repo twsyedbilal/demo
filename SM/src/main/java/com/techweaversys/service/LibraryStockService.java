@@ -2,6 +2,7 @@ package com.techweaversys.service;
 
 import org.springframework.http.ResponseEntity;
 
+import com.techweaversys.dto.BookSpaceDto;
 import com.techweaversys.dto.StockInOutDto;
 
 public interface LibraryStockService {
@@ -15,5 +16,7 @@ public interface LibraryStockService {
 	ResponseEntity<?> findAll();
 
 	ResponseEntity<?> deletId(Long id);
+
+	ResponseEntity<?> stockList(BookSpaceDto spectDto);
 
 }

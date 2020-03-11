@@ -12,4 +12,6 @@ public interface OpeningStockService {
 
 	ResponseEntity<?> softDeletedOpenigStock(Long id);
 
+	ResponseEntity<?> findAll();
+
 }

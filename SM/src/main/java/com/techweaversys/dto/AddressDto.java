@@ -153,4 +153,14 @@ public class AddressDto {
 		return "AddressDto [id=" + id + ", cityId=" + cityId + ", stateId=" + stateId + ", countryId=" + countryId
 				+ ", pincode=" + pincode + ", detailAddress=" + detailAddress + ", type=" + type + "]";
 	}
+	private Long admissionId;
+
+	public Long getAdmissionId() {
+		return admissionId;
+	}
+
+	public void setAdmissionId(Long admissionId) {
+		this.admissionId = admissionId;
+	}
+
 }

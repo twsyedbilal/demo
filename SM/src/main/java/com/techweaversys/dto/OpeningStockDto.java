@@ -5,20 +5,20 @@ import java.util.Calendar;
 public class OpeningStockDto {
 
 	private Long id;
-	private double OpeningQty;
+	private double openingQty;
 	private Calendar openingDate;
-	private Long bookid;
+	private BookDto book;
 
 	public OpeningStockDto() {
 		super();
 	}
 
-	public OpeningStockDto(Long id, double openingQty, Calendar openingDate, Long bookid) {
+	public OpeningStockDto(Long id, double openingQty, Calendar openingDate, BookDto book) {
 		super();
 		this.id = id;
-		OpeningQty = openingQty;
+		this.openingQty = openingQty;
 		this.openingDate = openingDate;
-		this.bookid = bookid;
+		this.book = book;
 	}
 
 	public Long getId() {
@@ -30,11 +30,11 @@ public class OpeningStockDto {
 	}
 
 	public double getOpeningQty() {
-		return OpeningQty;
+		return openingQty;
 	}
 
 	public void setOpeningQty(double openingQty) {
-		OpeningQty = openingQty;
+		this.openingQty = openingQty;
 	}
 
 	public Calendar getOpeningDate() {
@@ -45,24 +45,16 @@ public class OpeningStockDto {
 		this.openingDate = openingDate;
 	}
 
-	public Long getBookid() {
-		return bookid;
-	}
-
-	public void setBookid(Long bookid) {
-		this.bookid = bookid;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(OpeningQty);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((bookid == null) ? 0 : bookid.hashCode());
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((openingDate == null) ? 0 : openingDate.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(openingQty);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -75,12 +67,10 @@ public class OpeningStockDto {
 		if (getClass() != obj.getClass())
 			return false;
 		OpeningStockDto other = (OpeningStockDto) obj;
-		if (Double.doubleToLongBits(OpeningQty) != Double.doubleToLongBits(other.OpeningQty))
-			return false;
-		if (bookid == null) {
-			if (other.bookid != null)
+		if (book == null) {
+			if (other.book != null)
 				return false;
-		} else if (!bookid.equals(other.bookid))
+		} else if (!book.equals(other.book))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -92,12 +82,23 @@ public class OpeningStockDto {
 				return false;
 		} else if (!openingDate.equals(other.openingDate))
 			return false;
+		if (Double.doubleToLongBits(openingQty) != Double.doubleToLongBits(other.openingQty))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "OpeningStockDto [id=" + id + ", OpeningQty=" + OpeningQty + ", openingDate=" + openingDate + ", bookid="
-				+ bookid + "]";
+		return "OpeningStockDto [id=" + id + ", openingQty=" + openingQty + ", openingDate=" + openingDate + ", book="
+				+ book + "]";
 	}
+
+	public BookDto getBook() {
+		return book;
+	}
+
+	public void setBook(BookDto book) {
+		this.book = book;
+	}
+
 }

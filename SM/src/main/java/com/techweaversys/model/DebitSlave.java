@@ -43,61 +43,28 @@ public class DebitSlave extends AbstractPersistable {
 	@JoinColumn(name = "book_id")
 	@JsonIgnore
 	@NotFound(action = NotFoundAction.IGNORE)
-	private Book Book;
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-	@JoinColumn(name="debit_book_id")
-	@JsonIgnore	
+	private Book book;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "debit_book_id")
+	@JsonIgnore
 	@NotFound(action = NotFoundAction.IGNORE)
 	private DebitBook debitBook;
-	
-	
+
 	public DebitSlave() {
 		super();
 	}
 
-	public DebitSlave(double qty, double givenQty, double returnQty, Calendar fromDate, Calendar toDate,
-			com.techweaversys.model.Book book, DebitBook debitBook) {
+	public DebitSlave(double qty, double givenQty, double returnQty, Calendar fromDate, Calendar toDate, Book book,
+			DebitBook debitBook) {
 		super();
 		this.qty = qty;
 		this.givenQty = givenQty;
 		this.returnQty = returnQty;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
-		Book = book;
+		this.book = book;
 		this.debitBook = debitBook;
-	}
-
-	public DebitBook getDebitBook() {
-		return debitBook;
-	}
-
-	public void setDebitBook(DebitBook debitBook) {
-		this.debitBook = debitBook;
-	}
-
-	public Book getBook() {
-		return Book;
-	}
-
-	public void setBook(Book book) {
-		Book = book;
-	}
-
-	public Calendar getFromDate() {
-		return fromDate;
-	}
-
-	public void setFromDate(Calendar fromDate) {
-		this.fromDate = fromDate;
-	}
-
-	public Calendar getToDate() {
-		return toDate;
-	}
-
-	public void setToDate(Calendar toDate) {
-		this.toDate = toDate;
 	}
 
 	public double getQty() {
@@ -124,11 +91,43 @@ public class DebitSlave extends AbstractPersistable {
 		this.returnQty = returnQty;
 	}
 
+	public Calendar getFromDate() {
+		return fromDate;
+	}
+
+	public void setFromDate(Calendar fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	public Calendar getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(Calendar toDate) {
+		this.toDate = toDate;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public DebitBook getDebitBook() {
+		return debitBook;
+	}
+
+	public void setDebitBook(DebitBook debitBook) {
+		this.debitBook = debitBook;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((Book == null) ? 0 : Book.hashCode());
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((debitBook == null) ? 0 : debitBook.hashCode());
 		result = prime * result + ((fromDate == null) ? 0 : fromDate.hashCode());
 		long temp;
@@ -151,10 +150,10 @@ public class DebitSlave extends AbstractPersistable {
 		if (getClass() != obj.getClass())
 			return false;
 		DebitSlave other = (DebitSlave) obj;
-		if (Book == null) {
-			if (other.Book != null)
+		if (book == null) {
+			if (other.book != null)
 				return false;
-		} else if (!Book.equals(other.Book))
+		} else if (!book.equals(other.book))
 			return false;
 		if (debitBook == null) {
 			if (other.debitBook != null)
@@ -183,7 +182,6 @@ public class DebitSlave extends AbstractPersistable {
 	@Override
 	public String toString() {
 		return "DebitSlave [qty=" + qty + ", givenQty=" + givenQty + ", returnQty=" + returnQty + ", fromDate="
-				+ fromDate + ", toDate=" + toDate + ", Book=" + Book + ", debitBook=" + debitBook + "]";
+				+ fromDate + ", toDate=" + toDate + ", book=" + book + ", debitBook=" + debitBook + "]";
 	}
-	
 }

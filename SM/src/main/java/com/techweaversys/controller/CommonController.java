@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techweaversys.service.CommonService;
 
-
 @RestController
 @RequestMapping("rest/api/")
 public class CommonController {
@@ -20,7 +19,6 @@ public class CommonController {
 	@GetMapping(value = "country")
 	public ResponseEntity<?> listCountry() {
 		return commonService.getCountryList();
-
 	}
 
 	@GetMapping(value = "state/{countryId}")
@@ -31,6 +29,21 @@ public class CommonController {
 	@GetMapping(value = "city/{stateId}")
 	public ResponseEntity<?> listCity(@PathVariable Long stateId) {
 		return commonService.getCityList(stateId);
+	}
+
+	@GetMapping(value = "getcountry/{id}")
+	public ResponseEntity<?> getCountryById(@PathVariable Long id) {
+		return commonService.getCountryById(id);
+	}
+
+	@GetMapping(value = "getstate/{id}")
+	public ResponseEntity<?> getStateById(@PathVariable Long id) {
+		return commonService.getStateById(id);
+	}
+
+	@GetMapping(value = "getcity/{id}")
+	public ResponseEntity<?> getCityById(@PathVariable Long id) {
+		return commonService.getCityById(id);
 	}
 
 }
