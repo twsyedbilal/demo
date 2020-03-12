@@ -12,4 +12,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long>, J
 
 	Attendance findByClasssId(Long id);
 
+	Attendance findByAdmissionId(Long id);
+
 }

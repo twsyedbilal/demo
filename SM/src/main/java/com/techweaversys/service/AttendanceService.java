@@ -18,4 +18,6 @@ public interface AttendanceService {
 	ResponseEntity<?> findAllwithpage(AttendanceSpaceDto dto);
 
 	ResponseEntity<?> findByClassId(Long id);
+
+	ResponseEntity<?> findByAdmissionId(Long id);
 }
