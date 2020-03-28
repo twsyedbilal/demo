@@ -143,4 +143,12 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return Response.build(Code.OK, dto);
 	}
 
+	@Override
+	public ResponseEntity<?> findByAdmissionId(Long id) {
+		Attendance attendance = attendanceRepository.findByAdmissionId(id);
+		AttendanceDto dto = modelMapper.map(attendance, AttendanceDto.class);
+		return Response.build(Code.OK, dto);
+
+	}
+
 }
