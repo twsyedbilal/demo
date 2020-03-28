@@ -1,7 +1,13 @@
 package com.techweaversys.model;
 
+import java.util.Calendar;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
@@ -25,6 +31,70 @@ public class ClassEntity   extends AbstractPersistable{
 	@Column(name="fees",nullable=false)
 	private double fees;
 
+	@Column(name="class_capacity")
+	private String classsCapacity;
+	
+	
+	@Column(name="class_starting_date")
+	private Calendar classsStartingDate;
+	
+	
+	@Column(name="class_ending_date")
+	private Calendar classsEndingDate;
+	
+	
+	@Column(name="class_location")
+	private  String classsLocation;
+	
+	@Column(name="class_type")
+	private String  classsType;
+	
+
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="user_id")
+	private User user;
+
+	
+	
+	public String getClasssCapacity() {
+		return classsCapacity;
+	}
+	public void setClasssCapacity(String classsCapacity) {
+		this.classsCapacity = classsCapacity;
+	}
+	public Calendar getClasssStartingDate() {
+		return classsStartingDate;
+	}
+	public void setClasssStartingDate(Calendar classsStartingDate) {
+		this.classsStartingDate = classsStartingDate;
+	}
+	public Calendar getClasssEndingDate() {
+		return classsEndingDate;
+	}
+	public void setClasssEndingDate(Calendar classsEndingDate) {
+		this.classsEndingDate = classsEndingDate;
+	}
+	public String getClasssLocation() {
+		return classsLocation;
+	}
+	public void setClasssLocation(String classsLocation) {
+		this.classsLocation = classsLocation;
+	}
+	public String getClasssType() {
+		return classsType;
+	}
+	public void setClasssType(String classsType) {
+		this.classsType = classsType;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public ClassEntity() {
 		super();
 	}
@@ -63,6 +133,7 @@ public class ClassEntity   extends AbstractPersistable{
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -89,6 +160,19 @@ public class ClassEntity   extends AbstractPersistable{
 	@Override
 	public String toString() {
 		return "ClassEntity [className=" + className + ", code=" + code + ", fees=" + fees + "]";
+	}
+	public ClassEntity(String className, String code, double fees, String classsCapacity, Calendar classsStartingDate,
+			Calendar classsEndingDate, String classsLocation, String classsType, User user) {
+		super();
+		this.className = className;
+		this.code = code;
+		this.fees = fees;
+		this.classsCapacity = classsCapacity;
+		this.classsStartingDate = classsStartingDate;
+		this.classsEndingDate = classsEndingDate;
+		this.classsLocation = classsLocation;
+		this.classsType = classsType;
+		this.user = user;
 	}
 
 }

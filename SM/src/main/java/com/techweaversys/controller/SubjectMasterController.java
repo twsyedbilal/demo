@@ -1,5 +1,8 @@
 package com.techweaversys.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +23,7 @@ public class SubjectMasterController {
 	@Autowired
 	private SubjectMasterService subjectMasterService;
 
-	@PostMapping(value = "create")
+	@PostMapping(value = "save")
 	public ResponseEntity<?> create(@RequestBody SubjectMasterDto dto) {
 		return subjectMasterService.create(dto);
 	}
@@ -43,5 +46,22 @@ public class SubjectMasterController {
 	@PostMapping(value = "findAllwithpage")
 	public ResponseEntity<?> findAllwithpage(@RequestBody SubjectMasterSpaceDto dto) {
 		return subjectMasterService.findAllwithpage(dto);
+	}
+	
+	@GetMapping(value = "findall")
+	public ResponseEntity<?> findAlData() {
+		return subjectMasterService.findAllData();
+
+	}
+	
+	@PostMapping(value = "saveall")
+	public List<ResponseEntity<?>> saveMultipleRecord(@RequestBody List<SubjectMasterDto> schoolDtos) {
+		List<ResponseEntity<?>> saveM = null;
+		saveM = new ArrayList<ResponseEntity<?>>();
+		for (SubjectMasterDto SubjectMasterDto : schoolDtos) {
+			ResponseEntity<?> res = subjectMasterService.create(SubjectMasterDto);
+			saveM.add(res);
+		}
+		return saveM;
 	}
 }

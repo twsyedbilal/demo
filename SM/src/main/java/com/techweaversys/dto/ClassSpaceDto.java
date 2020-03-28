@@ -1,12 +1,31 @@
 package com.techweaversys.dto;
 
+import java.util.Calendar;
+
 public class ClassSpaceDto {
 
+	
+	
+	
 	private String className;
 	private String code;
 	private double fees;
+	private  String classsCapacity;
+	private Calendar classsStartingDate;
+	private Calendar classsEndingDate;
+	private  String classsLocation;
+	private String  classsType;
 	private Integer page;
 	private Integer size;
+	private Long id; 
+
+	public Long getId() {
+		return id; 
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public ClassSpaceDto() {
 		super();
@@ -19,6 +38,48 @@ public class ClassSpaceDto {
 		this.fees = fees;
 		this.page = page;
 		this.size = size;
+	}
+
+	
+	
+	public String getClasssCapacity() {
+		return classsCapacity;
+	}
+
+	public void setClasssCapacity(String classsCapacity) {
+		this.classsCapacity = classsCapacity;
+	}
+
+	public Calendar getClasssStartingDate() {
+		return classsStartingDate;
+	}
+
+	public void setClasssStartingDate(Calendar classsStartingDate) {
+		this.classsStartingDate = classsStartingDate;
+	}
+
+	public Calendar getClasssEndingDate() {
+		return classsEndingDate;
+	}
+
+	public void setClasssEndingDate(Calendar classsEndingDate) {
+		this.classsEndingDate = classsEndingDate;
+	}
+
+	public String getClasssLocation() {
+		return classsLocation;
+	}
+
+	public void setClasssLocation(String classsLocation) {
+		this.classsLocation = classsLocation;
+	}
+
+	public String getClasssType() {
+		return classsType;
+	}
+
+	public void setClasssType(String classsType) {
+		this.classsType = classsType;
 	}
 
 	public String getClassName() {

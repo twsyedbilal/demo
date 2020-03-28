@@ -9,24 +9,31 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.techweaversys.dto.SubjectMasterDto;
+import com.techweaversys.model.SubjectMaster;
 
-public class SubjectMasterSpace implements Specification<SubjectMasterDto> {
+public class SubjectMasterSpace implements Specification<SubjectMaster> {
 
 	private static final long serialVersionUID = -1740968398481075198L;
 
 	private String semester;
 	private String SubjectName;
 	private String subjectCode;
+	private String bookName;
 
-	public SubjectMasterSpace(String semester, String subjectName, String subjectCode) {
+
+	
+	public SubjectMasterSpace(String semester, String subjectName, String subjectCode, String bookName) {
 		super();
 		this.semester = semester;
 		SubjectName = subjectName;
 		this.subjectCode = subjectCode;
+		this.bookName = bookName;
 	}
 
+
+
 	@Override
-	public Predicate toPredicate(Root<SubjectMasterDto> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+	public Predicate toPredicate(Root<SubjectMaster> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
 		Predicate conjunction = cb.conjunction();
 		if (StringUtils.isNotEmpty(this.semester)) {
@@ -40,7 +47,12 @@ public class SubjectMasterSpace implements Specification<SubjectMasterDto> {
 		if (StringUtils.isNotEmpty(this.subjectCode)) {
 			conjunction.getExpressions().add(cb.like(root.get("subjectCode"), "%" + this.subjectCode + "%"));
 		}
+		
+
+		if (StringUtils.isNotEmpty(this.bookName)) {
+			conjunction.getExpressions().add(cb.like(root.get("bookName"), "%" + this.bookName + "%"));
+		}
 
 		return conjunction;
-	}
+	} 
 }

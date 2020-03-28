@@ -20,7 +20,6 @@ public class ClassController {
 	@Autowired
 	private ClassService  classService;
 	
-	
 	@PostMapping(value="save")
 	public ResponseEntity<?> save(@RequestBody ClassDto classdto){
 		return  classService .save(classdto);

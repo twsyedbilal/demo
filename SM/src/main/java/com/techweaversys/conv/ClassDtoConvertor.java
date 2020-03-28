@@ -14,6 +14,11 @@ public class ClassDtoConvertor implements Function<ClassEntity, ClassDto> {
 		vv.setCode(ss.getCode());
 		vv.setFees(ss.getFees());
 		vv.setId(ss.getId());
+		vv.setClasssCapacity(ss.getClasssCapacity());
+		vv.setClasssEndingDate(ss.getClasssEndingDate());
+		vv.setClasssStartingDate(ss.getClasssStartingDate());
+		vv.setClasssType(ss.getClasssType());
+		vv.setClasssLocation(ss.getClasssLocation());
 		return vv;
 	}
 	

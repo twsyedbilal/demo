@@ -6,6 +6,7 @@ public class SubjectMasterSpaceDto {
 	private String subjectName;
 	private String semester;
 	private String subjectCode;
+	private String bookName;
 	private Integer size;
 	private Integer page;
 
@@ -13,15 +14,24 @@ public class SubjectMasterSpaceDto {
 		super();
 	}
 
-	public SubjectMasterSpaceDto(Long id, String subjectName, String semester, String subjectCode, Integer size,
-			Integer page) {
+	public SubjectMasterSpaceDto(Long id, String subjectName, String semester, String subjectCode, String bookName,
+			Integer size, Integer page) {
 		super();
 		this.id = id;
 		this.subjectName = subjectName;
 		this.semester = semester;
 		this.subjectCode = subjectCode;
+		this.bookName = bookName;
 		this.size = size;
 		this.page = page;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
 	public Long getId() {

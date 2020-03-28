@@ -1,6 +1,7 @@
 package com.techweaversys.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -23,8 +24,10 @@ import com.techweaversys.generics.Messages;
 import com.techweaversys.generics.Response;
 import com.techweaversys.model.ClassEntity;
 import com.techweaversys.model.SubjectMaster;
+import com.techweaversys.model.User;
 import com.techweaversys.repository.ClassRepository;
 import com.techweaversys.repository.SubjectMasterRepository;
+import com.techweaversys.repository.UserRepository;
 import com.techweaversys.service.SubjectMasterService;
 import com.techweaversys.spec.SubjectMasterSpace;
 
@@ -36,9 +39,12 @@ public class SubjectMasterServiceImpl implements SubjectMasterService {
 
 	@Autowired
 	private SubjectMasterRepository subjectMasterRepository;
-
+ 
 	@Autowired
 	private ClassRepository classRepository;
+
+	@Autowired
+	private UserRepository ur;
 
 	@Override
 	public ResponseEntity<?> create(SubjectMasterDto dto) {
@@ -48,15 +54,23 @@ public class SubjectMasterServiceImpl implements SubjectMasterService {
 		if (dto.getId() != null) {
 			j = subjectMasterRepository.getOne(dto.getId());
 		}
-
-		if (dto.getClasss().getId() != null) {
-			ClassEntity c = classRepository.getOne(dto.getClasss().getId());
+		// save data class with subject
+		if (dto.getClasssId() != null) {
+			ClassEntity c = classRepository.getOne(dto.getClasssId());
 			j.setClasss(c);
 		}
-		subjectMasterRepository.save(j);
+
+		// save data class with user
+		if (dto.getUserId() != null) {
+			User c = ur.getOne(dto.getUserId());
+			j.setUser(c);
+		}
+
+		// subjectMasterRepository.save(j);
 		j.setSemester(dto.getSemester());
 		j.setSubjectName(dto.getSubjectName());
 		j.setSubjectCode(dto.getSubjectCode());
+		j.setbookName(dto.getBookName());
 		subjectMasterRepository.save(j);
 
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);
@@ -78,7 +92,7 @@ public class SubjectMasterServiceImpl implements SubjectMasterService {
 
 	@Override
 	public ResponseEntity<?> getById(Long id) {
-		SubjectMaster r = subjectMasterRepository.getOne(id);
+		Optional<SubjectMaster> r = subjectMasterRepository.findById(id);
 		return Response.build(Code.OK, r);
 	}
 
@@ -86,18 +100,24 @@ public class SubjectMasterServiceImpl implements SubjectMasterService {
 	public ResponseEntity<?> getSubjectByClass(Long classid) {
 
 		List<SubjectMaster> list = subjectMasterRepository.findAllByClasssId(classid);
+		
 		return Response.build(Code.OK, list);
 	}
 
 	@Override
 	public ResponseEntity<?> findAllwithpage(SubjectMasterSpaceDto dto) {
 		logger.info("Showing list of subject", dto);
-		PageRequest pg = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
-		//Page<SubjectMaster> nationality = subjectMasterRepository.findAll(new SubjectMasterSpace(dto.getSemester(), dto.getSubjectCode(),dto.getSubjectName()), pg);
-		//List<SubjectMasterDto> list = nationality.stream().map( new SubjectConvertor() ).collect( Collectors.toList() );
-		//PageDto pageDto = new PageDto(list, nationality.getTotalElements());
-		return Response.build(Code.OK, null);
+		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
+		Page<SubjectMaster> sm = subjectMasterRepository.findAll(new SubjectMasterSpace(dto.getSemester(),
+				dto.getSubjectCode(), dto.getSubjectName(), dto.getBookName()), bb);
+		List<SubjectMasterDto> list = sm.stream().map(new SubjectConvertor()).collect(Collectors.toList());
+		PageDto pageDto = new PageDto(list, sm.getTotalElements());
+		return Response.build(Code.OK, pageDto);
 	}
 
-	
+	@Override
+	public ResponseEntity<?> findAllData() {
+		List<SubjectMaster> list = subjectMasterRepository.findAll();
+		return Response.build(Code.OK, list);
+	}
 }

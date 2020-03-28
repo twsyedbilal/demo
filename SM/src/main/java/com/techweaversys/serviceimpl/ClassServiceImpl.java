@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import com.techweaversys.generics.Messages;
 import com.techweaversys.generics.Response;
 import com.techweaversys.model.ClassEntity;
 import com.techweaversys.repository.ClassRepository;
+import com.techweaversys.repository.UserRepository;
 import com.techweaversys.service.ClassService;
 import com.techweaversys.spec.ClassSpace;
 
@@ -32,14 +34,17 @@ import ch.qos.logback.classic.Logger;
 
 @Service
 @Transactional
-public class ClassServiceImpl  implements ClassService {
-	
-      @Autowired
+public class ClassServiceImpl implements ClassService {
+
+	@Autowired
 	private ClassRepository classRepository;
 
-  	@Autowired
-  	ModelMapper modelMapper;
-	
+	@Autowired
+	ModelMapper modelMapper;
+
+	@Autowired
+	private UserRepository ur;
+
 	private Logger logger = (Logger) LoggerFactory.getLogger(getClass());
 
 	@Override
@@ -48,11 +53,23 @@ public class ClassServiceImpl  implements ClassService {
 		ClassEntity sh = new ClassEntity();
 		if (classdto.getId() != null) {
 			sh = classRepository.getOne(classdto.getId());
-		
+
+		}
+
+		// save user details get by Id
+		if (classdto.getUserId() != null) {
+			com.techweaversys.model.User b = ur.getOne(classdto.getUserId());
+			sh.setUser(b);
 		}
 		sh.setClassName(classdto.getClassName());
 		sh.setCode(classdto.getCode());
 		sh.setFees(classdto.getFees());
+		sh.setClasssCapacity(classdto.getClasssCapacity());
+		sh.setClasssStartingDate(classdto.getClasssStartingDate());
+		sh.setClasssEndingDate(classdto.getClasssEndingDate());
+		sh.setClasssType(classdto.getClasssType());
+		sh.setClasssLocation(classdto.getClasssLocation());
+
 		classRepository.save(sh);
 
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);
@@ -75,14 +92,16 @@ public class ClassServiceImpl  implements ClassService {
 		}
 
 		return Response.build(Code.OK, Messages.DELETED);
-	
+
 	}
 
 	@Override
 	public ResponseEntity<?> findAllwithpage(ClassSpaceDto dto) {
 		logger.info("showing list of classs", dto);
 		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
-		Page<ClassEntity> classs = classRepository.findAll(new ClassSpace(dto.getClassName(), dto.getCode(), dto.getFees()), bb);
+		Page<ClassEntity> classs = classRepository.findAll(new ClassSpace(dto.getClassName(), dto.getCode(),
+				dto.getFees(), dto.getClasssCapacity(), dto.getClasssEndingDate(), dto.getClasssStartingDate(),
+				dto.getClasssLocation(), dto.getClasssType()), bb);
 		List<ClassDto> list = classs.stream().map(new ClassDtoConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, classs.getTotalElements());
 		return Response.build(Code.OK, pageDto);
@@ -93,5 +112,5 @@ public class ClassServiceImpl  implements ClassService {
 		List<ClassEntity> list = classRepository.findAll();
 		return Response.build(Code.OK, list);
 	}
-		
+
 }

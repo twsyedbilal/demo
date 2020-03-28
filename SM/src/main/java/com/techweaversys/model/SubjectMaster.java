@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 
 import com.techweaversys.generics.AbstractPersistable;
@@ -28,6 +30,35 @@ public class SubjectMaster extends AbstractPersistable {
 	@Column(name = "semester")
 	private String semester;
 
+	@Column(name = "book_name")
+	private String bookName;
+
+	@NotFound(action = NotFoundAction.IGNORE)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	public String getbookName() {
+		return bookName;
+	}
+
+	public void setbookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@NotFound(action = NotFoundAction.IGNORE)
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "classs_id")
 	private ClassEntity classs;

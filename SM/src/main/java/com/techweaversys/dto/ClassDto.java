@@ -1,10 +1,67 @@
 package com.techweaversys.dto;
 
+import java.util.Calendar;
+
 public class ClassDto {
 	private String className;
 	private String code;
 	private double fees;
 	private Long id;
+	private Long userId;
+	private  String classsCapacity;
+	private Calendar classsStartingDate;
+	private Calendar classsEndingDate;
+	private  String classsLocation;
+	private String  classsType;
+	
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getClasssCapacity() {
+		return classsCapacity;
+	}
+
+	public void setClasssCapacity(String classsCapacity) {
+		this.classsCapacity = classsCapacity;
+	}
+
+	public Calendar getClasssStartingDate() {
+		return classsStartingDate;
+	}
+
+	public void setClasssStartingDate(Calendar classsStartingDate) {
+		this.classsStartingDate = classsStartingDate;
+	}
+
+	public Calendar getClasssEndingDate() {
+		return classsEndingDate;
+	}
+
+	public void setClasssEndingDate(Calendar classsEndingDate) {
+		this.classsEndingDate = classsEndingDate;
+	}
+
+	public String getClasssLocation() {
+		return classsLocation;
+	}
+
+	public void setClasssLocation(String classsLocation) {
+		this.classsLocation = classsLocation;
+	}
+
+	public String getClasssType() {
+		return classsType;
+	}
+
+	public void setClasssType(String classsType) {
+		this.classsType = classsType;
+	}
 
 	public ClassDto() {
 		super();
@@ -62,6 +119,8 @@ public class ClassDto {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+	
+	
 
 	@Override
 	public boolean equals(Object obj) {

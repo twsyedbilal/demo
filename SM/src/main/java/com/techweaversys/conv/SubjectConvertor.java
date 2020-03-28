@@ -13,6 +13,9 @@ public class SubjectConvertor implements Function<SubjectMaster, SubjectMasterDt
 		smd.setSubjectName(a.getSubjectName());
 		smd.setSubjectCode(a.getSubjectCode());
 		smd.setSemester(a.getSemester());
+		smd.setBookName(a.getbookName());
+		smd.setClasssId(a.getClasss().getId());
+		smd.setUserId(a.getUser().getId());
 
 		return smd;
 	}

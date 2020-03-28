@@ -8,39 +8,48 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.techweaversys.dto.StudentMarkDto;
+import com.techweaversys.dto.StudentMarkSpecDto;
 import com.techweaversys.dto.SubjectMasterSpaceDto;
-import com.techweaversys.model.StudentStatus;
-import com.techweaversys.service.StudentStatusService;
+import com.techweaversys.service.StudentMarksService;
 
 @RestController
-@RequestMapping("/rest/api/status/")
-public class StudentStatusController {
+@RequestMapping("/rest/api/student/marks/")
+public class StudentMarksController {
 
 	@Autowired
-	private StudentStatusService studentStatusService;
-	
-	@PostMapping(value = "create")
-	public ResponseEntity<?> create(@RequestBody StudentStatus studentStatus) {
-		return studentStatusService.create(studentStatus);
+	private StudentMarksService studentMarksService;
+
+	@PostMapping(value = "save")
+	public ResponseEntity<?> create(@RequestBody StudentMarkDto studentStatus) {
+		return studentMarksService.create(studentStatus);
 	}
 
 	@GetMapping(value = "getbyid/{id}")
 	public ResponseEntity<?> getById(@PathVariable Long id) {
-		return studentStatusService.getById(id);
+		return studentMarksService.getById(id);
 
 	}
 
 	@GetMapping(value = "deletebyid/{id}")
 	public ResponseEntity<?> DeletById(@PathVariable Long id) {
-		return studentStatusService.DeletById(id);
-
-	}          
+		return studentMarksService.DeletById(id);
+ 
+	}
 
 	@GetMapping(value = "findall")
 	public ResponseEntity<?> findAlData() {
-		return studentStatusService.findAllData();
+		return studentMarksService.findAllData();
 
 	}
+	
+
+	@GetMapping(value = "getbyclassid/{id}")
+	public ResponseEntity<?> getByclassId(@PathVariable Long id) {
+		return studentMarksService.getByclassId(id);
+
+	}
+	
+	
 	
 }

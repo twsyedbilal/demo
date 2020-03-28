@@ -48,9 +48,7 @@ import com.techweaversys.security.AuthenticationResponse;
 import com.techweaversys.security.SecureUser;
 import com.techweaversys.security.TokenUtils;
 import com.techweaversys.service.UserService;
-import com.techweaversys.spec.UserByroleSpec;
 import com.techweaversys.spec.UserSpec;
-import com.techweaversys.utility.Constants;
 
 
 
@@ -188,7 +186,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ResponseEntity<?> findAll() {
 		logger.info("showing list of users");
-		List<User> users = userRepository.findAll(new UserByroleSpec("","",Constants.ROLE_SALE));
+	//	List<User> users = userRepository.findAll(new UserByroleSpec("","",Constants.ROLE_SALE));
+		List<User> users = userRepository.findAll();
 		List<UserListDto> list = users.stream().map( new UserDtoAutoConvertor() ).collect( Collectors.toList() );
 		return Response.build(Code.OK, list);
 	}
