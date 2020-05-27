@@ -70,7 +70,7 @@ import ch.qos.logback.classic.Logger;
 
 @Service
 @Transactional
-public class AdmissionServiceImpl implements AdmissionService {
+public  class AdmissionServiceImpl implements AdmissionService {
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -368,5 +368,11 @@ public class AdmissionServiceImpl implements AdmissionService {
 		dto.setReligionName(religionName);
 
 		return Response.build(Code.OK, dto);
+	}
+
+	@Override
+	public ResponseEntity<?> getByclassId(Long id) {
+		List<Admission> list=	admissionRepository.findAllByClassOfferedId(id);
+		return Response.build(Code.OK, list);
 	}
 }

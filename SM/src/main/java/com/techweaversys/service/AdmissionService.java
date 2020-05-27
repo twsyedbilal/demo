@@ -20,5 +20,7 @@ public interface AdmissionService {
 
 	ResponseEntity<?> getByView(Long id);
 
+	ResponseEntity<?> getByclassId(Long id);
+
 	
 }

@@ -18,17 +18,17 @@ public class StudentMarkConvertor implements Function<StudentMark, StudentMarkDt
 	@Override
 	public StudentMarkDto apply(StudentMark sm) {
 		StudentMarkDto smd = new StudentMarkDto();
-		if (sm.getClasss() != null) {
-			smd.setClasssid(sm.getClasss().getId());
-		}
+		if (sm.getClasss().getId() != null && sm.getClasss() != null) {
+			smd.setClasss(sm.getClasss().getId());
+			}
+			if (sm.getSubjectMaster().getId() != null && sm.getSubjectMaster() != null) {
+			smd.setSubjectMaster(sm.getSubjectMaster().getId());
+			}
 
-		if (sm.getExamMaster() != null) {
-			smd.setExamId(sm.getExamMaster().getId());
-		}
+			if (sm.getExamMaster().getId() != null && sm.getExamMaster() != null) {
+			smd.setExamMaster(sm.getExamMaster().getId());
+			}
 
-		if (sm.getSubjectMaster() != null) {
-			smd.setSubjectId(sm.getSubjectMaster().getId());
-		}
 
 		if (sm.getMarksSlaves() != null) {
 
@@ -40,13 +40,19 @@ public class StudentMarkConvertor implements Function<StudentMark, StudentMarkDt
 					d.setMark(s.getMark());
 					d.setRemark(s.getRemark());
 
-					list.add(d);
+					if(s.getAdmission().getId() != null) {
+						AdmissionDto aDto = new AdmissionDto();
+						aDto.setStudentsName(s.getAdmission().getStudentsName());
 
-				}
-			}
+						d.setAdmission(s.getAdmission().getId());
+						}
+						list.add(d);
+						}
+						smd.setSlavedto(list);
+						}
 
-		}
-		return smd;
+						}
+						return smd;
 
 	}
 }

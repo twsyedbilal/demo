@@ -51,6 +51,10 @@ public class MarksSlave extends AbstractPersistable {
 		this.mark = mark;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String getRemark() {
 		return remark;
 	}

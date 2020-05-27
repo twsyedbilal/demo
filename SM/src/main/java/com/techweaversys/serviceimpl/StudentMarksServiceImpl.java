@@ -4,6 +4,7 @@ package com.techweaversys.serviceimpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techweaversys.conv.StudentMarkConvertor;
 import com.techweaversys.dto.AttendanceDto;
 import com.techweaversys.dto.MarkSlaveDto;
 import com.techweaversys.dto.StudentMarkDto;
@@ -69,19 +71,19 @@ public class StudentMarksServiceImpl implements StudentMarksService {
 		}
 
 		// save classs details with StudentMark details get by Id
-		if (dto.getClasssid() != null) {
-			ClassEntity b = cr.getOne(dto.getClasssid());
+		if (dto.getClasss() != null) {
+			ClassEntity b = cr.getOne(dto.getClasss());
 			sh.setClasss(b);
 		}
 		// save exam details with StudentMark details get by Id
-		if (dto.getExamId() != null) {
-			ExamMaster b = examRepository.getOne(dto.getExamId());
+		if (dto.getExamMaster() != null) {
+			ExamMaster b = examRepository.getOne(dto.getExamMaster());
 			sh.setExamMaster(b);
 		}
 
 		// save exam details with StudentMark details get by Id
-		if (dto.getSubjectId() != null) {
-			SubjectMaster b = smr.getOne(dto.getSubjectId());
+		if (dto.getSubjectMaster() != null) {
+			SubjectMaster b = smr.getOne(dto.getSubjectMaster());
 			sh.setSubjectMaster(b);
 		}
 
@@ -91,21 +93,24 @@ public class StudentMarksServiceImpl implements StudentMarksService {
 				MarksSlave m = new MarksSlave();
 				m.setMark(d.getMark());
 				m.setRemark(d.getRemark());
-
-				Admission a = adrepo.getOne(d.getAdmissionId());
+              
+                
+				Admission a = adrepo.getOne(d.getAdmission());
 				m.setAdmission(a);
 				m.setStudentMark(sh);
 				list.add(m);
-			}
+			
 			sh.setMarksSlaves(list);
 		}
+		
+	}
 		studentMarksRepository.save(sh);
 		return Response.build(Code.CREATED, Messages.USER_CREATED_MSG);
 	}
 
 	@Override
 	public ResponseEntity<?> getById(Long id) {
-		Optional<StudentMark> bb = studentMarksRepository.findById(id);
+		Optional<StudentMarkDto> bb = Optional.empty();
 		return Response.build(Code.OK, bb);
 	}
 
@@ -124,16 +129,18 @@ public class StudentMarksServiceImpl implements StudentMarksService {
 	@Override
 	public ResponseEntity<?> findAllData() {
 		List<StudentMark> st = studentMarksRepository.findAll();
-		StudentMarkDto dto = modelMapper.map(st, StudentMarkDto.class);
-		return Response.build(Code.OK, st);
-	}
+		// StudentMarkDto dto = modelMapper.map(st, StudentMarkDto.class);
+		List<StudentMarkDto> dto = st.stream().map(new StudentMarkConvertor()).collect(Collectors.toList());
+		return Response.build(Code.OK, dto);
+		}
 
 	@Override
 	public ResponseEntity<?> getByclassId(Long id) {
 		StudentMark list = studentMarksRepository.findByClasssId(id);
-	//	StudentMarkDto dto = modelMapper.map(list, StudentMarkDto.class);
-		return Response.build(Code.OK, list);
-	}
-	}
+		return Response.build(Code.OK, list);	}
 
+	
+	
+	}
+ 
 

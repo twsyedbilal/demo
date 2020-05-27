@@ -1,1 +1,2 @@
 ALTER TABLE sm_exam_slave MODIFY id int NOT NULL AUTO_INCREMENT;
+

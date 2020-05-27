@@ -50,4 +50,10 @@ public class AdmissionController {
 	public ResponseEntity<?> getByView(@PathVariable Long id) {
 		return admissionService.getByView(id);
 	}
+	@GetMapping(value = "getbyclassid/{id}")
+	public ResponseEntity<?> getByclassId(@PathVariable Long id) {
+		return admissionService.getByclassId(id);
+
+	}
+	
 }

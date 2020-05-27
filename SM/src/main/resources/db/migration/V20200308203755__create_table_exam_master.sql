@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `sm_exam_slave` (
 
 
 
+
 CREATE TABLE IF NOT EXISTS `sm_student_mark` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created` datetime DEFAULT NULL,
@@ -52,7 +53,6 @@ CREATE TABLE IF NOT EXISTS `sm_student_mark` (
   CONSTRAINT `fk_sm_student_mark__sm_subject_master` FOREIGN KEY (`subject_id`) REFERENCES `sm_subject_master` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
 CREATE TABLE IF NOT EXISTS `sm_mark_slave` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `admission_id` bigint(20) DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `sm_mark_slave` (
   KEY `fk_sm_mark_slave__sm_admission` (`admission_id`),
   CONSTRAINT `fk_sm_mark_slave__sm_admission` FOREIGN KEY (`admission_id`) REFERENCES `sm_admission` (`id`),
   KEY `fk_sm_mark_slave__sm_student_markn` (`mark_id`),
-  CONSTRAINT `fk_sm_mark_slave__sm_student_markn` FOREIGN KEY (`mark_id`) REFERENCES `sm_student_mark` (`id`)
+  CONSTRAINT `fk_sm_mark_slave__sm_student_mark` FOREIGN KEY (`mark_id`) REFERENCES `sm_student_mark` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 

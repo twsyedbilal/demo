@@ -14,7 +14,7 @@ public interface StudentMarksRepository  extends JpaSpecificationExecutor<Studen
 
 	StudentMark findByClasssId(Long id);
 
-
+	
 	
 
 

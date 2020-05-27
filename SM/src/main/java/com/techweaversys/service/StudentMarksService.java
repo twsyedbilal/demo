@@ -13,8 +13,11 @@ public interface StudentMarksService {
 	ResponseEntity<?> DeletById(Long id);
 
 	ResponseEntity<?> findAllData();
-
+	
 	ResponseEntity<?> getByclassId(Long id);
+
+
+
 
 
 

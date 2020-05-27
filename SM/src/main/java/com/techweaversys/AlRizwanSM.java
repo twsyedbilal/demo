@@ -9,5 +9,4 @@ public class AlRizwanSM {
 	public  static void main(String[] args) {
 		SpringApplication.run(AlRizwanSM.class, args);
 	}
-
 }  
