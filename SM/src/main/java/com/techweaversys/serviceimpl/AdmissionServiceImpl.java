@@ -70,7 +70,7 @@ import ch.qos.logback.classic.Logger;
 
 @Service
 @Transactional
-public  class AdmissionServiceImpl implements AdmissionService {
+public class AdmissionServiceImpl implements AdmissionService {
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -332,9 +332,9 @@ public  class AdmissionServiceImpl implements AdmissionService {
 	public ResponseEntity<?> findalladmissionWithPage(AdmissionSpecDto dto) {
 		logger.info("showing list of Admission", dto);
 		PageRequest bb = PageRequest.of(dto.getPage() - 1, dto.getSize(), Direction.DESC, AppConstants.MODIFIED);
-		Page<Admission> admission = admissionRepository.findAll(new AdmissionSpec(dto.getStudentsName(), dto.getUidNo(),
-				dto.getIdNo(), dto.getYear(), dto.getDate(), dto.getClassOffered(), dto.getStatus()), bb);
-
+		Page<Admission> admission = admissionRepository.findAll(new AdmissionSpec(dto.getUidNo(), dto.getIdNo(),
+				dto.getYear(), dto.getSurName(), dto.getStudentsName(), dto.getClassOffered().getClassName(),
+				dto.getStatus(), dto.getLiveStatus(), dto.getStudentRegNo()), bb);
 		List<AdmissionDto> list = admission.stream().map(new AdmissionDtoConvertor()).collect(Collectors.toList());
 		PageDto pageDto = new PageDto(list, admission.getTotalElements());
 		return Response.build(Code.OK, pageDto);
@@ -372,7 +372,7 @@ public  class AdmissionServiceImpl implements AdmissionService {
 
 	@Override
 	public ResponseEntity<?> getByclassId(Long id) {
-		List<Admission> list=	admissionRepository.findAllByClassOfferedId(id);
+		List<Admission> list = admissionRepository.findAllByClassOfferedId(id);
 		return Response.build(Code.OK, list);
 	}
 }

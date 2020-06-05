@@ -1,5 +1,7 @@
 package com.techweaversys.serviceimpl;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,8 +17,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techweaversys.conv.AttendanceConvertor;
+import com.techweaversys.dto.AdmissionDto;
 import com.techweaversys.dto.AttendanceDto;
 import com.techweaversys.dto.AttendanceSpaceDto;
+import com.techweaversys.dto.ClassDto;
 import com.techweaversys.dto.PageDto;
 import com.techweaversys.generics.AppConstants;
 import com.techweaversys.generics.Code;
@@ -138,17 +142,131 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Override
 	public ResponseEntity<?> findByClassId(Long id) {
-		Attendance attendance = attendanceRepository.findByClasssId(id);
-		AttendanceDto dto = modelMapper.map(attendance, AttendanceDto.class);
-		return Response.build(Code.OK, dto);
+		List<AttendanceDto> listDto = new ArrayList<>();
+		List<Attendance> attendance = attendanceRepository.findAllByClasssId(id);
+
+		for (Attendance conlist : attendance) {
+
+			AttendanceDto dto = new AttendanceDto();
+			dto.setAbsent(conlist.getAbsent());
+			dto.setPresent(conlist.getPresent());
+			dto.setId(conlist.getId());
+			dto.setReason(conlist.getReason());
+
+			ClassEntity classData = conlist.getClasss();
+			ClassDto classDto = new ClassDto();
+			classDto.setClassName(classData.getClassName());
+			classDto.setClasssCapacity(classData.getClasssCapacity());
+			classDto.setClasssEndingDate(classData.getClasssEndingDate());
+			classDto.setClasssStartingDate(classData.getClasssStartingDate());
+			classDto.setClasssLocation(classData.getClasssLocation());
+			classDto.setCode(classData.getCode());
+			classDto.setFees(classData.getFees());
+			classDto.setClasssType(classData.getClasssType());
+			classDto.setId(classData.getId());
+
+			dto.setClasss(classDto);
+
+			Admission ad = conlist.getAdmission();
+			AdmissionDto adDto = new AdmissionDto();
+
+			adDto.setId(ad.getId());
+			adDto.setStatus(ad.getStatus());
+			adDto.setLiveStatus(ad.getLiveStatus());
+			adDto.setUidNo(ad.getUidNo());
+			adDto.setIdNo(ad.getIdNo());
+			adDto.setStudentRegNo(ad.getStudentRegNo());
+			adDto.setYear(ad.getYear());
+			adDto.setDate(ad.getDate());
+			adDto.setSurName(ad.getSurName());
+			adDto.setFathersName(ad.getFathersName());
+			adDto.setMothersName(ad.getMothersName());
+			adDto.setGuardiansName(ad.getGuardiansName());
+			adDto.setDateOfBirthInWords(ad.getDateOfBirthInWords());
+			adDto.setIdentityByMarkOrAadharNo(ad.getIdentityByMarkOrAadharNo());
+			adDto.setPlaceOfBirth(ad.getPlaceOfBirth());
+			adDto.setContactNo(ad.getContactNo());
+			adDto.setStudentsName(ad.getStudentsName());
+			adDto.setGender(ad.getGender());
+			adDto.setDateOfBirth(ad.getDateOfBirth());
+			adDto.setIncome(ad.getIncome());
+
+			dto.setAdmission(adDto);
+
+			listDto.add(dto);
+		}
+//		List<Attendance> attendance = attendanceRepository.findAllByClasssId(id);
+//		List<AttendanceDto> list = attendance.stream().map(new AttendanceConvertor()).collect(Collectors.toList());
+		return Response.build(Code.OK, listDto);
 	}
 
 	@Override
 	public ResponseEntity<?> findByAdmissionId(Long id) {
-		Attendance attendance = attendanceRepository.findByAdmissionId(id);
-		AttendanceDto dto = modelMapper.map(attendance, AttendanceDto.class);
-		return Response.build(Code.OK, dto);
 
+		List<AttendanceDto> listDto = new ArrayList<>();
+		List<Attendance> attendance = attendanceRepository.findAllByAdmissionId(id);
+
+		for (Attendance conlist : attendance) {
+
+			AttendanceDto dto = new AttendanceDto();
+			dto.setAbsent(conlist.getAbsent());
+			dto.setPresent(conlist.getPresent());
+			dto.setId(conlist.getId());
+			dto.setReason(conlist.getReason());
+
+			ClassEntity classData = conlist.getClasss();
+			ClassDto classDto = new ClassDto();
+			classDto.setClassName(classData.getClassName());
+			classDto.setClasssCapacity(classData.getClasssCapacity());
+			classDto.setClasssEndingDate(classData.getClasssEndingDate());
+			classDto.setClasssStartingDate(classData.getClasssStartingDate());
+			classDto.setClasssLocation(classData.getClasssLocation());
+			classDto.setCode(classData.getCode());
+			classDto.setFees(classData.getFees());
+			classDto.setClasssType(classData.getClasssType());
+			classDto.setId(classData.getId());
+
+			dto.setClasss(classDto);
+
+			Admission ad = conlist.getAdmission();
+			AdmissionDto adDto = new AdmissionDto();
+
+			adDto.setId(ad.getId());
+			adDto.setStatus(ad.getStatus());
+			adDto.setLiveStatus(ad.getLiveStatus());
+			adDto.setUidNo(ad.getUidNo());
+			adDto.setIdNo(ad.getIdNo());
+			adDto.setStudentRegNo(ad.getStudentRegNo());
+			adDto.setYear(ad.getYear());
+			adDto.setDate(ad.getDate());
+			adDto.setSurName(ad.getSurName());
+			adDto.setFathersName(ad.getFathersName());
+			adDto.setMothersName(ad.getMothersName());
+			adDto.setGuardiansName(ad.getGuardiansName());
+			adDto.setDateOfBirthInWords(ad.getDateOfBirthInWords());
+			adDto.setIdentityByMarkOrAadharNo(ad.getIdentityByMarkOrAadharNo());
+			adDto.setPlaceOfBirth(ad.getPlaceOfBirth());
+			adDto.setContactNo(ad.getContactNo());
+			adDto.setStudentsName(ad.getStudentsName());
+			adDto.setGender(ad.getGender());
+			adDto.setDateOfBirth(ad.getDateOfBirth());
+			adDto.setIncome(ad.getIncome());
+
+			dto.setAdmission(adDto);
+
+			listDto.add(dto);
+		}
+//		List<Attendance> attendance = attendanceRepository.findAllByAdmissionId(id);
+//		List<AttendanceDto> list = attendance.stream().map(new AttendanceConvertor()).collect(Collectors.toList());
+		return Response.build(Code.OK, listDto);
+
+	}
+
+	@Override
+	public ResponseEntity<?> findByDate(Calendar date) {
+		List<Attendance> attendance = attendanceRepository.findAllBydate(date);
+		List<AttendanceDto> list = attendance.stream().map(new AttendanceConvertor()).collect(Collectors.toList());
+		return Response.build(Code.OK, list);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.techweaversys.service;
 
+import java.util.Calendar;
+
 import org.springframework.http.ResponseEntity;
 
 import com.techweaversys.dto.AttendanceDto;
@@ -20,4 +22,6 @@ public interface AttendanceService {
 	ResponseEntity<?> findByClassId(Long id);
 
 	ResponseEntity<?> findByAdmissionId(Long id);
+
+	ResponseEntity<?> findByDate(Calendar date);
 }

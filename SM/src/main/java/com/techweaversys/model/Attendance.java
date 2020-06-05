@@ -1,5 +1,7 @@
 package com.techweaversys.model;
 
+import java.util.Calendar;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,10 +9,13 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
+import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techweaversys.generics.AbstractPersistable;
@@ -200,9 +205,24 @@ public class Attendance extends AbstractPersistable {
 		return true;
 	}
 
+	@Column(name = "date", nullable = false)
+	@CreatedDate
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar date;
+
+	public Calendar getDate() {
+		return date;
+	}
+
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
+
 	@Override
 	public String toString() {
 		return "Attendance [present=" + present + ", absent=" + absent + ", reason=" + reason + ", types=" + types
-				+ ", classs=" + classs + ", user=" + user + ", admission=" + admission + "]";
+				+ ", classs=" + classs + ", user=" + user + ", admission=" + admission + ", subject=" + subject
+				+ ", date=" + date + "]";
 	}
+
 }

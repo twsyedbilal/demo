@@ -46,4 +46,9 @@ public class CommonController {
 		return commonService.getCityById(id);
 	}
 
+	@GetMapping(value = "statelist")
+	public ResponseEntity<?> findAllState() {
+		return commonService.findAllState();
+	}
+
 }

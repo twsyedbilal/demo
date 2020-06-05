@@ -1,5 +1,9 @@
 package com.techweaversys.controller;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,15 +53,33 @@ public class AttendanceController {
 		return attendanceService.findAllwithpage(dto);
 
 	}
+
 	@GetMapping(value = "getclassbyid/{id}")
 	public ResponseEntity<?> findByClassId(@PathVariable Long id) {
 		return attendanceService.findByClassId(id);
 
 	}
+
 	@GetMapping(value = "getbyadmissionid/{id}")
 	public ResponseEntity<?> findByAdmissionId(@PathVariable Long id) {
 		return attendanceService.findByAdmissionId(id);
 
 	}
 
+	@GetMapping(value = "getbydate/{date}")
+	public ResponseEntity<?> findByDate(@PathVariable Calendar date) {
+		return attendanceService.findByDate(date);
+
+	}
+
+	@PostMapping(value = "createlist")
+	public List<ResponseEntity<?>> saveMultipleRecord(@RequestBody List<AttendanceDto> attendanceDtoList) {
+		List<ResponseEntity<?>> saveM = null;
+		saveM = new ArrayList<ResponseEntity<?>>();
+		for (AttendanceDto attendanceDto : attendanceDtoList) {
+			ResponseEntity<?> res = attendanceService.create(attendanceDto);
+			saveM.add(res);
+		}
+		return saveM;
+	}
 }

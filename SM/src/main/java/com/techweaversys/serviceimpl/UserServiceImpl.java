@@ -48,7 +48,9 @@ import com.techweaversys.security.AuthenticationResponse;
 import com.techweaversys.security.SecureUser;
 import com.techweaversys.security.TokenUtils;
 import com.techweaversys.service.UserService;
+import com.techweaversys.spec.UserByroleSpec;
 import com.techweaversys.spec.UserSpec;
+import com.techweaversys.utility.Constants;
 
 
 
@@ -112,6 +114,20 @@ public class UserServiceImpl implements UserService {
 		User user = new UserAddCovertor().apply(dto);
 		List<Role> roles = roleRepository.findByRoleIn( Arrays.asList( dto.getRoles() ) );
 		user.setRoles(roles);
+
+		user.setUsername(dto.getUsername());
+		user.setName(dto.getName());
+		user.setMobile(dto.getMobile());
+		user.setEmail(dto.getEmail());
+		user.setPassword(dto.getPassword());
+		user.setAddress(dto.getAddress());
+		user.setBloodGroup(dto.getBloodGroup());
+		user.setDateOfBirth(dto.getDateOfBirth());
+		user.setGender(dto.getGender());
+		user.setCity(dto.getCity());
+		user.setState(dto.getState());
+		user.setQualification(dto.getQualification());
+
 		userRepository.save(user);
 		
 		logger.info(String.format("User %s has been created successfully", user.getUsername()));
@@ -186,10 +202,40 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ResponseEntity<?> findAll() {
 		logger.info("showing list of users");
-	//	List<User> users = userRepository.findAll(new UserByroleSpec("","",Constants.ROLE_SALE));
-		List<User> users = userRepository.findAll();
+		List<User> users = userRepository.findAll(new UserByroleSpec("","",Constants.ROLE_SALE));
 		List<UserListDto> list = users.stream().map( new UserDtoAutoConvertor() ).collect( Collectors.toList() );
 		return Response.build(Code.OK, list);
 	}
 
+	@Override
+	public ResponseEntity<?> findAllTeacher() {
+
+		List<User> userList = userRepository.findAll();
+//		List<UserAddDto> dto = userList.stream().map(new UserAddCovertor()).collect(Collectors.toList());
+		return Response.build(Code.OK, userList);
+	}
+
+	@Override
+	public ResponseEntity<?> delete(Long id) {
+		User user = new User();
+		if (id != null) {
+			user = userRepository.getOne(id);
+			user.setDeleted(true);
+			userRepository.save(user);
+		}
+		return Response.build(Code.OK, Messages.DELETED);
+	}
+
+	@Override
+	public ResponseEntity<?> getAllRole() {
+		List<Role> list = roleRepository.findAll();
+		return Response.build(Code.OK, list);
+	}
+
+	@Override
+	public ResponseEntity<?> getDataById(Long id) {
+		User user = userRepository.getOne(id);
+		UserAddDto dto = modelMapper.map(user, UserAddDto.class);
+		return Response.build(Code.OK, dto);
+	}
 }

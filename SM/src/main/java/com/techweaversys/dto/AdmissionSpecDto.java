@@ -19,14 +19,15 @@ public class AdmissionSpecDto {
 	private String status;
 	private String liveStatus;
 	private String address;
-
+	private String studentRegNo;
+	
 	public AdmissionSpecDto() {
 		super();
 	}
 
 	public AdmissionSpecDto(Long id, Long uidNo, String idNo, String year, String surName, String studentsName,
 			Calendar date, Integer page, Integer size, ClassEntity classOffered, String status, String liveStatus,
-			String address) {
+			String address, String studentRegNo) {
 		super();
 		this.id = id;
 		this.uidNo = uidNo;
@@ -41,7 +42,9 @@ public class AdmissionSpecDto {
 		this.status = status;
 		this.liveStatus = liveStatus;
 		this.address = address;
+		this.studentRegNo = studentRegNo;
 	}
+
 
 	public String getAddress() {
 		return address;
@@ -147,6 +150,14 @@ public class AdmissionSpecDto {
 		this.liveStatus = liveStatus;
 	}
 
+	public String getStudentRegNo() {
+		return studentRegNo;
+	}
+
+	public void setStudentRegNo(String studentRegNo) {
+		this.studentRegNo = studentRegNo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -249,7 +260,9 @@ public class AdmissionSpecDto {
 		return "AdmissionSpecDto [id=" + id + ", uidNo=" + uidNo + ", idNo=" + idNo + ", year=" + year + ", surName="
 				+ surName + ", studentsName=" + studentsName + ", date=" + date + ", page=" + page + ", size=" + size
 				+ ", classOffered=" + classOffered + ", status=" + status + ", liveStatus=" + liveStatus + ", address="
-				+ address + "]";
+				+ address + ", studentRegNo=" + studentRegNo + "]";
 	}
+
+
 
 }

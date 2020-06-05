@@ -33,4 +33,12 @@ public interface UserService {
 	public ResponseEntity<?> listUser(UserSpecDto dto);
 
 	ResponseEntity<?> findAll();
+	
+	public ResponseEntity<?> findAllTeacher();
+
+	public ResponseEntity<?> delete(Long id);
+
+	public ResponseEntity<?> getAllRole();
+
+	public ResponseEntity<?> getDataById(Long id);
 }

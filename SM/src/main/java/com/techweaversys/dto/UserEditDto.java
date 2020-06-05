@@ -1,6 +1,7 @@
 package com.techweaversys.dto;
 
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class UserEditDto {
 	private Long id;
@@ -162,6 +163,70 @@ public class UserEditDto {
 		return "UserEditDto [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name
 				+ ", email=" + email + ", mobile=" + mobile + ", status=" + status + ", roles=" + Arrays.toString(roles)
 				+ "]";
+	}
+
+	private Calendar dateOfBirth;
+	private String qualification;
+	private String gender;
+	private String bloodGroup;
+	private String address;
+	private String city;
+	private String state;
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Calendar getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Calendar dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
 	}
 
 }

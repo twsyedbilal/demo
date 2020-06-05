@@ -1,5 +1,6 @@
 package com.techweaversys.model;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,12 +12,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
+import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techweaversys.enums.StatusType;
 import com.techweaversys.generics.AbstractPersistable;
-
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "user")
@@ -27,29 +29,28 @@ public class User extends AbstractPersistable {
 
 	@Column(name = "username", unique = true, nullable = false)
 	private String username;
-	
+
 	@Column(name = "password", nullable = false)
 	private String password;
-	
+
 	@Column(name = "name", nullable = false)
 	private String name;
-	
+
 	@Column(name = "email", nullable = false)
 	private String email;
-	
+
 	@Column(name = "mobile", nullable = false)
 	private String mobile;
-	
+
 	@Column(name = "status", nullable = true)
 	private String status = StatusType.Active.getValue();
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "role_id") })
 	@JsonIgnore
 	private List<Role> roles;
 
-	
 	public User() {
 		super();
 	}
@@ -188,5 +189,84 @@ public class User extends AbstractPersistable {
 		return "User [username=" + username + ", password=" + password + ", name=" + name + ", email=" + email
 				+ ", mobile=" + mobile + ", status=" + status + ", roles=" + roles + "]";
 	}
-	
+
+	@Column(name = "date_of_birth", nullable = false)
+	@CreatedDate
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar dateOfBirth;
+
+	@Column(name = "qualification", nullable = false)
+	private String qualification;
+
+	@Column(name = "gender", nullable = false)
+	private String gender;
+
+	@Column(name = "blood_group", nullable = false)
+	private String bloodGroup;
+
+	@Column(name = "address", nullable = false)
+	private String address;
+
+	@Column(name = "city", nullable = false)
+	private String city;
+
+	@Column(name = "state", nullable = false)
+	private String state;
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Calendar getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Calendar dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
+
 }

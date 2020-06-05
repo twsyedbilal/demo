@@ -16,4 +16,5 @@ public interface CommonService {
 
 	ResponseEntity<?> getCityById(Long id);
 
+	ResponseEntity<?> findAllState();
 }

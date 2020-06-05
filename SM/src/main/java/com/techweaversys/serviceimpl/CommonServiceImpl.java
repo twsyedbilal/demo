@@ -89,4 +89,12 @@ public class CommonServiceImpl implements CommonService {
 		return Response.build(Code.OK, dto);
 	}
 
+	@Override
+	public ResponseEntity<?> findAllState() {
+		logger.info("fetching State List ");
+		List<State> state = stateRepository.findAll();
+		List<StateDto> dto = state.stream().map(c -> modelMapper.map(c, StateDto.class)).collect(Collectors.toList());
+		return Response.build(Code.OK, dto);
+	}
+
 }
